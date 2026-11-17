@@ -250,33 +250,7 @@
                 });
             }
 
-            // Visual update
-            const parent = btnEl.closest('.recall-options');
-            if (parent) {
-                parent.querySelectorAll('.recall-opt-btn').forEach(btn => {
-                    btn.disabled = true;
-                    if (cleanStr(btn.dataset.val) === cleanStr(ex.correct)) {
-                        btn.classList.add('correct');
-                    } else if (btn === btnEl && !isCorrect) {
-                        btn.classList.add('wrong');
-                    }
-                });
-            }
-
-            const feedbackEl = document.getElementById(`feedback_${exId}`);
-            if (feedbackEl) {
-                feedbackEl.classList.remove('hidden');
-                feedbackEl.innerHTML = `
-                    <div class="recall-feedback-pill ${isCorrect ? 'correct' : 'wrong'}">
-                        <span>${isCorrect ? '🎉 Chính xác!' : `❌ Chưa đúng. Đáp án: <b>${esc(ex.correct)}</b>`}</span>
-                        <div class="recall-feedback-actions">
-                            ${ex.koreanAudio ? `<button type="button" class="study-action-btn" data-speak="${esc(ex.koreanAudio)}" title="Nghe phát âm">🔊</button>` : ''}
-                            ${ex.koreanAudio ? `<button type="button" class="study-action-btn" data-practice="${esc(ex.koreanAudio)}" data-feedback="scVoice_${exId}" title="Luyện nói">🎙️</button>` : ''}
-                        </div>
-                    </div>
-                    <div class="speech-feedback" id="scVoice_${exId}"></div>
-                `;
-            }
+            this.renderAnswerFeedback(ex);
 
             this.updateStatsUI();
         }
@@ -345,23 +319,7 @@
                 });
             }
 
-            const feedbackEl = document.getElementById(`feedback_${exId}`);
-            const checkBtn = document.getElementById(`checkBtn_${exId}`);
-            if (checkBtn) checkBtn.disabled = true;
-
-            if (feedbackEl) {
-                feedbackEl.classList.remove('hidden');
-                feedbackEl.innerHTML = `
-                    <div class="recall-feedback-pill ${isCorrect ? 'correct' : 'wrong'}">
-                        <span>${isCorrect ? '🎉 Hoàn toàn chính xác!' : `❌ Chưa đúng. Câu chuẩn: <b>${esc(ex.correct)}</b>`}</span>
-                        <div class="recall-feedback-actions">
-                            <button type="button" class="study-action-btn" data-speak="${esc(ex.correct)}" title="Nghe phát âm câu này">🔊</button>
-                            <button type="button" class="study-action-btn" data-practice="${esc(ex.correct)}" data-feedback="scVoice_${exId}" title="Luyện nói">🎙️</button>
-                        </div>
-                    </div>
-                    <div class="speech-feedback" id="scVoice_${exId}"></div>
-                `;
-            }
+            this.renderAnswerFeedback(ex);
 
             this.updateStatsUI();
         }
@@ -403,23 +361,7 @@
                 });
             }
 
-            const feedbackEl = document.getElementById(`feedback_${exId}`);
-            const checkBtn = document.getElementById(`checkBtn_${exId}`);
-            if (checkBtn) checkBtn.disabled = true;
-
-            if (feedbackEl) {
-                feedbackEl.classList.remove('hidden');
-                feedbackEl.innerHTML = `
-                    <div class="recall-feedback-pill ${isCorrect ? 'correct' : 'wrong'}">
-                        <span>${isCorrect ? '✅ Đúng rồi!' : `Đáp án: <b>${esc(ex.correct)}</b>`}</span>
-                        <div class="recall-feedback-actions">
-                            <button type="button" class="study-action-btn" data-speak="${esc(ex.koreanAudio || ex.correct)}" title="Nghe phát âm">🔊</button>
-                            <button type="button" class="study-action-btn" data-practice="${esc(ex.correct)}" data-feedback="scVoice_${exId}" title="Luyện nói">🎙️</button>
-                        </div>
-                    </div>
-                    <div class="speech-feedback" id="scVoice_${exId}"></div>
-                `;
-            }
+            this.renderAnswerFeedback(ex);
 
             this.updateStatsUI();
         }
@@ -461,25 +403,44 @@
                 });
             }
 
-            const feedbackEl = document.getElementById(`feedback_${exId}`);
-            const checkBtn = document.getElementById(`checkBtn_${exId}`);
-            if (checkBtn) checkBtn.disabled = true;
-
-            if (feedbackEl) {
-                feedbackEl.classList.remove('hidden');
-                feedbackEl.innerHTML = `
-                    <div class="recall-feedback-pill ${isCorrect ? 'correct' : 'wrong'}">
-                        <span>${isCorrect ? '🎉 Tuyệt vời! Bạn nhớ rất chính xác.' : `Đáp án: <b>${esc(ex.correct)}</b>`}</span>
-                        <div class="recall-feedback-actions">
-                            <button type="button" class="study-action-btn" data-speak="${esc(ex.correct)}" title="Nghe phát âm">🔊</button>
-                            <button type="button" class="study-action-btn" data-practice="${esc(ex.correct)}" data-feedback="scVoice_${exId}" title="Luyện nói">🎙️</button>
-                        </div>
-                    </div>
-                    <div class="speech-feedback" id="scVoice_${exId}"></div>
-                `;
-            }
+            this.renderAnswerFeedback(ex);
 
             this.updateStatsUI();
+        }
+
+        renderAnswerFeedback(ex) {
+            if (ex.state === 'unanswered') return;
+            const isCorrect = ex.state === 'correct';
+            const card = document.getElementById(`card_${ex.id}`);
+            const feedback = document.getElementById(`feedback_${ex.id}`);
+            if (!card || !feedback) return;
+            const check = document.getElementById(`checkBtn_${ex.id}`);
+            if (check) check.disabled = true;
+            const input = document.getElementById(`input_${ex.id}`);
+            if (input) {
+                input.classList.toggle('correct', isCorrect);
+                input.classList.toggle('wrong', !isCorrect);
+            }
+            card.querySelectorAll('.recall-opt-btn').forEach(btn => {
+                btn.disabled = true;
+                btn.classList.toggle('correct', cleanStr(btn.dataset.val) === cleanStr(ex.correct));
+                btn.classList.toggle('wrong', !isCorrect && btn.dataset.val === ex.userAnswer);
+            });
+            card.querySelectorAll('.scramble-chip').forEach(btn => { btn.disabled = true; });
+            const audio = ex.type === 'choice' ? ex.koreanAudio : (ex.koreanAudio || ex.correct);
+            const practice = ex.type === 'choice' ? ex.koreanAudio : ex.correct;
+            const correctText = { choice: '🎉 Chính xác!', scramble: '🎉 Hoàn toàn chính xác!', cloze: '✅ Đúng rồi!', typing: '🎉 Tuyệt vời! Bạn nhớ rất chính xác.' };
+            const wrongPrefix = { choice: '❌ Chưa đúng. Đáp án:', scramble: '❌ Chưa đúng. Câu chuẩn:', cloze: 'Đáp án:', typing: 'Đáp án:' };
+            feedback.classList.remove('hidden');
+            feedback.innerHTML = `
+                <div class="recall-feedback-pill ${isCorrect ? 'correct' : 'wrong'}">
+                    <span>${isCorrect ? correctText[ex.type] : `${wrongPrefix[ex.type]} <b>${esc(ex.correct)}</b>`}</span>
+                    <div class="recall-feedback-actions">
+                        ${audio ? `<button type="button" class="study-action-btn" data-speak="${esc(audio)}" title="Nghe phát âm">🔊</button>` : ''}
+                        ${practice ? `<button type="button" class="study-action-btn" data-practice="${esc(practice)}" data-feedback="scVoice_${ex.id}" title="Luyện nói">🎙️</button>` : ''}
+                    </div>
+                </div>
+                <div class="speech-feedback" id="scVoice_${ex.id}"></div>`;
         }
 
         updateStatsUI() {
@@ -672,6 +633,7 @@
 
             html += `</div>`;
             container.innerHTML = html;
+            filtered.forEach(ex => this.renderAnswerFeedback(ex));
             this.updateStatsUI();
         }
     }

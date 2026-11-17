@@ -193,11 +193,9 @@ window.SeoulUI = (() => {
     };
     const oldBadge = badge;
     badge = function () {
-      oldBadge();
+      const total = oldBadge();
       document.querySelectorAll(".bottom-nav .review-badge").forEach((b) => {
-        const total =
-          due().length + (window.ItemReviews?.dueItems().length || 0);
-        b.textContent = total;
+        if (b.textContent !== String(total)) b.textContent = total;
         b.classList.toggle("visible", total > 0);
       });
     };
@@ -206,7 +204,22 @@ window.SeoulUI = (() => {
     navigate("curriculum", false);
     updateTabs();
     enhance();
-    new MutationObserver(enhance).observe(document.body, {
+    new MutationObserver((records) => {
+      const roots = new Set();
+      for (const record of records) {
+        for (const node of record.addedNodes)
+          if (node.nodeType === 1) roots.add(node);
+        // Text/icon changes can alter an existing button's accessible state.
+        if (record.target.matches?.("button,.icon-btn,.study-action-btn"))
+          roots.add(record.target);
+      }
+      for (const root of roots) {
+        if (!root.isConnected) continue;
+        let parent = root.parentElement;
+        while (parent && !roots.has(parent)) parent = parent.parentElement;
+        if (!parent) enhance(root);
+      }
+    }).observe(document.body, {
       childList: true,
       subtree: true,
     });
@@ -232,36 +245,37 @@ window.SeoulUI = (() => {
       b.tabIndex = selected ? 0 : -1;
     });
   }
-  function enhance() {
-    document
-      .querySelectorAll(
-        ".stage-card[onclick],.book-card[onclick],.lesson-card[onclick],.lesson-card[data-study],.breadcrumb-item[onclick]",
-      )
-      .forEach((e) => {
-        if (e.hasAttribute("tabindex")) return;
-        e.tabIndex = 0;
-        e.setAttribute("role", "button");
-        e.addEventListener("keydown", (ev) => {
-          if (
-            !e.hasAttribute("data-study") &&
-            ev.target === e &&
-            ["Enter", " "].includes(ev.key)
-          ) {
-            ev.preventDefault();
-            e.click();
-          }
-        });
+  function enhance(root = document) {
+    const select = (selector) => [
+      ...(root.matches?.(selector) ? [root] : []),
+      ...root.querySelectorAll(selector),
+    ];
+    select(
+      ".stage-card[onclick],.book-card[onclick],.lesson-card[onclick],.lesson-card[data-study],.breadcrumb-item[onclick]",
+    ).forEach((e) => {
+      if (e.hasAttribute("tabindex")) return;
+      e.tabIndex = 0;
+      e.setAttribute("role", "button");
+      e.addEventListener("keydown", (ev) => {
+        if (
+          !e.hasAttribute("data-study") &&
+          ev.target === e &&
+          ["Enter", " "].includes(ev.key)
+        ) {
+          ev.preventDefault();
+          e.click();
+        }
       });
-    for (const id of ["soundToggleBtn", "anatomySettingBtn"]) {
-      const el = $(id);
+    });
+    for (const el of select("#soundToggleBtn,#anatomySettingBtn")) {
       if (el) {
         el.setAttribute("role", "switch");
         el.setAttribute("aria-checked", !el.textContent.includes("Tắt"));
       }
     }
-    document
-      .querySelectorAll("button[title]:not([aria-label])")
-      .forEach((e) => e.setAttribute("aria-label", e.title));
+    select("button[title]:not([aria-label])").forEach((e) =>
+      e.setAttribute("aria-label", e.title),
+    );
     const replacements = {
       "✏️": "edit",
       "🗑️": "trash",
@@ -269,7 +283,7 @@ window.SeoulUI = (() => {
       "🎙️": "mic",
       "➕": "plus",
     };
-    document.querySelectorAll(".icon-btn,.study-action-btn").forEach((e) => {
+    select(".icon-btn,.study-action-btn").forEach((e) => {
       const k = replacements[e.textContent.trim()];
       if (k) e.innerHTML = icon(k);
     });

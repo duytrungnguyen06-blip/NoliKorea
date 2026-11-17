@@ -1,11 +1,14 @@
 /* KLA v4.1 search.js */
+let searchDebounceTimer = null;
+function cancelPendingSearch() {
+  clearTimeout(searchDebounceTimer);
+}
 function initGlobalSearch() {
   const input = $("globalSearchInput");
   const dropdown = $("searchResultsDropdown");
   const clearBtn = $("clearSearchBtn");
   if (!input || !dropdown) return;
 
-  let searchDebounceTimer = null;
   input.addEventListener("input", () => {
     const q = input.value.trim().toLowerCase();
     if (clearBtn) clearBtn.classList.toggle("hidden", !q);
@@ -17,12 +20,13 @@ function initGlobalSearch() {
     }
     clearTimeout(searchDebounceTimer);
     searchDebounceTimer = setTimeout(() => {
-      performGlobalSearch(q);
+      if (input.value.trim().toLowerCase() === q) performGlobalSearch(q);
     }, 150);
   });
 
   document.addEventListener("click", (e) => {
     if (!e.target.closest(".header-search-wrap")) {
+      cancelPendingSearch();
       dropdown.classList.add("hidden");
     }
   });
@@ -33,13 +37,15 @@ function initGlobalSearch() {
       input.focus();
       input.select();
     }
-    if (e.key === "Escape" && !dropdown.classList.contains("hidden")) {
+    if (e.key === "Escape") {
+      cancelPendingSearch();
       dropdown.classList.add("hidden");
     }
   });
 }
 
 function clearGlobalSearch() {
+  cancelPendingSearch();
   const input = $("globalSearchInput");
   const dropdown = $("searchResultsDropdown");
   const clearBtn = $("clearSearchBtn");
@@ -56,7 +62,11 @@ function performGlobalSearch(query) {
   if (!dropdown) return;
 
   const results = [];
-  const q = query.toLowerCase();
+  const q = query.trim().toLowerCase();
+  if (!q) {
+    clearGlobalSearch();
+    return;
+  }
 
   (db.stages || []).forEach((s) => {
     (s.books || []).forEach((b) => {

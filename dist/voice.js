@@ -58,6 +58,8 @@
             this.cachedVoice = null;
             this.rate = parseFloat(localStorage.getItem('kla_tts_rate') || '0.9');
             this.isPlayingAll = false;
+            this.generation = 0;
+            this.sequenceTimer = null;
             this.initVoice();
         }
 
@@ -88,72 +90,74 @@
         }
 
         stop() {
-            if (this.synth) {
-                this.synth.cancel();
-            }
+            this.generation++;
+            clearTimeout(this.sequenceTimer);
+            this.sequenceTimer = null;
             this.isPlayingAll = false;
+            if (this.synth) this.synth.cancel();
         }
 
         speak(text, options = {}) {
+            if (!options.sequence) this.stop();
             if (!this.synth) {
-                alert('Trình duyệt của bạn không hỗ trợ tính năng đọc phát âm (Web Speech Synthesis).');
+                options.onError?.({ error: 'unsupported' });
+                if (!options.onError) alert('Trình duyệt của bạn không hỗ trợ tính năng đọc phát âm (Web Speech Synthesis).');
                 return;
             }
-
-            if (!options.sequence) this.stop();
-
+            const generation = this.generation;
+            let finished = false;
+            const finish = (callback, event) => {
+                if (finished || generation !== this.generation) return;
+                finished = true;
+                callback?.(event);
+            };
             const clean = cleanKoreanText(text);
-            if (!clean) return;
-
+            if (!clean) { finish(options.onEnd); return; }
             const utterance = new SpeechSynthesisUtterance(clean);
             utterance.lang = 'ko-KR';
             utterance.rate = options.rate || this.rate;
             utterance.pitch = options.pitch || 1.0;
-
-            if (this.cachedVoice) {
-                utterance.voice = this.cachedVoice;
-            }
-
-            if (options.onStart) utterance.onstart = options.onStart;
-            if (options.onEnd) utterance.onend = options.onEnd;
-            if (options.onError) utterance.onerror = options.onError;
-
-            this.synth.speak(utterance);
+            if (this.cachedVoice) utterance.voice = this.cachedVoice;
+            utterance.onstart = event => {
+                if (!finished && generation === this.generation) options.onStart?.(event);
+            };
+            utterance.onend = event => finish(options.onEnd, event);
+            utterance.onerror = event => finish(options.onError, event);
+            try { this.synth.speak(utterance); }
+            catch (error) { finish(options.onError, error); }
         }
 
-        /**
-         * Sequential playback of an array of strings with pause between each.
-         */
+        /** Sequential playback, with all callbacks owned by the current run. */
         playSequential(items, onProgress, onDone) {
-            if (!items || items.length === 0) return;
+            this.stop();
+            if (!items?.length) return;
+            if (!this.synth) { onDone?.(); return; }
+            const generation = this.generation;
             this.isPlayingAll = true;
             let index = 0;
-
+            const active = () => generation === this.generation && this.isPlayingAll;
+            const advance = delay => {
+                if (!active()) return;
+                index++;
+                this.sequenceTimer = setTimeout(next, delay);
+            };
             const next = () => {
-                if (!this.isPlayingAll || index >= items.length) {
+                if (!active()) return;
+                this.sequenceTimer = null;
+                if (index >= items.length) {
                     this.isPlayingAll = false;
-                    if (onDone) onDone();
+                    onDone?.();
                     return;
                 }
-
                 const currentItem = items[index];
-                if (onProgress) onProgress(index, currentItem);
-
+                onProgress?.(index, currentItem);
+                if (!active()) return;
                 this.speak(currentItem, {
                     sequence: true,
-                    onEnd: () => {
-                        index++;
-                        if (this.isPlayingAll) {
-                            setTimeout(next, 900); // 900ms pause between sentences
-                        }
-                    },
-                    onError: () => {
-                        index++;
-                        if (this.isPlayingAll) setTimeout(next, 500);
-                    }
+                    onEnd: () => advance(900),
+                    onError: () => advance(500)
                 });
             };
-
             next();
         }
     }
@@ -203,12 +207,15 @@
         stop() {
             this.generation = (this.generation || 0) + 1;
             const rec = this.sharedInstance;
+            const onEnd = this.endCallback;
+            this.endCallback = null;
             this.sharedInstance = null;
             this.isBusy = false;
             if (rec) {
                 rec.onstart = rec.onresult = rec.onerror = rec.onend = null;
                 try { rec.abort(); } catch {}
             }
+            onEnd?.();
         }
 
         async startRecognition({ onStart, onResult, onError, onEnd }) {
@@ -225,6 +232,7 @@
             const active = () => generation === this.generation;
             let delivered = false;
             this.isBusy = true;
+            this.endCallback = onEnd;
             rec.onstart = () => { if(active()) onStart?.(); };
             rec.onresult = event => {
                 if(!active() || delivered) return;
@@ -248,10 +256,11 @@
                 if(!active())return;
                 this.isBusy=false;this.sharedInstance=null;
                 this.generation++;
+                this.endCallback = null;
                 onEnd?.();
             };
             try { rec.start();return rec; }
-            catch(err){this.stop();onError?.('Không mở được mic: '+err.message,'start-failed');onEnd?.();return null;}
+            catch(err){onError?.('Không mở được mic: '+err.message,'start-failed');this.stop();return null;}
         }
 
         /**
@@ -274,6 +283,7 @@
                 return;
             }
 
+            this.stop();
             // Update UI to recording state
             btnElement.classList.add('recording');
             btnElement.title = 'Đang thu âm... Nhấn để dừng';
@@ -352,6 +362,7 @@
                 return;
             }
 
+            this.stop();
             btnElement.classList.add('recording');
             const originalText = btnElement.innerHTML;
             btnElement.innerHTML = `<span class="speech-pulse-dot"></span> Đang nghe...`;

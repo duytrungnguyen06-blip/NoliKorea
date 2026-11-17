@@ -122,7 +122,7 @@ window.NoliUI = (() => {
     };
     ai.querySelector(".settings-actions").append(clear);
     about.innerHTML =
-      "<h3>NoliKorea</h3><p>Phiên bản 5.0.1 · Seoul 1A</p><p>Tiến độ được lưu trên thiết bị. Sao lưu trước khi đổi địa chỉ ứng dụng.</p>";
+      "<h3>NoliKorea</h3><p>Phiên bản 5.0.2 · Seoul 1A</p><p>Tiến độ được lưu trên thiết bị. Sao lưu trước khi đổi địa chỉ ứng dụng.</p>";
     const install = document.createElement("section");
     install.className = "settings-section";
     install.innerHTML =

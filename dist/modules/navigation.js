@@ -21,10 +21,11 @@ function badge() {
   const n = due().length + (window.ItemReviews?.dueItems().length || 0);
   const el = $("reviewCount");
   if (el) {
-    el.textContent = n;
+    if (el.textContent !== String(n)) el.textContent = n;
     el.classList.toggle("visible", n > 0);
   }
   updateMistakesBadge();
+  return n;
 }
 
 function go(sid, bid, push = true) {
@@ -52,6 +53,10 @@ function forms() {
   // Study tabs
   document.querySelectorAll(".study-tab").forEach((tab) => {
     tab.onclick = () => {
+      if (!tab.classList.contains("active")) {
+        window.KoreanVoice?.tts?.stop();
+        window.KoreanVoice?.stt?.stop();
+      }
       document
         .querySelectorAll(".study-tab")
         .forEach((t) => t.classList.remove("active"));

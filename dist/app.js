@@ -187,7 +187,6 @@ function save() {
   }
   badge();
   updateStreakBadge();
-  updateMistakesBadge();
   return true;
 }
 function replaceData(next, reason) {

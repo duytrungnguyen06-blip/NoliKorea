@@ -34,7 +34,8 @@ function updateMistakesBadge() {
   const active = (db.mistakes || []).filter((m) => (m.correctStreak || 0) < 2);
   const el = $("mistakesBadge");
   if (el) {
-    el.textContent = active.length;
+    if (el.textContent !== String(active.length))
+      el.textContent = active.length;
     el.classList.toggle("visible", active.length > 0);
   }
 }
@@ -143,21 +144,34 @@ function submitMistakeTest(id) {
   const userVal = cleanKoreanStr(input.value);
   const targetVal = cleanKoreanStr(m.korean);
   const isCorrect = userVal === targetVal;
+  const previousStreak = m.correctStreak;
 
   if (isCorrect) {
     submittedMistakes.add(id);
     m.correctStreak = (m.correctStreak || 0) + 1;
+    if (!save()) {
+      m.correctStreak = previousStreak;
+      submittedMistakes.delete(id);
+      return;
+    }
     if (window.KoreanSound) {
       if (m.correctStreak >= 2) window.KoreanSound.playFanfare();
       else window.KoreanSound.playCorrect();
     }
     fb.innerHTML = `<span class="colored-text-47">🎉 Tuyệt vời! Bạn đã gõ hoàn toàn chính xác.</span>`;
     setTimeout(() => {
-      save();
-      renderMistakesView();
+      if (
+        db.mistakes?.includes(m) &&
+        $("progressView").classList.contains("active")
+      )
+        renderMistakesView();
     }, 1200);
   } else {
     m.correctStreak = 0;
+    if (!save()) {
+      m.correctStreak = previousStreak;
+      return;
+    }
     if (window.KoreanSound) window.KoreanSound.playIncorrect();
     fb.innerHTML = `<span class="colored-text-48">❌ Chưa khớp. Hãy nhìn câu mẫu ở trên và thử lại nhé!</span>`;
   }

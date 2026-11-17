@@ -5,11 +5,23 @@ window.StudySession = (() => {
     timer;
   let built = { recall: false, production: false };
   let saved = null;
+  let drafts = {};
+  function remember(root) {
+    root?.querySelectorAll("input[id],textarea[id]").forEach((e) => {
+      drafts[e.id] = e.value;
+    });
+  }
+  function restoreDrafts(root) {
+    root?.querySelectorAll("input[id],textarea[id]").forEach((e) => {
+      if (Object.hasOwn(drafts, e.id)) e.value = drafts[e.id];
+    });
+  }
   function prepare(l) {
     clearTimeout(timer);
     dirty = false;
     built = { recall: false, production: false };
     saved = l.session?.signature === signature(l) ? l.session : null;
+    drafts = copy(saved?.drafts || {});
     KoreanRecall.exercises = [];
     KoreanRecall.stats = { correct: 0, total: 0 };
     KoreanProduction.exercises = [];
@@ -40,30 +52,21 @@ window.StudySession = (() => {
           .forEach((e) => engine.renderEvaluationUI(e));
     } else if (tab === "recall") renderRecall(l);
     else renderProduction(l);
-    for (const [id, value] of Object.entries(saved?.drafts || {})) {
-      const el = $(id);
-      if (el && "value" in el) el.value = value;
-    }
+    restoreDrafts($(tab + "Exercises"));
   }
   const copy = (x) => JSON.parse(JSON.stringify(x));
   const current = () => ctx && lesson(ctx.sid, ctx.bid, ctx.lid);
   const signature = (l) => JSON.stringify([l.items, l.situations, l.examples]);
-  function draftValues() {
-    const values = {};
-    document
-      .querySelectorAll("#studyModal input[id],#studyModal textarea[id]")
-      .forEach((e) => (values[e.id] = e.value));
-    return values;
-  }
   function capture() {
     clearTimeout(timer);
     const l = current();
     if (restoring || !l || !l.items?.length || !l.inProgress || !dirty) return;
+    remember($("studyModal"));
     l.session = {
       tab: document.querySelector(".study-tab.active")?.dataset.tab || "input",
       scroll: document.querySelector("#studyModal .study-body").scrollTop,
       signature: signature(l),
-      drafts: { ...(saved?.drafts || {}), ...draftValues() },
+      drafts: copy(drafts),
       recall: built.recall
         ? {
             exercises: copy(KoreanRecall.exercises),
@@ -114,7 +117,9 @@ window.StudySession = (() => {
       }
     }
     restoring = false;
+    const restoredLesson = l;
     requestAnimationFrame(() => {
+      if (current() !== restoredLesson) return;
       body.scrollTop = valid ? s.scroll : 0;
     });
   }
@@ -127,6 +132,25 @@ window.StudySession = (() => {
   }
   document.addEventListener("DOMContentLoaded", () => {
     document.querySelector("#studyModal").addEventListener("input", touch);
+    for (const [tab, engine] of [
+      ["recall", KoreanRecall],
+      ["production", KoreanProduction],
+    ]) {
+      const filter = engine.setFilter;
+      engine.setFilter = function (...args) {
+        const root = $(tab + "Exercises");
+        remember(root);
+        window.KoreanVoice?.stt?.stop();
+        const result = filter.apply(this, args);
+        restoreDrafts(root);
+        if (tab === "production")
+          this.exercises
+            .filter((e) => e.evaluation)
+            .forEach((e) => this.renderEvaluationUI(e));
+        touch();
+        return result;
+      };
+    }
     document.querySelector("#studyModal .study-body").addEventListener(
       "scroll",
       () => {
@@ -160,8 +184,19 @@ window.StudySession = (() => {
       capture();
       return result;
     };
+    const toggleToken = KoreanRecall.toggleScrambleToken;
+    KoreanRecall.toggleScrambleToken = function (...args) {
+      const result = toggleToken.apply(this, args);
+      touch();
+      return result;
+    };
     const resetRecall = KoreanRecall.resetSession;
     KoreanRecall.resetSession = function (...args) {
+      remember($("productionExercises"));
+      for (const id of Object.keys(drafts))
+        if (id.startsWith("input_") || id.startsWith("scVoice_"))
+          delete drafts[id];
+      if (saved) saved = { ...saved, recall: null };
       const result = resetRecall.apply(this, args);
       reset();
       return result;

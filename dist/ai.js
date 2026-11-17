@@ -519,9 +519,18 @@ QUY TẮC BẮT BUỘC:
 
         // ─── 📞 Sesame Phone Call Simulation Engine ───────────────────
         startPhoneCall() {
+            this.stopPhoneCall();
+            const callGeneration = this.callGeneration;
             this.isCallActive = true;
             this.callSeconds = 0;
             this.isCallMuted = false;
+            document.getElementById('aiCallMicBtn')?.classList.add('active');
+            const micIcon = document.getElementById('aiCallMicIcon');
+            const micLabel = document.getElementById('aiCallMicLabel');
+            const callTimer = document.getElementById('aiCallTimer');
+            if (micIcon) micIcon.textContent = '🎙️';
+            if (micLabel) micLabel.textContent = 'Micro: Bật';
+            if (callTimer) callTimer.textContent = '00:00';
 
             // Update Call UI elements
             const avatarEl = document.getElementById('aiCallAvatar');
@@ -546,9 +555,9 @@ QUY TẮC BẮT BUỘC:
                 if (timerEl) timerEl.textContent = `${mins}:${secs}`;
             }, 1000);
 
-            // Greet via voice
-            setTimeout(() => {
-                if (this.isCallActive) {
+            // Greet only within the call that scheduled it.
+            this.callGreetingTimer = setTimeout(() => {
+                if (this.isCallActive && callGeneration === this.callGeneration) {
                     this.speakInCall(this.currentBot.welcomeMsg);
                 }
             }, 800);
@@ -556,6 +565,8 @@ QUY TẮC BẮT BUỘC:
 
         speakInCall(text) {
             if (!this.isCallActive) return;
+            const callGeneration = this.callGeneration;
+            window.KoreanVoice?.stt?.stop();
 
             const statusEl = document.getElementById('aiCallStatus');
             const subAiEl = document.getElementById('aiCallLastAiMsg');
@@ -570,6 +581,7 @@ QUY TẮC BẮT BUỘC:
             if (window.KoreanVoice) {
                 window.KoreanVoice.speak(text, {
                     onEnd: () => {
+                        if (callGeneration !== this.callGeneration || !this.isCallActive) return;
                         this.isAiSpeaking = false;
                         if (visualizer) visualizer.classList.remove('ai-speaking');
                         // After bot finishes speaking, automatically listen to user!
@@ -578,6 +590,7 @@ QUY TẮC BẮT BUỘC:
                         }
                     },
                     onError: () => {
+                        if (callGeneration !== this.callGeneration || !this.isCallActive) return;
                         this.isAiSpeaking = false;
                         if (visualizer) visualizer.classList.remove('ai-speaking');
                         if (this.isCallActive && !this.isCallMuted) {
@@ -593,6 +606,7 @@ QUY TẮC BẮT BUỘC:
 
         listenToUserInCall() {
             if (!this.isCallActive || this.isAiSpeaking || this.isCallMuted) return;
+            const callGeneration = this.callGeneration;
 
             const statusEl = document.getElementById('aiCallStatus');
             const subUserEl = document.getElementById('aiCallLastUserMsg');
@@ -605,8 +619,8 @@ QUY TẮC BẮT BUỘC:
 
             window.KoreanVoice.stt.startRecognition({
                 onResult: (spokenText) => {
+                    if (callGeneration !== this.callGeneration || !this.isCallActive) return;
                     if (visualizer) visualizer.classList.remove('user-speaking');
-                    if (!this.isCallActive) return;
 
                     if (subUserEl) subUserEl.textContent = `Bạn: "${spokenText}"`;
                     if (statusEl) statusEl.innerHTML = '<span class="pulse-dot amber"></span> ⚡ Đang suy nghĩ...';
@@ -615,12 +629,14 @@ QUY TẮC BẮT BUỘC:
                     this.sendMessage(spokenText);
                 },
                 onError: (err) => {
+                    if (callGeneration !== this.callGeneration || !this.isCallActive) return;
                     if (visualizer) visualizer.classList.remove('user-speaking');
                     if (statusEl && this.isCallActive) {
                         statusEl.textContent = 'Nhấn Micro hoặc gõ tin nhắn để tiếp tục...';
                     }
                 },
                 onEnd: () => {
+                    if (callGeneration !== this.callGeneration || !this.isCallActive) return;
                     if (visualizer) visualizer.classList.remove('user-speaking');
                 }
             });
@@ -644,6 +660,9 @@ QUY TẮC BẮT BUỘC:
         }
 
         stopPhoneCall() {
+            this.callGeneration = (this.callGeneration || 0) + 1;
+            clearTimeout(this.callGreetingTimer);
+            this.callGreetingTimer = null;
             this.cancelPending();
             window.KoreanVoice?.stt?.stop();
             this.isCallActive = false;

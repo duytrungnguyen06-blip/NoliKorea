@@ -2,6 +2,16 @@
 
 Học tiếng Hàn Seoul 1A: 8 bài, 224 mục, 89 tệp audio hiện hữu. Phiên ngắn, đọc/nghe, Recall, tự viết và lịch ôn. Dữ liệu lưu trên thiết bị; Gemini là lựa chọn riêng.
 
+## Bản 5.0.2
+
+Tối ưu các luồng hiện có, không thêm chức năng hay thay đổi giáo trình:
+
+- Giữ bản nháp Recall/Production khi đổi bộ lọc, đổi bài và mở lại phiên; phục hồi phản hồi của câu đã chấm.
+- Dừng mic và TTS đúng lúc khi đổi màn; hủy callback, lịch phát và lời chào từ phiên AI đã đóng. Nút mic trở về trạng thái ban đầu khi dừng.
+- Lưu kết quả ôn lỗi ngay khi trả lời; hủy tìm kiếm đang chờ khi xóa hoặc đóng kết quả.
+- Chỉ xử lý các phần giao diện vừa thay đổi; giảm kiểm tra và chuyển đổi dữ liệu lặp khi lưu, giữ kiểm tra hợp lệ và chống ghi đè giữa các tab.
+- Giữ thời gian chờ phản hồi AI 30 giây và hộp nghe CD chỉ trong Input.
+
 ## Chạy và sửa
 
 Ứng dụng nằm trong `dist/`. Chạy `python -m http.server 8000 --directory dist`, mở http://localhost:8000.
@@ -17,7 +27,7 @@ Học tiếng Hàn Seoul 1A: 8 bài, 224 mục, 89 tệp audio hiện hữu. Phi
 4. Safari → Chia sẻ → Thêm vào Màn hình chính. Android Chrome → ⋮ → Cài đặt ứng dụng.
 5. Xuất dữ liệu ở địa chỉ cũ rồi nhập ở địa chỉ mới. Không có đồng bộ giữa thiết bị/địa chỉ.
 
-Workflow Pages loại các tệp ZIP chia nhỏ khỏi thư mục triển khai. Đẩy tag `v5.0.0` để workflow Release tạo ZIP đầy đủ ở GitHub Releases. Bản ZIP đầy đủ được cung cấp qua GitHub Releases.
+Workflow Pages loại các tệp ZIP chia nhỏ khỏi thư mục triển khai. Đẩy tag dạng `v5.0.2` để workflow Release tạo ZIP đầy đủ ở GitHub Releases. Bản ZIP đầy đủ được cung cấp qua GitHub Releases.
 
 ## Dữ liệu và nâng cấp
 

@@ -64,6 +64,7 @@
     if (input.stages.length > 100) fail("Quá nhiều giai đoạn.");
     unique(input.stages);
     const data = clone(input);
+    const lessonIndex = new Map();
     let count = 0;
     for (const s of data.stages) {
       str(s.name, "Tên giai đoạn");
@@ -77,6 +78,7 @@
         unique(b.lessons);
         for (const l of b.lessons) {
           str(l.title, "Tên bài");
+          lessonIndex.set(path(s.id, b.id, l.id), l);
           if (++count > 10000) fail("Quá nhiều bài học.");
           for (const k of [
             "content",
@@ -104,7 +106,10 @@
                 : [];
           }
           arr(l.items, "items");
-          l.items.forEach((item,n)=>{if(!item.id)item.id=l.id+"-item-"+(n+1);id(item.id);});
+          l.items.forEach((item, n) => {
+            if (!item.id) item.id = l.id + "-item-" + (n + 1);
+            id(item.id);
+          });
           unique(l.items);
           if (l.items.length > 5000) fail("Quá nhiều mục trong một bài.");
           for (const item of l.items) {
@@ -331,9 +336,38 @@
           fail("Phiên ngắn bị thiếu bước.");
       }
     }
-    for(const [oldKey,record] of Object.entries(data.itemReviews)){
-      const item=data.stages.find(s=>s.id===record.sid)?.books.find(b=>b.id===record.bid)?.lessons.find(l=>l.id===record.lid)?.items.find(i=>record.itemId?i.id===record.itemId:i.korean===record.korean&&i.vi===record.vi);
-      if(item){record.itemId=item.id;record.korean=item.korean;record.vi=item.vi;const key=JSON.stringify([record.sid,record.bid,record.lid,item.id]);if(key!==oldKey){if(!data.itemReviews[key])data.itemReviews[key]=record;delete data.itemReviews[oldKey];}}
+    const itemIndexes = new Map();
+    for (const [oldKey, record] of Object.entries(data.itemReviews)) {
+      const lessonKey = path(record.sid, record.bid, record.lid);
+      if (!itemIndexes.has(lessonKey)) {
+        const byId = new Map(),
+          byText = new Map();
+        for (const item of lessonIndex.get(lessonKey)?.items || []) {
+          byId.set(item.id, item);
+          const k = JSON.stringify([item.korean, item.vi]);
+          if (!byText.has(k)) byText.set(k, item);
+        }
+        itemIndexes.set(lessonKey, { byId, byText });
+      }
+      const index = itemIndexes.get(lessonKey);
+      const item = record.itemId
+        ? index.byId.get(record.itemId)
+        : index.byText.get(JSON.stringify([record.korean, record.vi]));
+      if (item) {
+        record.itemId = item.id;
+        record.korean = item.korean;
+        record.vi = item.vi;
+        const key = JSON.stringify([
+          record.sid,
+          record.bid,
+          record.lid,
+          item.id,
+        ]);
+        if (key !== oldKey) {
+          if (!data.itemReviews[key]) data.itemReviews[key] = record;
+          delete data.itemReviews[oldKey];
+        }
+      }
     }
     return data;
   }
@@ -347,9 +381,27 @@
     baseIndexes.set(base, map);
     return map;
   }
+  const sourceStrings = new WeakMap();
+  function sourceMap(base) {
+    if (!sourceStrings.has(base))
+      sourceStrings.set(
+        base,
+        Object.fromEntries(
+          Object.entries(baseMap(base)).map(([key, l]) => [
+            key,
+            Object.fromEntries(
+              Object.entries(l).map(([k, v]) => [k, JSON.stringify(v)]),
+            ),
+          ]),
+        ),
+      );
+    return sourceStrings.get(base);
+  }
   function pack(input, base) {
-    const data = validate(input),
-      original = baseMap(base),
+    return packValidated(validate(input), base);
+  }
+  function packValidated(data, base) {
+    const original = sourceMap(base),
       overrides = {},
       lessons = {};
     const stages = data.stages.map((s) => ({
@@ -364,8 +416,7 @@
             (stateFields.includes(k) ? state : content)[k] = v;
           const diff = {};
           for (const [k, v] of Object.entries(content))
-            if (JSON.stringify(v) !== JSON.stringify(original[key]?.[k]))
-              diff[k] = v;
+            if (JSON.stringify(v) !== original[key]?.[k]) diff[k] = v;
           if (Object.keys(diff).length) overrides[key] = diff;
           lessons[key] = state;
           return { id: l.id };
@@ -511,7 +562,7 @@
               : validate(base);
         if (raw === null) {
           if (old !== null) snapshot("Chuyển dữ liệu V3/V4");
-          storage.setItem(KEY, JSON.stringify(pack(data, base)));
+          storage.setItem(KEY, JSON.stringify(packValidated(data, base)));
         }
         observed = storage.getItem(KEY);
         committed = clone(data);
@@ -532,18 +583,18 @@
       const input = JSON.stringify(data);
       if (input === lastInput) return clone(committed);
       const valid = validate(data);
-      const encoded = JSON.stringify(pack(valid, base));
+      const encoded = JSON.stringify(packValidated(valid, base));
       assertCurrent();
       storage.setItem(KEY, encoded);
       observed = encoded;
-      lastInput = JSON.stringify(valid);
+      lastInput = input;
       committed = clone(valid);
       return valid;
     }
     function replace(data, reason) {
       assertCurrent();
       const valid = validate(data),
-        raw = JSON.stringify(pack(valid, base));
+        raw = JSON.stringify(packValidated(valid, base));
       snapshot(reason);
       assertCurrent();
       storage.setItem(KEY, raw);

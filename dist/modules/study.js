@@ -3,6 +3,9 @@ function openStudyModal(sid, bid, lid) {
   const l = lesson(sid, bid, lid);
   if (!l) return;
 
+  StudySession.capture();
+  window.KoreanVoice?.tts?.stop();
+  window.KoreanVoice?.stt?.stop();
   ctx = { sid, bid, lid };
   l.lastOpenedAt = Date.now();
   save();
