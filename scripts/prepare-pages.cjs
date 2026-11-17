@@ -1,0 +1,1 @@
+const fs=require('node:fs');fs.rmSync('pages',{recursive:true,force:true});fs.cpSync('dist','pages',{recursive:true,filter:p=>!p.endsWith('.bin')&&!p.endsWith('download.html')});fs.writeFileSync('pages/.nojekyll','');

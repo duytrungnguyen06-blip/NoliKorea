@@ -1,0 +1,55 @@
+{
+  "scope": "Text and file structure only; audio has not been listened to or independently verified",
+  "lessons": [
+    {
+      "lesson": "l_snu1a_01",
+      "items": 28,
+      "acceptedVariants": 0,
+      "referencedTracks": 4
+    },
+    {
+      "lesson": "b1a_l2",
+      "items": 28,
+      "acceptedVariants": 1,
+      "referencedTracks": 4
+    },
+    {
+      "lesson": "b1a_l3",
+      "items": 28,
+      "acceptedVariants": 0,
+      "referencedTracks": 4
+    },
+    {
+      "lesson": "b1a_l4",
+      "items": 28,
+      "acceptedVariants": 0,
+      "referencedTracks": 4
+    },
+    {
+      "lesson": "b1a_l5",
+      "items": 28,
+      "acceptedVariants": 10,
+      "referencedTracks": 4
+    },
+    {
+      "lesson": "b1a_l6",
+      "items": 28,
+      "acceptedVariants": 4,
+      "referencedTracks": 4
+    },
+    {
+      "lesson": "b1a_l7",
+      "items": 28,
+      "acceptedVariants": 1,
+      "referencedTracks": 4
+    },
+    {
+      "lesson": "b1a_l8",
+      "items": 28,
+      "acceptedVariants": 0,
+      "referencedTracks": 4
+    }
+  ],
+  "totalItems": 224,
+  "audioFiles": 89
+}

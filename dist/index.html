@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>NoliKorea</title>
+    <!-- Mobile PWA Meta Tags -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#09101F">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="NoliKorea">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip-link" href="#mainContent">Đến nội dung chính</a>
+<div class="app-container">
+
+    <!-- Header -->
+    <header class="app-header">
+        <div class="header-content">
+            <div class="app-brand">
+                <span class="app-logo">한</span>
+                <div>
+                    <h1 class="app-title">NoliKorea</h1>
+                    <p class="app-subtitle">Học mỗi ngày · V5</p>
+                </div>
+            </div>
+
+            <!-- Global Search Bar (Trục 4) -->
+            <div class="header-search-wrap">
+                <div class="search-input-box">
+                    <span class="search-icon">🔍</span>
+                    <input aria-label="Tìm từ vựng và bài học" type="text" id="globalSearchInput" placeholder="Tìm kiếm từ vựng, bài học... (Ctrl+F)" autocomplete="off">
+                    <button type="button" id="clearSearchBtn" class="clear-search-btn hidden" onclick="clearGlobalSearch()" title="Xóa tìm kiếm">✕</button>
+                </div>
+                <div id="searchResultsDropdown" class="search-results-dropdown hidden"></div>
+            </div>
+
+            <!-- Daily Streak Counter (Trục 2) -->
+            <div class="header-streak-badge" id="headerStreak" onclick="showStreakTab()" title="Chuỗi ngày học liên tục (Daily Streak)">
+                <span class="streak-flame">🔥</span>
+                <span class="streak-count" id="headerStreakCount">0</span>
+                <span class="streak-unit">ngày</span>
+            </div>
+
+            <!-- Global AI Companion Button (Sesame Call & Chat) -->
+            <button type="button" class="header-ai-btn" onclick="openGlobalAIBot('call')" title="Trò chuyện AI toàn diện (Sesame Call & Chat)">
+                <span class="ai-sparkle-icon">✨</span>
+                <span class="ai-btn-text">Bạn học AI</span>
+                <span class="ai-pulse-dot"></span>
+            </button>
+
+            <button class="theme-toggle icon-btn" type="button" onclick="SeoulUI.cycleTheme()" aria-label="Đổi giao diện" title="Đổi giao diện sáng / tối / hệ thống"></button>
+            <nav class="main-nav" aria-label="Điều hướng chính">
+                <button class="nav-btn active" data-view="curriculum">
+                    <span class="nav-icon">📚</span>
+                    <span>Học</span>
+                </button>
+                <button class="nav-btn" data-view="review">
+                    <span class="nav-icon">🔔</span>
+                    <span>Ôn tập</span>
+                    <span class="review-badge" id="reviewCount">0</span>
+                </button>
+                <button class="nav-btn" data-view="mistakes" title="Sổ ghi nhớ lỗi sai thông minh (오답노트)">
+                    <span class="nav-icon">📓</span>
+                    <span>Sổ lỗi sai</span>
+                    <span class="review-badge" id="mistakesBadge">0</span>
+                </button>
+                <button class="nav-btn" data-view="progress">
+                    <span class="nav-icon">📊</span>
+                    <span>Tiến độ</span>
+                </button>
+                <button class="nav-btn" data-view="settings">
+                    <span class="nav-icon">⚙️</span>
+                    <span>Cài đặt</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Views -->
+    <main class="main-content" id="mainContent" tabindex="-1">
+
+        <!-- View: Curriculum -->
+        <div id="curriculumView" class="view active">
+            <section id="learningDashboard" aria-label="Tổng quan học tập"></section>
+            <div class="breadcrumb" id="breadcrumb"></div>
+            <!-- Book AI Banner (Appears when viewing lessons of a book) -->
+            <div id="bookAiBanner" class="book-ai-banner hidden">
+                <div class="book-ai-info">
+                    <span class="book-ai-avatar">🇰🇷</span>
+                    <div>
+                        <div class="book-ai-title">Bạn học AI · <span id="bookAiName">민수 (Min-soo)</span></div>
+                        <div class="book-ai-desc" id="bookAiDesc">Chỉ sử dụng từ vựng & ngữ pháp trong quyển sách này</div>
+                    </div>
+                </div>
+                <div class="book-ai-actions">
+                    <button type="button" class="btn btn-secondary btn-sm" onclick="openBookAIBot('chat')">💬 Nhắn tin</button>
+                    <button type="button" class="btn btn-primary btn-sm btn-call" onclick="openBookAIBot('call')">📞 Gọi thoại</button>
+                </div>
+            </div>
+            <div id="stageList" class="stage-grid"></div>
+            <div id="bookList"   class="book-list  hidden"></div>
+            <div id="lessonList" class="lesson-grid hidden"></div>
+        </div>
+
+        <!-- View: Review -->
+        <div id="reviewView" class="view">
+            <div class="view-header">
+                <h2>Bài cần ôn hôm nay</h2>
+            </div>
+            <section id="itemReviewSection" aria-label="Ôn từng mục"></section>
+            <div id="reviewList" class="lesson-grid"></div>
+            <div class="empty-state hidden" id="reviewEmpty">
+                <div class="empty-icon">✅</div>
+                <h3>Không có bài nào cần ôn hôm nay</h3>
+                <p>Hãy học thêm bài mới hoặc quay lại vào ngày mai!</p>
+            </div>
+        </div>
+
+        <!-- View: Progress -->
+        <div id="progressView" class="view">
+            <div class="view-header">
+                <h2>Tiến độ học tập</h2>
+            </div>
+            <!-- Streak & Weekly Habit Tracker (Trục 2) -->
+            <div class="streak-tracker-card" id="streakTrackerCard"></div>
+            <div class="stats-grid" id="statsGrid"></div>
+            <div class="progress-details" id="progressDetails"></div>
+        </div>
+
+        <!-- View: Mistakes (오답노트) -->
+        <div id="mistakesView" class="view">
+            <div class="section-toolbar view-header">
+                <div>
+                    <h2>📓 오답노트 · Sổ tay sửa lỗi thông minh</h2>
+                    <p class="section-description">Tự động ghi nhớ câu bạn từng làm sai. Luyện đúng 2 lần liên tiếp để tốt nghiệp khỏi sổ!</p>
+                </div>
+                <div class="inline-actions">
+                    <button class="button-small btn btn-secondary" onclick="clearGraduatedMistakes()">🧹 Xóa câu đã tốt nghiệp</button>
+                </div>
+            </div>
+            <div id="mistakesList" class="lesson-grid"></div>
+            <div class="empty-state hidden" id="mistakesEmpty">
+                <div class="empty-icon">🎉</div>
+                <h3>Sổ tay đang trống!</h3>
+                <p>Bạn không có lỗi sai nào cần khắc phục. Hãy tiếp tục học bài mới và giữ vững phong độ nhé!</p>
+            </div>
+        </div>
+
+        <!-- View: Settings -->
+        <div id="settingsView" class="view">
+            <div class="view-header">
+                <h2>Cài đặt</h2>
+            </div>
+            <div class="settings-section">
+                <h3>Quản lý dữ liệu</h3>
+                <div class="settings-buttons">
+                    <button class="btn btn-secondary" onclick="exportData()">📥 Xuất dữ liệu</button>
+                    <button class="btn btn-secondary" onclick="document.getElementById('importFile').click()">📤 Nhập dữ liệu</button>
+                    <input class="visually-removed" type="file" id="importFile" accept=".json" onchange="importData(event)">
+                    <button type="button" class="btn btn-secondary" onclick="reloadDefaultCurriculum()">Khôi phục giáo trình gốc</button>
+                    <button type="button" class="btn btn-secondary" onclick="reloadSnu1aCurriculum()">📖 Nạp chuẩn Seoul 1A (Bài 1–8)</button>
+                    <button class="btn btn-secondary" onclick="restoreData()">Khôi phục bản trước</button>
+<button class="btn btn-secondary" onclick="exportRawData()">Xuất dữ liệu gốc để phục hồi</button>
+<button class="btn btn-danger" onclick="resetAllData()">🗑️ Xóa toàn bộ dữ liệu</button>
+                </div>
+            </div>
+            <div class="settings-section">
+                <h3>Âm thanh & Phản hồi</h3>
+                <div class="inline-link-button">
+                    <div>
+                        <div class="settings-toggle-row">Hiệu ứng âm thanh (Haptic Audio)</div>
+                        <div class="settings-option-name">Âm thanh nhẹ nhàng khi làm đúng / sửa lỗi trong Recall & Production</div>
+                    </div>
+                    <button type="button" class="settings-option-help btn btn-secondary" id="soundToggleBtn" onclick="toggleSoundFX()">🔊 Bật</button>
+                </div>
+            </div>
+            <div class="settings-section">
+                <h3>Hiển thị & Ngữ pháp</h3><label for="themePreference">Giao diện</label>
+<select id="themePreference" onchange="SeoulUI.setTheme(this.value)"><option value="dark">Tối</option><option value="light">Sáng</option><option value="system">Theo thiết bị</option></select>
+                <div class="inline-link-button">
+                    <div>
+                        <div class="settings-toggle-row">Bóc tách cấu trúc câu (Sentence Anatomy)</div>
+                        <div class="settings-option-name">Hiển thị các thẻ capsule bóc tách gốc từ, trợ từ, đuôi câu</div>
+                    </div>
+                    <button type="button" class="settings-option-help btn btn-secondary" id="anatomySettingBtn" onclick="toggleAnatomy()">🧩 Bật</button>
+                </div>
+            </div>
+            <div class="settings-section">
+                <h3>Trí tuệ nhân tạo (Google Gemini)</h3>
+                <p class="settings-toggle-button">
+                    Kết nối trực tiếp mô hình <b>Gemini</b> khả dụng cho API key của bạn để đàm thoại, gọi điện thoại và nhắn tin với AI (Sesame Style).
+                    Lấy API Key miễn phí tại <a class="settings-intro" href="https://aistudio.google.com" target="_blank">aistudio.google.com</a>.
+                </p>
+                <div class="settings-field-limit form-group">
+                    <label for="geminiApiKeyInput">Gemini API Key</label>
+                    <div class="row-centered">
+                        <input class="flex-grow" type="password" id="geminiApiKeyInput" placeholder="Dán API Key (AIzaSy...)">
+                        <button type="button" class="btn btn-secondary" id="btnToggleApiKeyVisibility" onclick="toggleApiKeyVisibility()" title="Ẩn/Hiện key">👁️</button>
+                    </div>
+                </div>
+                <div class="settings-actions">
+                    <button type="button" class="btn btn-primary" onclick="saveGeminiApiKey()">💾 Lưu API Key</button>
+                    <button type="button" class="btn btn-secondary" onclick="testGeminiConnection()">🔍 Kiểm tra kết nối</button>
+                </div>
+                <div class="settings-status" id="geminiApiStatus"></div>
+            </div>
+            <div class="settings-section">
+                <h3>Về ứng dụng</h3>
+                <p>NoliKorea · 5.0.0</p>
+                <p>Phương pháp: Comprehensible Input + Spaced Repetition + Production Practice</p>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<!-- ══════════ MODALS ══════════ -->
+
+<!-- Modal: Stage -->
+<div class="modal" id="stageModal">
+    <div class="modal-overlay" onclick="closeStageModal()"></div>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="stageModalTitle">Thêm giai đoạn</h2>
+            <button class="modal-close" onclick="closeStageModal()">&times;</button>
+        </div>
+        <form id="stageForm" class="modal-body">
+            <input type="hidden" id="stageId">
+            <div class="form-group">
+                <label for="stageName">Tên giai đoạn *</label>
+                <input type="text" id="stageName" required placeholder="VD: Giai đoạn 1: Giao tiếp Vi mô (Sơ cấp)">
+            </div>
+            <div class="form-group">
+                <label for="stageDesc">Mô tả</label>
+                <textarea id="stageDesc" rows="3" placeholder="Mô tả ngắn..."></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeStageModal()">Hủy</button>
+                <button type="submit" class="btn btn-primary">Lưu</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal: Book -->
+<div class="modal" id="bookModal">
+    <div class="modal-overlay" onclick="closeBookModal()"></div>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="bookModalTitle">Thêm quyển</h2>
+            <button class="modal-close" onclick="closeBookModal()">&times;</button>
+        </div>
+        <form id="bookForm" class="modal-body">
+            <input type="hidden" id="bookId">
+            <input type="hidden" id="bookStageId">
+            <div class="form-group">
+                <label for="bookName">Tên quyển *</label>
+                <input type="text" id="bookName" required placeholder="VD: Quyển 1A (Sơ cấp 1 - Nửa đầu)">
+            </div>
+            <div class="form-group">
+                <label for="bookDesc">Mô tả</label>
+                <textarea id="bookDesc" rows="3" placeholder="Mô tả ngắn..."></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeBookModal()">Hủy</button>
+                <button type="submit" class="btn btn-primary">Lưu</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal: Lesson (Add/Edit) -->
+<div class="modal" id="lessonModal">
+    <div class="modal-overlay" onclick="closeLessonModal()"></div>
+    <div class="modal-content modal-large">
+        <div class="modal-header">
+            <h2 id="lessonModalTitle">Thêm bài học</h2>
+            <button class="modal-close" onclick="closeLessonModal()">&times;</button>
+        </div>
+        <form id="lessonForm" class="modal-body">
+            <input type="hidden" id="lessonId">
+            <input type="hidden" id="lessonStageId">
+            <input type="hidden" id="lessonBookId">
+            <div class="form-group">
+                <label for="lessonTitle">Tiêu đề *</label>
+                <input type="text" id="lessonTitle" required placeholder="VD: Bài 1: Giới thiệu bản thân (소개)">
+            </div>
+                        <div class="form-group">
+                <label>Nội dung bài học <small class="text-regular-muted">(mỗi mục = 1 câu / cụm từ)</small></label>
+                <div id="lessonItems" class="lesson-items-list"></div>
+                <button type="button" class="space-above btn btn-secondary" onclick="addLessonItem()">➕ Thêm mục</button>
+            </div>
+            <div class="form-group">
+                <label for="lessonExamples">Câu ví dụ điền vào chỗ trống</label>
+                <textarea id="lessonExamples" rows="4" placeholder="제 이름은 ___입니다.|Điền tên bạn&#10;만나서 ___요.|반갑"></textarea>
+                <small class="form-hint">Mỗi dòng: câu_tiếng_Hàn|gợi_ý · Dùng ___ cho chỗ cần điền</small>
+            </div>
+            <div class="form-group">
+                <label for="lessonSituations">Tình huống thực hành</label>
+                <textarea id="lessonSituations" rows="4" placeholder="Bạn gặp giáo viên lần đầu|안녕하세요, 선생님!&#10;Tự giới thiệu tên mình|제 이름은 ___입니다"></textarea>
+                <small class="form-hint">Mỗi dòng: mô_tả|câu_mẫu</small>
+            </div>
+            <div class="form-group">
+                <label for="lessonNotes">Ghi chú (ngữ pháp, phát âm, văn hóa)</label>
+                <textarea id="lessonNotes" rows="3" placeholder="Lưu ý quan trọng..."></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeLessonModal()">Hủy</button>
+                <button type="submit" class="btn btn-primary">Lưu</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal: Study Lesson -->
+<div class="modal" id="studyModal">
+    <div class="modal-overlay" onclick="closeStudyModal()"></div>
+    <div class="modal-content modal-xlarge">
+        <div class="modal-header">
+            <div class="study-title-row">
+                <button type="button" class="btn-back" onclick="closeStudyModal()" title="Trở về danh sách bài học">
+                    <span class="btn-back-icon">←</span>
+                    <span>Quay lại</span>
+                </button>
+                <h2 class="study-title-truncated" id="studyTitle"></h2>
+            </div>
+            <button class="modal-close" onclick="closeStudyModal()">&times;</button>
+        </div>
+        <div class="modal-body study-body">
+            <!-- Study Flow Progress Stepper (UI/UX K-Minimalism) -->
+            <div class="study-progress-container" id="studyProgressContainer">
+                <div class="study-progress-header">
+                    <span class="study-progress-title">Tiến trình bài học:</span>
+                    <span class="study-progress-status" id="studyProgressStatus">Bước 1/3: 📖 Đọc hiểu tự nhiên</span>
+                </div>
+                <div class="study-progress-bar-wrap">
+                    <div class="progress-initial study-progress-fill" id="studyProgressFill"></div>
+                </div>
+            </div>
+
+            <!-- Official SNU 1A Native CD Audio Player -->
+            <div class="native-audio-panel" id="nativeAudioPanel">
+                <div class="native-audio-header">
+                    <div class="native-audio-title-wrap">
+                        <span class="native-audio-badge">💿 CD Audio Gốc</span>
+                        <span class="native-audio-track-info" id="nativeAudioTrackInfo">Chọn đoạn nghe bên dưới</span>
+                    </div>
+                    <div class="native-audio-speed-wrap">
+                        <button type="button" class="audio-speed-btn" id="audioSpeedSlow" onclick="setNativeAudioSpeed(0.8)">0.8x Chậm</button>
+                        <button type="button" class="audio-speed-btn active" id="audioSpeedNormal" onclick="setNativeAudioSpeed(1.0)">1.0x Chuẩn</button>
+                        <button type="button" class="audio-speed-btn" id="audioSpeedFast" onclick="setNativeAudioSpeed(1.2)">1.2x Nhanh</button>
+                    </div>
+                </div>
+
+                <!-- Track selection pills -->
+                <div class="native-audio-tracks" id="nativeAudioTracks"></div>
+
+                <!-- Player controller bar (visible when a track is active) -->
+                <div class="native-audio-controls hidden" id="nativeAudioControls">
+                    <button type="button" class="audio-ctrl-btn" onclick="skipNativeAudio(-5)" title="Tua lùi 5 giây">⏪ -5s</button>
+                    <button type="button" class="audio-ctrl-btn play-btn" id="audioPlayBtn" onclick="toggleNativeAudioPlay()" title="Phát / Tạm dừng">
+                        <span id="audioPlayIcon">▶️</span>
+                    </button>
+                    <button type="button" class="audio-ctrl-btn" onclick="skipNativeAudio(5)" title="Tua tới 5 giây">+5s ⏩</button>
+                    <button type="button" class="audio-ctrl-btn stop-btn" onclick="stopNativeAudio()" title="Dừng hẳn">⏹️</button>
+                    <div class="audio-progress-wrap">
+                        <span class="audio-time" id="audioCurrentTime">00:00</span>
+                        <input type="range" class="audio-seek-slider" id="audioSeekBar" value="0" min="0" max="100" step="0.1" oninput="seekNativeAudio(this.value)">
+                        <span class="audio-time" id="audioDuration">00:00</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="study-tabs">
+                <button class="study-tab active" data-tab="input">📖 Input</button>
+                <button class="study-tab" data-tab="recall">🧠 Recall</button>
+                <button class="study-tab" data-tab="production">✍️ Production</button>
+            </div>
+
+            <!-- Input Tab -->
+            <div id="inputTab" class="study-content active">
+                <!-- Contextual Mini-Dialogue (Trục 1: Stephen Krashen Comprehensible Input) -->
+                <div class="input-dialogue-showcase" id="inputDialogueShowcase"></div>
+
+                <div class="content-box">
+                    <h3>Mẫu câu trọng tâm (28 câu)</h3>
+                    <div class="tts-toolbar">
+                        <div class="tts-controls-left">
+                            <button type="button" class="tts-speed-btn" id="ttsSpeedSlow" onclick="setTtsSpeed(0.8)">0.8x Chậm</button>
+                            <button type="button" class="tts-speed-btn active" id="ttsSpeedNormal" onclick="setTtsSpeed(1.0)">1.0x Chuẩn</button>
+                        </div>
+                    </div>
+                    <div class="korean-text" id="studyContent"></div>
+                    <div class="translation-controls">
+                        <button class="btn btn-secondary hint-btn" id="btnTransVi" onclick="toggleTranslation('vi')">🇻🇳 Tiếng Việt</button>
+                        <button class="btn btn-secondary hint-btn" id="btnTransEn" onclick="toggleTranslation('en')">🇬🇧 English</button>
+                        <button type="button" class="btn btn-secondary hint-btn active" id="btnToggleAnatomy" onclick="toggleAnatomy()" title="Bật/Tắt phân tích bóc tách ngữ pháp">🧩 Cấu trúc câu</button>
+                    </div>
+                    
+                </div>
+                <div class="notes-box" id="studyNotesSection"></div>
+                <!-- Study Flow Navigation (Item 1) -->
+                <div class="tab-flow-footer">
+                    <button type="button" class="btn btn-flow-next" onclick="switchStudyTab('recall')">
+                        <span>Tiếp tục: Luyện tập Active Recall</span>
+                        <span class="flow-next-icon">🧠 →</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Recall Tab -->
+            <div id="recallTab" class="study-content">
+                <div class="content-box">
+                    <div class="tab-section-header">
+                        <h3>🧠 Luyện tập Active Recall đa dạng</h3>
+                        <button type="button" class="vk-quick-btn" onclick="if(window.KoreanKeyboard) window.KoreanKeyboard.open()" title="Mở bàn phím tiếng Hàn (Ctrl+K)">⌨️ Bàn phím Hàn</button>
+                    </div>
+                    <div id="recallExercises"></div>
+                </div>
+                <!-- Study Flow Navigation (Item 1) -->
+                <div class="tab-flow-footer">
+                    <button type="button" class="btn btn-flow-prev" onclick="switchStudyTab('input')">
+                        <span>← Xem lại Input</span>
+                    </button>
+                    <button type="button" class="btn btn-flow-next" onclick="switchStudyTab('production')">
+                        <span>Tiếp tục: Hội thoại & Sản sinh</span>
+                        <span class="flow-next-icon">✍️ →</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Production Tab -->
+            <div id="productionTab" class="study-content">
+                <div class="content-box">
+                    <div class="tab-section-header">
+                        <h3>✍️ Thực hành Sản sinh & Hội thoại</h3>
+                        <button type="button" class="vk-quick-btn" onclick="if(window.KoreanKeyboard) window.KoreanKeyboard.open()" title="Mở bàn phím tiếng Hàn (Ctrl+K)">⌨️ Bàn phím Hàn</button>
+                    </div>
+                    <div id="productionExercises"></div>
+                </div>
+                <!-- Study Flow Navigation (Item 1) -->
+                <div class="tab-flow-footer">
+                    <button type="button" class="btn btn-flow-prev" onclick="switchStudyTab('recall')">
+                        <span>← Quay lại Recall</span>
+                    </button>
+                    <button type="button" class="btn btn-flow-finish" onclick="showReviewRating()">
+                        <span>Hoàn thành bài & Đánh giá SRS</span>
+                        <span class="flow-next-icon">⭐</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Review Rating -->
+            <div class="review-rating hidden" id="reviewRating">
+                <div id="completionSummary" aria-live="polite"></div>
+                <h3>Chọn lịch ôn tiếp theo</h3>
+                <div class="rating-buttons">
+                    <button class="rating-btn again" onclick="rateLesson('again')">
+                        <span class="rating-label">Lại (Quên)</span>
+                        <span class="rating-time" id="rateTimeAgain">10 phút</span>
+                    </button>
+                    <button class="rating-btn hard" onclick="rateLesson('hard')">
+                        <span class="rating-label">Khó</span>
+                        <span class="rating-time" id="rateTimeHard">1 ngày</span>
+                    </button>
+                    <button class="rating-btn good" onclick="rateLesson('good')">
+                        <span class="rating-label">Tốt</span>
+                        <span class="rating-time" id="rateTimeGood">3 ngày</span>
+                    </button>
+                    <button class="rating-btn easy" onclick="rateLesson('easy')">
+                        <span class="rating-label">Dễ</span>
+                        <span class="rating-time" id="rateTimeEasy">7 ngày</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal: AI Conversation (Messenger & Sesame Live Phone Call) -->
+<div class="modal" id="aiModal">
+    <div class="modal-overlay" onclick="closeAiModal()"></div>
+    <div class="modal-content modal-ai-dialog">
+        <!-- AI Modal Header -->
+        <div class="ai-modal-header">
+            <div class="ai-partner-profile">
+                <div class="ai-avatar-badge" id="aiModalAvatar">✨</div>
+                <div>
+                    <div class="ai-partner-name" id="aiModalTitle">Bạn học AI Companion</div>
+                    <div class="ai-partner-scope" id="aiModalScope">Trợ lý tiếng Hàn toàn diện</div>
+                </div>
+            </div>
+            <div class="ai-mode-switch">
+                <button type="button" class="ai-mode-btn active" id="btnAiModeChat" onclick="switchAiMode('chat')" title="Chế độ Nhắn tin">💬 Chat</button>
+                <button type="button" class="ai-mode-btn" id="btnAiModeCall" onclick="switchAiMode('call')" title="Chế độ Gọi điện thoại">📞 Call</button>
+            </div>
+            <button class="modal-close" onclick="closeAiModal()">&times;</button>
+        </div>
+
+        <!-- 1. AI Messenger View -->
+        <div class="ai-view-container active" id="aiChatView">
+            <div class="ai-chat-messages" id="aiChatMessages">
+                <!-- Message history -->
+            </div>
+            <button type="button" class="btn btn-ghost" id="cancelAIRequest" onclick="KoreanAI.cancelPending()">Dừng trả lời</button>
+            <div class="ai-chat-suggestions" id="aiChatSuggestions">
+                <!-- Suggested replies -->
+            </div>
+            <div class="ai-chat-input-bar">
+                <button type="button" class="vk-quick-btn" onclick="if(window.KoreanKeyboard) window.KoreanKeyboard.toggle()" title="Mở bàn phím ảo (Ctrl+K)">⌨️</button>
+                <button type="button" class="study-action-btn ai-mic-btn" id="aiChatMicBtn" onclick="toggleAiChatMic()" title="Nói tiếng Hàn (Micro)">🎙️</button>
+                <input type="text" id="aiChatInput" placeholder="Nhập tin nhắn tiếng Hàn..." autocomplete="off">
+                <button type="button" class="btn btn-primary btn-send-ai" id="aiChatSendBtn" onclick="sendAiChatMessage()">Gửi</button>
+            </div>
+        </div>
+
+        <!-- 2. AI Sesame Phone Call View (Mobile Fullscreen Call Screen) -->
+        <div class="ai-view-container" id="aiCallView">
+            <div class="ai-call-screen">
+                <div class="ai-call-top-bar">
+                    <span class="ai-call-encrypted">🔒 Cuộc gọi thoại mô phỏng</span>
+                    <span class="ai-call-timer" id="aiCallTimer">00:00</span>
+                </div>
+
+                <div class="ai-call-visualizer-center">
+                    <div class="ai-call-pulse-ring ring-3"></div>
+                    <div class="ai-call-pulse-ring ring-2"></div>
+                    <div class="ai-call-pulse-ring ring-1"></div>
+                    <div class="ai-call-avatar-circle" id="aiCallAvatar">🇰🇷</div>
+                </div>
+
+                <div class="ai-call-partner-info">
+                    <div class="ai-call-name" id="aiCallName">민수 (Min-soo)</div>
+                    <div class="ai-call-status" id="aiCallStatus">Đang kết nối...</div>
+                </div>
+
+                <!-- Subtitles / Live Transcript -->
+                <div class="ai-call-subtitles" id="aiCallSubtitles">
+                    <div class="ai-sub-line ai" id="aiCallLastAiMsg">Đang chuẩn bị cuộc gọi...</div>
+                    <div class="ai-sub-line user" id="aiCallLastUserMsg"></div>
+                </div>
+
+                <!-- Call Control Pad -->
+                <div class="ai-call-controls">
+                    <button type="button" class="ai-call-btn btn-call-mode" onclick="switchAiMode('chat')" title="Chuyển sang nhắn tin">
+                        <span>💬</span>
+                        <small>Nhắn tin</small>
+                    </button>
+                    <button type="button" class="ai-call-btn btn-call-mic active" id="aiCallMicBtn" onclick="toggleAiCallMute()" title="Bật/Tắt Micro">
+                        <span id="aiCallMicIcon">🎙️</span>
+                        <small id="aiCallMicLabel">Micro: Bật</small>
+                    </button>
+                    <button type="button" class="ai-call-btn btn-call-hangup" onclick="endAiCall()" title="Kết thúc cuộc gọi">
+                        <span>🔴</span>
+                        <small>Gác máy</small>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Floating Mini Audio Player (Appears when scrolling past nativeAudioPanel) -->
+<div class="floating-audio-player hidden" id="floatingAudioPlayer">
+    <div class="floating-audio-left">
+        <span class="floating-audio-disc">💿</span>
+        <div class="floating-audio-info">
+            <div class="floating-audio-title" id="floatingAudioTitle">Track CD Chuẩn</div>
+            <div class="floating-audio-sub" id="floatingAudioSub">Tiếng Hàn Seoul 1A</div>
+        </div>
+    </div>
+    <div class="floating-audio-center">
+        <button type="button" class="floating-ctrl-btn" onclick="skipNativeAudio(-5)" title="Tua lùi 5 giây (←)">⏪ -5s</button>
+        <button type="button" class="floating-ctrl-btn play" id="floatingPlayBtn" onclick="toggleNativeAudioPlay()" title="Phát / Tạm dừng (Space)">
+            <span id="floatingPlayIcon">▶️</span>
+        </button>
+        <button type="button" class="floating-ctrl-btn" onclick="skipNativeAudio(5)" title="Tua tới 5 giây (→)">+5s ⏩</button>
+        <span class="floating-audio-time" id="floatingAudioTime">00:00 / 00:00</span>
+    </div>
+    <div class="floating-audio-right">
+        <button type="button" class="floating-ctrl-btn speed" id="floatingSpeedBtn" onclick="cycleNativeAudioSpeed()" title="Đổi tốc độ ([ / ])">1.0x</button>
+        <button type="button" class="floating-close-btn" onclick="hideFloatingAudioPlayer()" title="Ẩn thanh phát">✕</button>
+    </div>
+</div>
+
+<!-- Role-Play Dialogue Modal (Interactive Speaking Practice) -->
+<div class="modal" id="rolePlayModal" >
+    <div class="modal-overlay" onclick="closeRolePlayModal()"></div>
+    <div class="modal-content modal-roleplay">
+        <div class="roleplay-modal-header">
+            <div class="roleplay-title-wrap">
+                <span class="roleplay-icon">🎭</span>
+                <div>
+                    <div class="roleplay-modal-title">Luyện Đóng Vai Hội Thoại</div>
+                    <div class="roleplay-modal-sub" id="rolePlaySub">Chọn nhân vật để bắt đầu đối thoại phản xạ</div>
+                </div>
+            </div>
+            <button type="button" class="modal-close" onclick="closeRolePlayModal()" title="Đóng">✕</button>
+        </div>
+        <div class="roleplay-modal-body" id="rolePlayModalBody">
+            <!-- Dynamically populated in app.js -->
+        </div>
+    </div>
+</div>
+
+<script src="voice.js"></script>
+<script src="keyboard.js"></script>
+<script src="recall.js"></script>
+<script src="production.js"></script>
+<script src="anatomy.js"></script>
+<script src="modules/ai-request.js"></script>
+<script src="ai.js"></script>
+<script src="audio-map.js"></script>
+<script src="curriculum-data.js"></script>
+<script src="modules/data-store.js"></script>
+<script src="modules/scheduler.js"></script>
+<script src="modules/learning-content.js"></script>
+<script src="app.js"></script>
+<script src="modules/navigation.js"></script>
+<script src="modules/roleplay.js"></script>
+<script src="modules/catalog.js"></script>
+<script src="modules/study.js"></script>
+<script src="modules/reviews.js"></script>
+<script src="modules/progress.js"></script>
+<script src="modules/search.js"></script>
+<script src="modules/settings.js"></script>
+<script src="modules/mistakes.js"></script>
+<script src="modules/audio.js"></script>
+<script src="modules/study-session.js"></script>
+<script src="modules/item-review.js"></script>
+<script src="modules/actions.js"></script>
+<script src="modules/tab-sync.js"></script>
+<script src="modules/daily-session.js"></script>
+<script src="modules/content-feedback.js"></script>
+<script src="icons.js"></script>
+<script src="modules/noli-ui.js"></script>
+<script src="seoul.js"></script>
+<script src="modules/update.js"></script>
+</body>
+</html>

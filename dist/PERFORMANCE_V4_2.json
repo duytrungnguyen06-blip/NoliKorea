@@ -1,0 +1,60 @@
+{
+  "before": {
+    "environment": "Node.js + jsdom; not a real-device/browser benchmark",
+    "samples": [
+      {
+        "initMs": 536.011653,
+        "openMs": 333.2291970000001,
+        "exerciseNodes": 72,
+        "domNodes": 3032
+      },
+      {
+        "initMs": 216.2324840000001,
+        "openMs": 314.86863900000026,
+        "exerciseNodes": 72,
+        "domNodes": 3032
+      },
+      {
+        "initMs": 145.49383599999965,
+        "openMs": 266.27818100000013,
+        "exerciseNodes": 72,
+        "domNodes": 3032
+      }
+    ],
+    "median": {
+      "initMs": 216.2324840000001,
+      "openMs": 314.86863900000026,
+      "exerciseNodes": 72,
+      "domNodes": 3032
+    }
+  },
+  "after": {
+    "environment": "Node.js + jsdom; not a real-device/browser benchmark",
+    "samples": [
+      {
+        "initMs": 422.60004200000003,
+        "openMs": 90.45502900000008,
+        "exerciseNodes": 0,
+        "domNodes": 1725
+      },
+      {
+        "initMs": 155.52271799999994,
+        "openMs": 100.61615200000006,
+        "exerciseNodes": 0,
+        "domNodes": 1725
+      },
+      {
+        "initMs": 113.09453800000006,
+        "openMs": 152.13614499999994,
+        "exerciseNodes": 0,
+        "domNodes": 1725
+      }
+    ],
+    "median": {
+      "initMs": 155.52271799999994,
+      "openMs": 100.61615200000006,
+      "exerciseNodes": 0,
+      "domNodes": 1725
+    }
+  }
+}

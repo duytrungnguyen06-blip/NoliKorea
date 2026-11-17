@@ -1,0 +1,2559 @@
+const CURRICULUM_DATA = {
+  "stages": [
+    {
+      "id": "s1",
+      "name": "Giai đoạn 1 — Nền tảng Giao tiếp Vi mô (Sơ cấp)",
+      "desc": "Từ vựng sinh tồn, cú pháp cơ bản, giao tiếp cá nhân thường nhật.",
+      "books": [
+        {
+          "id": "b1a",
+          "name": "Quyển 1A — Sơ cấp 1 (Nửa đầu)",
+          "desc": "Bài 1–8",
+          "lessons": [
+            {
+              "title": "Bài 1: Giới thiệu bản thân và Chào hỏi (소개)",
+              "id": "l_snu1a_01",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null,
+              "items": [
+                {
+                  "korean": "안녕하세요?",
+                  "vi": "Xin chào? (Lời chào thông dụng nhất, dùng mọi lúc)",
+                  "en": "Hello / How are you? (Standard polite greeting)",
+                  "id": "l_snu1a_01-item-1"
+                },
+                {
+                  "korean": "안녕하십니까?",
+                  "vi": "Xin chào (Trang trọng, nghi thức, phỏng vấn, sự kiện)",
+                  "en": "Hello / Good day (Formal polite greeting)",
+                  "id": "l_snu1a_01-item-2"
+                },
+                {
+                  "korean": "만나서 반가워요.",
+                  "vi": "Rất vui được gặp bạn. (Giao tiếp lịch sự hằng ngày)",
+                  "en": "Nice to meet you. (Informal polite)",
+                  "id": "l_snu1a_01-item-3"
+                },
+                {
+                  "korean": "만나서 반갑습니다.",
+                  "vi": "Rất hân hạnh được gặp bạn. (Trang trọng)",
+                  "en": "Pleased to meet you. (Formal polite)",
+                  "id": "l_snu1a_01-item-4"
+                },
+                {
+                  "korean": "안녕히 계세요.",
+                  "vi": "Tạm biệt (chúc ở lại bình an - dùng khi mình ra về)",
+                  "en": "Goodbye (said when you are leaving and other person is staying)",
+                  "id": "l_snu1a_01-item-5"
+                },
+                {
+                  "korean": "안녕히 가세요.",
+                  "vi": "Tạm biệt (chúc đi về bình an - dùng khi đối phương ra về)",
+                  "en": "Goodbye (said when the other person is leaving)",
+                  "id": "l_snu1a_01-item-6"
+                },
+                {
+                  "korean": "저는 유진이에요.",
+                  "vi": "Tôi là Yujin.",
+                  "en": "I am Yujin.",
+                  "id": "l_snu1a_01-item-7"
+                },
+                {
+                  "korean": "저는 나나예요.",
+                  "vi": "Tôi là Nana.",
+                  "en": "I am Nana.",
+                  "id": "l_snu1a_01-item-8"
+                },
+                {
+                  "korean": "스티븐은 미국 사람이에요.",
+                  "vi": "Steven là người Mỹ.",
+                  "en": "Steven is American.",
+                  "id": "l_snu1a_01-item-9"
+                },
+                {
+                  "korean": "스티븐은 학생이에요.",
+                  "vi": "Steven là học sinh / sinh viên.",
+                  "en": "Steven is a student.",
+                  "id": "l_snu1a_01-item-10"
+                },
+                {
+                  "korean": "마이클 씨는 영국 사람이에요.",
+                  "vi": "Anh Michael là người Anh.",
+                  "en": "Mr. Michael is British.",
+                  "id": "l_snu1a_01-item-11"
+                },
+                {
+                  "korean": "저는 베트남 사람이에요.",
+                  "vi": "Tôi là người Việt Nam.",
+                  "en": "I am Vietnamese.",
+                  "id": "l_snu1a_01-item-12"
+                },
+                {
+                  "korean": "나나 씨는 어느 나라 사람이에요?",
+                  "vi": "Bạn Nana là người nước nào?",
+                  "en": "Nana, which country are you from?",
+                  "id": "l_snu1a_01-item-13"
+                },
+                {
+                  "korean": "저는 중국 사람이에요.",
+                  "vi": "Tôi là người Trung Quốc.",
+                  "en": "I am Chinese.",
+                  "id": "l_snu1a_01-item-14"
+                },
+                {
+                  "korean": "스티븐 씨는 미국 사람입니까?",
+                  "vi": "Anh Steven có phải là người Mỹ không? (Trang trọng)",
+                  "en": "Is Mr. Steven American? (Formal)",
+                  "id": "l_snu1a_01-item-15"
+                },
+                {
+                  "korean": "네, 저는 미국 사람입니다.",
+                  "vi": "Vâng, tôi là người Mỹ. (Trang trọng)",
+                  "en": "Yes, I am American. (Formal)",
+                  "id": "l_snu1a_01-item-16"
+                },
+                {
+                  "korean": "마이클 씨는 미국 사람입니까?",
+                  "vi": "Anh Michael có phải là người Mỹ không?",
+                  "en": "Is Mr. Michael American?",
+                  "id": "l_snu1a_01-item-17"
+                },
+                {
+                  "korean": "아니요, 저는 미국 사람이 아닙니다.",
+                  "vi": "Không, tôi không phải là người Mỹ.",
+                  "en": "No, I am not American.",
+                  "id": "l_snu1a_01-item-18"
+                },
+                {
+                  "korean": "마이클 씨는 의사가 아닙니다.",
+                  "vi": "Anh Michael không phải là bác sĩ.",
+                  "en": "Mr. Michael is not a doctor.",
+                  "id": "l_snu1a_01-item-19"
+                },
+                {
+                  "korean": "직업은 무엇입니까?",
+                  "vi": "Nghề nghiệp của bạn là gì? (Trang trọng)",
+                  "en": "What is your occupation? (Formal)",
+                  "id": "l_snu1a_01-item-20"
+                },
+                {
+                  "korean": "기자입니다.",
+                  "vi": "Tôi là phóng viên / nhà báo.",
+                  "en": "I am a reporter / journalist.",
+                  "id": "l_snu1a_01-item-21"
+                },
+                {
+                  "korean": "선생님은 한국 사람이에요.",
+                  "vi": "Cô giáo là người Hàn Quốc.",
+                  "en": "The teacher is Korean.",
+                  "id": "l_snu1a_01-item-22"
+                },
+                {
+                  "korean": "니콜 씨는 영어 선생님입니다.",
+                  "vi": "Cô Nicole là giáo viên tiếng Anh.",
+                  "en": "Ms. Nicole is an English teacher.",
+                  "id": "l_snu1a_01-item-23"
+                },
+                {
+                  "korean": "아키라 씨는 일본 사람이에요.",
+                  "vi": "Anh Akira là người Nhật Bản.",
+                  "en": "Mr. Akira is Japanese.",
+                  "id": "l_snu1a_01-item-24"
+                },
+                {
+                  "korean": "마리아 씨는 독일 사람이에요. 의사예요.",
+                  "vi": "Cô Maria là người Đức. Là bác sĩ.",
+                  "en": "Ms. Maria is German. She is a doctor.",
+                  "id": "l_snu1a_01-item-25"
+                },
+                {
+                  "korean": "줄리앙 씨는 프랑스 사람이에요. 학생이에요.",
+                  "vi": "Anh Julien là người Pháp. Là sinh viên.",
+                  "en": "Mr. Julien is French. He is a student.",
+                  "id": "l_snu1a_01-item-26"
+                },
+                {
+                  "korean": "제 명함입니다.",
+                  "vi": "Đây là danh thiếp của tôi.",
+                  "en": "Here is my business card.",
+                  "id": "l_snu1a_01-item-27"
+                },
+                {
+                  "korean": "여러분, 만나서 반갑습니다.",
+                  "vi": "Chào mọi người, rất hân hạnh được gặp các bạn.",
+                  "en": "Everyone, pleased to meet you.",
+                  "id": "l_snu1a_01-item-28"
+                }
+              ],
+              "situations": "Na-na chào và tự giới thiệu tên | 안녕하세요? 저는 나나예요.\nMichael chào lại và giới thiệu tên mình | 안녕하세요? 저는 마이클이에요.\nNa-na bày tỏ niềm vui khi được làm quen | 만나서 반가워요, 마이클 씨.\nMichael hỏi quốc tịch của Na-na | 반가워요. 나나 씨는 어느 나라 사람이에요?\nNa-na trả lời quốc tịch Trung Quốc | 저는 중국 사람이에요.",
+              "examples": "안녕하세요? 저는 유진이에요.\n스티븐은 미국 사람이에요. 학생이에요.\n나나 씨는 어느 나라 사람이에요? - 저는 중국 사람이에요.\n스티븐 씨는 미국 사람입니까? - 네, 저는 미국 사람입니다.\n마이클 씨는 미국 사람입니까? - 아니요, 저는 미국 사람이 아닙니다. 영국 사람입니다.\n직업은 무엇입니까? - 기자입니다.\n여러분, 만나서 반갑습니다. 저는 최정우입니다.",
+              "notes": "📚 Giáo trình chuẩn: Seoul National University Korean 1A (Bài 1: 안녕하세요?)\n\n1. 어휘 (Từ vựng):\n- Quốc gia & Quốc tịch: 한국 (Hàn), 베트남 (Việt), 미국 (Mỹ), 일본 (Nhật), 중국 (Trung), 영국 (Anh), 독일 (Đức), 프랑스 (Pháp), 호주 (Úc), 캐나다 (Canada), 러시아 (Nga), 인도 (Ấn Độ).\n- Công thức quốc tịch: Tên nước + 사람 (Lưu ý luôn có dấu cách: 한국 사람, 베트남 사람).\n- Nghề nghiệp: 선생님 (giáo viên), 학생 (học sinh/sinh viên), 회사원 (nhân viên công ty), 의사 (bác sĩ), 기자 (phóng viên), 가수 (ca sĩ), 군인 (quân nhân), 요리사 (đầu bếp), 주부 (nội trợ), 영어 선생님 (giáo viên tiếng Anh).\n\n2. 문법 (Ngữ pháp cốt lõi):\n- N은/는 N이에요/예요 (Thân mật đời thường): Có patchim + 은 / 이에요; Không patchim + 는 / 예요.\n- N입니까?, N입니다 (Trang trọng nghi thức): Gắn trực tiếp vào danh từ, không phân biệt patchim.\n- N이/가 아닙니다 (Phủ định trang trọng): Có patchim + 이 아닙니다; Không patchim + 가 아닙니다.\n\n3. 발음 (Phát âm chuẩn SNU):\n- Biến âm ㅂ gặp ㄴ: 입니다 [임니다], 입니까 [임니까], 반갑습니다 [반갑씀니다].\n- Ngữ điệu: Câu trần thuật hạ giọng ở cuối câu ↘, câu hỏi lên giọng ở từ cuối ↗."
+            },
+            {
+              "title": "Bài 2: Chỉ định từ và Đồ vật xung quanh (이거는 뭐예요?)",
+              "id": "b1a_l2",
+              "items": [
+                {
+                  "korean": "책상",
+                  "vi": "Bàn học, bàn làm việc",
+                  "en": "Desk",
+                  "id": "b1a_l2-item-1"
+                },
+                {
+                  "korean": "의자",
+                  "vi": "Ghế ngồi",
+                  "en": "Chair",
+                  "id": "b1a_l2-item-2"
+                },
+                {
+                  "korean": "책",
+                  "vi": "Sách (chữ Hán: 冊)",
+                  "en": "Book",
+                  "id": "b1a_l2-item-3"
+                },
+                {
+                  "korean": "공책",
+                  "vi": "Vở ghi chép, tập viết",
+                  "en": "Notebook",
+                  "id": "b1a_l2-item-4"
+                },
+                {
+                  "korean": "볼펜",
+                  "vi": "Bút bi (ballpoint pen)",
+                  "en": "Ballpoint pen",
+                  "id": "b1a_l2-item-5"
+                },
+                {
+                  "korean": "연필",
+                  "vi": "Bút chì (chữ Hán: 鉛筆)",
+                  "en": "Pencil",
+                  "id": "b1a_l2-item-6"
+                },
+                {
+                  "korean": "지우개",
+                  "vi": "Cục tẩy, cục gôm",
+                  "en": "Eraser",
+                  "id": "b1a_l2-item-7"
+                },
+                {
+                  "korean": "필통",
+                  "vi": "Hộp bút, bóp đựng bút (chữ Hán: 筆筒)",
+                  "en": "Pencil case",
+                  "id": "b1a_l2-item-8"
+                },
+                {
+                  "korean": "가방",
+                  "vi": "Cặp sách, ba lô, túi xách",
+                  "en": "Bag / Backpack",
+                  "id": "b1a_l2-item-9"
+                },
+                {
+                  "korean": "시계",
+                  "vi": "Đồng hồ (chữ Hán: 時計, phát âm [시게])",
+                  "en": "Clock / Watch",
+                  "id": "b1a_l2-item-10"
+                },
+                {
+                  "korean": "모자",
+                  "vi": "Mũ, nón (chữ Hán: 帽子)",
+                  "en": "Hat / Cap",
+                  "id": "b1a_l2-item-11"
+                },
+                {
+                  "korean": "우산",
+                  "vi": "Cây dù, cái ô (chữ Hán: 雨傘)",
+                  "en": "Umbrella",
+                  "id": "b1a_l2-item-12"
+                },
+                {
+                  "korean": "신문",
+                  "vi": "Tờ báo, báo chí (chữ Hán: 新聞)",
+                  "en": "Newspaper",
+                  "id": "b1a_l2-item-13"
+                },
+                {
+                  "korean": "카메라",
+                  "vi": "Máy ảnh, máy chụp hình (camera)",
+                  "en": "Camera",
+                  "id": "b1a_l2-item-14"
+                },
+                {
+                  "korean": "사전",
+                  "vi": "Từ điển (chữ Hán: 辭典)",
+                  "en": "Dictionary",
+                  "id": "b1a_l2-item-15"
+                },
+                {
+                  "korean": "전자사전",
+                  "vi": "Từ điển điện tử (chữ Hán: 電子辭典)",
+                  "en": "Electronic dictionary",
+                  "id": "b1a_l2-item-16"
+                },
+                {
+                  "korean": "안경",
+                  "vi": "Kính mắt, cặp kính (chữ Hán: 眼鏡)",
+                  "en": "Glasses",
+                  "id": "b1a_l2-item-17"
+                },
+                {
+                  "korean": "휴대폰",
+                  "vi": "Điện thoại di động (chữ Hán/Anh: 携帶phone)",
+                  "en": "Mobile phone",
+                  "id": "b1a_l2-item-18"
+                },
+                {
+                  "korean": "창문",
+                  "vi": "Cửa sổ (chữ Hán: 窓門)",
+                  "en": "Window",
+                  "id": "b1a_l2-item-19"
+                },
+                {
+                  "korean": "지도",
+                  "vi": "Bản đồ (chữ Hán: 地圖)",
+                  "en": "Map",
+                  "id": "b1a_l2-item-20"
+                },
+                {
+                  "korean": "지갑",
+                  "vi": "Ví tiền, bóp tiền (chữ Hán: 紙匣)",
+                  "en": "Wallet",
+                  "id": "b1a_l2-item-21"
+                },
+                {
+                  "korean": "침대",
+                  "vi": "Giường ngủ (chữ Hán: 寢臺)",
+                  "en": "Bed",
+                  "id": "b1a_l2-item-22"
+                },
+                {
+                  "korean": "냉장고",
+                  "vi": "Tủ lạnh (chữ Hán: 冷藏庫)",
+                  "en": "Refrigerator",
+                  "id": "b1a_l2-item-23"
+                },
+                {
+                  "korean": "이거",
+                  "vi": "Cái này (đồ vật ở gần người nói)",
+                  "en": "This / This item",
+                  "id": "b1a_l2-item-24"
+                },
+                {
+                  "korean": "그거",
+                  "vi": "Cái đó (đồ vật gần người nghe hoặc vừa nhắc đến)",
+                  "en": "That / That item",
+                  "id": "b1a_l2-item-25"
+                },
+                {
+                  "korean": "저거",
+                  "vi": "Cái kia (đồ vật ở xa cả người nói và người nghe)",
+                  "en": "That over there",
+                  "id": "b1a_l2-item-26"
+                },
+                {
+                  "korean": "무엇 (뭐)",
+                  "vi": "Cái gì, cái nào (từ để hỏi)",
+                  "en": "What",
+                  "acceptedAnswers": [
+                    "무엇",
+                    "뭐"
+                  ],
+                  "id": "b1a_l2-item-27"
+                },
+                {
+                  "korean": "주세요",
+                  "vi": "Xin hãy cho tôi..., vui lòng cho tôi...",
+                  "en": "Please give me",
+                  "id": "b1a_l2-item-28"
+                }
+              ],
+              "examples": "이거는 책상이에요.\n그거는 의자예요.\n저거는 한국 지도예요.\n이거는 한국어로 뭐예요? - 필통이에요.\n저거는 텔레비전이에요? - 아니요, 컴퓨터예요.\n전자사전 있어요? - 네, 있어요.\n동전이 있어요? - 아니요, 없어요. 지갑만 있어요.\n한국신문하고 미국 잡지가 있어요.\n볼펜하고 공책 주세요.\n지우개 좀 주세요. - 여기 있어요.\n제 방에 침대와 책상이 있어요.\n텔레비전과 냉장고는 없어요.\n정우는 여자 친구가 없어요.",
+              "situations": "Stephen hỏi tiệm có bán từ điển điện tử không | 전자사전 있어요?\nChủ tiệm trả lời không có | 아니요, 없어요.\nStephen hỏi tên đồ vật bằng tiếng Hàn | 이거는 한국어로 뭐예요?\nChủ tiệm giải thích là cây thước kẻ | 자예요.\nStephen hỏi cái đằng kia có phải bút chì không | 저거는 연필이에요?\nChủ tiệm đính chính là bút bi | 아니요, 볼펜이에요.",
+              "notes": "📚 Giáo trình chuẩn: Seoul National University Korean 1A (Bài 2: 이거는 뭐예요?)\n\n1. 어휘 (Từ vựng cốt lõi):\n- Đồ dùng học tập (학용품): 책상 (bàn học), 의자 (ghế), 책 (sách), 공책 (vở), 볼펜 (bút bi), 연필 (bút chì), 지우개 (cục tẩy), 필통 (hộp bút), 가방 (cặp/ba lô), 사전 (từ điển), 전자사전 (từ điển điện tử), 자 (thước kẻ).\n- Đồ dùng sinh hoạt cá nhân (일상 생활용품): 시계 [시게] (đồng hồ), 모자 (mũ), 우산 (cây dù), 신문 (báo), 잡지 (tạp chí), 카메라 (máy ảnh), 안경 (kính mắt), 휴대폰 (điện thoại), 지갑 (ví tiền), 창문 (cửa sổ), 지도 (bản đồ), 침대 (giường), 냉장고 (tủ lạnh), 컴퓨터 (máy tính), 텔레비전 (ti vi).\n- Đại từ chỉ định (지시대명사):\n  * 이거 (dạng đầy đủ 이것): Cái này - vật gần người nói.\n  * 그거 (dạng đầy đủ 그것): Cái đó - vật gần người nghe, hoặc vật vừa được nhắc đến trong hội thoại.\n  * 저거 (dạng đầy đủ 저것): Cái kia - vật ở xa cả người nói và người nghe.\n- Từ nghi vấn & Cụm từ: 무엇 / 뭐 (cái gì), 한국어로 (bằng tiếng Hàn), 어서 오세요 (xin mời vào), 여기 있어요 (ở đây ạ), 주세요 (xin hãy cho tôi).\n\n2. 문법 (Ngữ pháp trọng tâm):\n- N이/가 있어요[없어요]: Biểu thị sự sở hữu (\"có / không có N\").\n  * Danh từ có 받침 + 이 있어요 / 없어요 (우산이 있어요, 동전이 없어요).\n  * Danh từ không có 받침 + 가 있어요 / 없어요 (남자 친구가 있어요, 시계가 없어요).\n  * Trong khẩu ngữ tự nhiên, tiểu từ 이/가 thường được lược bỏ (우산 있어요?, 돈 없어요).\n- 이거는 [그거는, 저거는] N이에요/예요: Xác định danh tính đồ vật.\n  * N có 받침 + 이에요 (책상이에요, 사전이에요).\n  * N không có 받침 + 예요 (모자예요, 의자예요, 시계예요).\n  * Khẩu ngữ có thể lược 는: \"이거 뭐예요?\", \"저거 연필이에요?\".\n- N 주세요: Yêu cầu, đề nghị lịch sự (\"Xin hãy cho tôi N\"). Thêm '좀' để tăng độ mềm mỏng, lịch sự: \"지우개 좀 주세요.\"\n- N하고 N / N과/와 N: Liên từ nối danh từ (\"và, với\").\n  * 하고: Dùng phổ biến trong văn nói thân mật, không phân biệt 받침 (책하고 볼펜).\n  * 과/와: Dùng trang trọng hơn trong cả văn viết và văn nói (받침 O + 과: 책과 공책; 받침 X + 와: 지우개와 연필).\n  * Lưu ý: Không dùng 하고 để nối 2 mệnh đề riêng biệt (thay bằng 그리고).\n\n3. 발음 (Phát âm chuẩn):\n- Quy tắc phát âm nguyên âm '예': Khi kết hợp với phụ âm 'ㄱ, ㅍ, ㅎ', âm '예' thường được phát âm thành [게, 페, 헤]:\n  * 시계 -> [시게]\n  * 폐 -> [페]\n  * 지혜 -> [지헤]\n- Từ 계란 (trứng gà) cũng phát âm là [게란].\n\n4. 문화 산책 (Văn hóa Hàn Quốc):\n- Những vật dụng truyền thống độc đáo chỉ có tại Hàn Quốc:\n  * 효자손 (Tay con hiếu thảo): Cây gãi lưng bằng gỗ hoặc tre, thể hiện sự chăm sóc chu đáo của người con đối với cha mẹ lớn tuổi khi lưng ngứa khó với tới.\n  * 소반 (Bàn nhỏ Soban): Chiếc bàn ăn chân thấp bằng gỗ truyền thống nhỏ gọn, vừa vặn bưng cả mâm cơm từ bếp vào phòng có hệ thống sưởi sàn Ondol.\n  * 죽부인 (Trúc phu nhân): Gối ôm đan bằng nan tre rỗng bên trong, giúp không khí lưu thông thoáng mát, ôm ngủ ngon trong những đêm hè nóng ẩm oi bức.",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 3: Hoạt động thường nhật và Sinh hoạt (한국어를 공부해요)",
+              "id": "b1a_l3",
+              "items": [
+                {
+                  "korean": "공부하다",
+                  "vi": "Học, học tập",
+                  "en": "To study",
+                  "id": "b1a_l3-item-1"
+                },
+                {
+                  "korean": "일하다",
+                  "vi": "Làm việc, lao động",
+                  "en": "To work",
+                  "id": "b1a_l3-item-2"
+                },
+                {
+                  "korean": "운동하다",
+                  "vi": "Tập thể dục, vận động thể thao",
+                  "en": "To exercise / work out",
+                  "id": "b1a_l3-item-3"
+                },
+                {
+                  "korean": "자다",
+                  "vi": "Ngủ",
+                  "en": "To sleep",
+                  "id": "b1a_l3-item-4"
+                },
+                {
+                  "korean": "먹다",
+                  "vi": "Ăn (phát âm [먹따])",
+                  "en": "To eat",
+                  "id": "b1a_l3-item-5"
+                },
+                {
+                  "korean": "마시다",
+                  "vi": "Uống",
+                  "en": "To drink",
+                  "id": "b1a_l3-item-6"
+                },
+                {
+                  "korean": "읽다",
+                  "vi": "Đọc (읽다 [익따]; dạng lịch sự: 읽어요 [일거요])",
+                  "en": "To read",
+                  "id": "b1a_l3-item-7"
+                },
+                {
+                  "korean": "보다",
+                  "vi": "Xem, nhìn, ngắm",
+                  "en": "To see / watch",
+                  "id": "b1a_l3-item-8"
+                },
+                {
+                  "korean": "만나다",
+                  "vi": "Gặp gỡ, tao ngộ",
+                  "en": "To meet",
+                  "id": "b1a_l3-item-9"
+                },
+                {
+                  "korean": "사다",
+                  "vi": "Mua sắm",
+                  "en": "To buy",
+                  "id": "b1a_l3-item-10"
+                },
+                {
+                  "korean": "배우다",
+                  "vi": "Học hỏi, tiếp thu kỹ năng",
+                  "en": "To learn",
+                  "id": "b1a_l3-item-11"
+                },
+                {
+                  "korean": "가르치다",
+                  "vi": "Dạy, giảng dạy, hướng dẫn",
+                  "en": "To teach",
+                  "id": "b1a_l3-item-12"
+                },
+                {
+                  "korean": "숙제",
+                  "vi": "Bài tập về nhà (숙제를 하다: làm bài tập)",
+                  "en": "Homework",
+                  "id": "b1a_l3-item-13"
+                },
+                {
+                  "korean": "아르바이트",
+                  "vi": "Việc làm thêm, làm bán thời gian",
+                  "en": "Part-time job",
+                  "id": "b1a_l3-item-14"
+                },
+                {
+                  "korean": "도서관",
+                  "vi": "Thư viện",
+                  "en": "Library",
+                  "id": "b1a_l3-item-15"
+                },
+                {
+                  "korean": "집",
+                  "vi": "Nhà, tổ ấm (phát âm [집])",
+                  "en": "Home / House",
+                  "id": "b1a_l3-item-16"
+                },
+                {
+                  "korean": "백화점",
+                  "vi": "Trung tâm thương mại, bách hóa (phát âm [배콰점])",
+                  "en": "Department store",
+                  "id": "b1a_l3-item-17"
+                },
+                {
+                  "korean": "시장",
+                  "vi": "Chợ, khu chợ",
+                  "en": "Market",
+                  "id": "b1a_l3-item-18"
+                },
+                {
+                  "korean": "공원",
+                  "vi": "Công viên",
+                  "en": "Park",
+                  "id": "b1a_l3-item-19"
+                },
+                {
+                  "korean": "커피숍",
+                  "vi": "Quán cà phê, tiệm trà",
+                  "en": "Coffee shop / Cafe",
+                  "id": "b1a_l3-item-20"
+                },
+                {
+                  "korean": "극장",
+                  "vi": "Rạp chiếu phim, rạp hát (phát âm [극짱])",
+                  "en": "Theater / Cinema",
+                  "id": "b1a_l3-item-21"
+                },
+                {
+                  "korean": "학교",
+                  "vi": "Trường học (phát âm [학꾜])",
+                  "en": "School",
+                  "id": "b1a_l3-item-22"
+                },
+                {
+                  "korean": "식당",
+                  "vi": "Quán ăn, nhà hàng, nhà ăn (phát âm [식땅])",
+                  "en": "Restaurant / Cafeteria",
+                  "id": "b1a_l3-item-23"
+                },
+                {
+                  "korean": "회사",
+                  "vi": "Công ty, văn phòng",
+                  "en": "Company / Office",
+                  "id": "b1a_l3-item-24"
+                },
+                {
+                  "korean": "노래방",
+                  "vi": "Quán karaoke (văn hóa phòng của Hàn Quốc)",
+                  "en": "Karaoke room",
+                  "id": "b1a_l3-item-25"
+                },
+                {
+                  "korean": "PC방",
+                  "vi": "Quán internet, phòng game công nghệ cao",
+                  "en": "Internet cafe / PC bang",
+                  "id": "b1a_l3-item-26"
+                },
+                {
+                  "korean": "지금",
+                  "vi": "Bây giờ, lúc này, hiện tại",
+                  "en": "Now / Right now",
+                  "id": "b1a_l3-item-27"
+                },
+                {
+                  "korean": "오늘",
+                  "vi": "Hôm nay",
+                  "en": "Today",
+                  "id": "b1a_l3-item-28"
+                }
+              ],
+              "examples": "스티븐 씨, 지금 뭐 해요? - 공부해요. 마리코 씨는 뭐 해요?\n저는 책을 읽어요. - 한국어 책을 읽어요? - 아니요, 일본어 책을 읽어요.\n도서관에서 공부해요? - 아니요, 도서관에서 공부 안 해요. 집에서 공부해요.\n나나 씨, 오늘 뭐 해요? - 친구를 만나요.\n아키라 씨, 지금 일해요? - 아니요, 일 안 해요. 공원에서 운동해요.\n유진 씨, 집에서 뭐 해요? - 텔레비전을 봐요.\n마리코 씨는 커피숍에서 커피를 마셔요.\n줄리앙 씨는 식당에서 밥을 먹어요.\n줄리앙 씨는 학생 집에서 프랑스어를 가르쳐요.\n지금 언어교육원에서 한국어를 배워요.\n저는 오늘 학생 식당에서 밥을 먹어요.\n스티븐 씨는 오늘 정우 씨를 만나요. 서울식당에서 불고기를 먹어요.",
+              "situations": "Mariko gọi điện hỏi Stephen đang làm gì | 스티븐 씨, 지금 뭐 해요?\nStephen trả lời đang học bài và hỏi lại Mariko | 공부해요. 마리코 씨는 뭐 해요?\nMariko trả lời đang đọc sách | 저는 책을 읽어요.\nStephen hỏi có phải sách tiếng Hàn không | 한국어 책을 읽어요?\nMariko đính chính là sách tiếng Nhật | 아니요, 일본어 책을 읽어요.",
+              "notes": "📚 Giáo trình chuẩn: Seoul National University Korean 1A (Bài 3: 한국어를 공부해요)\n\n1. 어휘 (Từ vựng cốt lõi):\n- Động từ thường nhật (동사 1): 자다 (ngủ), 공부하다 (học), 일하다 (làm việc), 운동하다 (tập thể dục), 숙제를 하다 (làm bài tập), 옷을 사다 (mua quần áo), 영화를 보다 (xem phim), 친구를 만나다 (gặp bạn), 태권도를 배우다 (học Taekwondo), 밥을 먹다 (ăn cơm), 커피를 마시다 (uống cà phê), 책을 읽다 (đọc sách), 가르치다 (dạy), 아르바이트하다 (làm thêm).\n- Địa điểm (장소 1): 도서관 (thư viện), 집 (nhà), 백화점 [배콰점] (TTTM), 시장 (chợ), 공원 (công viên), 커피숍 (quán cà phê), 극장 [극짱] (rạp phim), 학교 [학꾜] (trường học), 식당 [식땅] (quán ăn), 회사 (công ty), 언어교육원 (Viện Ngôn ngữ LEI).\n- Văn hóa phòng (방 문화): 노래방 (karaoke), PC방 (quán net), 찜질방 (xông hơi), 빨래방 (tiệm giặt sấy), 책방 (tiệm sách/truyện).\n\n2. 문법 (Ngữ pháp trọng tâm):\n- V-아요/어요: Đuôi kết thúc câu thân mật lịch sự hiện tại (해요체).\n  * Gốc ㅏ, ㅗ -> -아요 (만나요, 봐요, 자요, 사요).\n  * Đuôi 하다 -> -해요 (공부해요, 일해요, 운동해요).\n  * Gốc khác (ㅓ, ㅜ, ㅣ...) -> -어요 (먹어요, 마셔요, 읽어요, 배워요).\n  * Dùng cho hiện tại, thói quen và cả tương lai gần (내일 일해요).\n- N을/를: Tiểu từ tân ngữ trực tiếp (받침 O: 을, 받침 X: 를). Khẩu ngữ thường lược bỏ.\n- N에서: Địa điểm diễn ra hành động (N에서 V). Phân biệt với N에 (vị trí tĩnh 있다/없다 hoặc đích đến 가다/오다).\n- 안 V: Phủ định ngắn (\"không...\"). Chú ý động từ ghép [N + 하다] -> chèn 안 ở giữa: 공부 안 해요, 운동 안 해요, 일 안 해요 (tránh 안 공부해요).\n\n3. 발음 (Phát âm - 연음 법칙):\n- Quy tắc nối âm: Phụ âm cuối (받침) gặp nguyên âm (ㅇ) thì chuyển lên làm âm đầu của âm tiết sau:\n  * 독일 [도길], 밥을 [바블], 우산이 [우사니], 읽어요 [일거요], 집에서 [지베서], 책을 읽어요 [채글 일거요].\n\n4. 문화 (Văn hóa):\n- Văn hóa \"Bang\" (방 문화) độc đáo của Hàn Quốc: Các không gian dịch vụ khép kín, tiện lợi cho cá nhân và nhóm bạn thư giãn, học tập, giải trí (노래방, PC방, 찜질방, 빨래방, 만화카페).",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 4: Vị trí và Nơi chốn (어디에 있어요?)",
+              "id": "b1a_l4",
+              "items": [
+                {
+                  "korean": "공항",
+                  "vi": "Sân bay, phi trường",
+                  "en": "Airport",
+                  "id": "b1a_l4-item-1"
+                },
+                {
+                  "korean": "우체국",
+                  "vi": "Bưu điện",
+                  "en": "Post office",
+                  "id": "b1a_l4-item-2"
+                },
+                {
+                  "korean": "대사관",
+                  "vi": "Đại sứ quán",
+                  "en": "Embassy",
+                  "id": "b1a_l4-item-3"
+                },
+                {
+                  "korean": "은행",
+                  "vi": "Ngân hàng",
+                  "en": "Bank",
+                  "id": "b1a_l4-item-4"
+                },
+                {
+                  "korean": "가게",
+                  "vi": "Cửa hàng, tiệm tạp hóa",
+                  "en": "Store / Shop",
+                  "id": "b1a_l4-item-5"
+                },
+                {
+                  "korean": "약국",
+                  "vi": "Hiệu thuốc, nhà thuốc (phát âm [약꾹])",
+                  "en": "Pharmacy",
+                  "id": "b1a_l4-item-6"
+                },
+                {
+                  "korean": "병원",
+                  "vi": "Bệnh viện",
+                  "en": "Hospital",
+                  "id": "b1a_l4-item-7"
+                },
+                {
+                  "korean": "미용실",
+                  "vi": "Tiệm làm tóc, viện thẩm mỹ",
+                  "en": "Hair salon",
+                  "id": "b1a_l4-item-8"
+                },
+                {
+                  "korean": "서점",
+                  "vi": "Hiệu sách, nhà sách",
+                  "en": "Bookstore",
+                  "id": "b1a_l4-item-9"
+                },
+                {
+                  "korean": "빵집",
+                  "vi": "Tiệm bánh mì (phát âm [빵찝])",
+                  "en": "Bakery",
+                  "id": "b1a_l4-item-10"
+                },
+                {
+                  "korean": "화장실",
+                  "vi": "Nhà vệ sinh, phòng vệ sinh",
+                  "en": "Restroom",
+                  "id": "b1a_l4-item-11"
+                },
+                {
+                  "korean": "극장",
+                  "vi": "Rạp chiếu phim, nhà hát (phát âm [극짱])",
+                  "en": "Theater / Cinema",
+                  "id": "b1a_l4-item-12"
+                },
+                {
+                  "korean": "백화점",
+                  "vi": "Trung tâm thương mại, bách hóa",
+                  "en": "Department store",
+                  "id": "b1a_l4-item-13"
+                },
+                {
+                  "korean": "기숙사",
+                  "vi": "Ký túc xá (phát âm [기숙싸])",
+                  "en": "Dormitory",
+                  "id": "b1a_l4-item-14"
+                },
+                {
+                  "korean": "찻집",
+                  "vi": "Quán trà truyền thống (phát âm [찯찝])",
+                  "en": "Traditional teahouse",
+                  "id": "b1a_l4-item-15"
+                },
+                {
+                  "korean": "식당",
+                  "vi": "Nhà hàng, quán ăn (phát âm [식땅])",
+                  "en": "Restaurant",
+                  "id": "b1a_l4-item-16"
+                },
+                {
+                  "korean": "앞",
+                  "vi": "Phía trước, đằng trước",
+                  "en": "Front",
+                  "id": "b1a_l4-item-17"
+                },
+                {
+                  "korean": "뒤",
+                  "vi": "Phía sau, đằng sau",
+                  "en": "Behind / Back",
+                  "id": "b1a_l4-item-18"
+                },
+                {
+                  "korean": "옆",
+                  "vi": "Bên cạnh, kế bên",
+                  "en": "Beside / Next to",
+                  "id": "b1a_l4-item-19"
+                },
+                {
+                  "korean": "안",
+                  "vi": "Bên trong, trong",
+                  "en": "Inside",
+                  "id": "b1a_l4-item-20"
+                },
+                {
+                  "korean": "밖",
+                  "vi": "Bên ngoài, ngoài",
+                  "en": "Outside",
+                  "id": "b1a_l4-item-21"
+                },
+                {
+                  "korean": "위",
+                  "vi": "Phía trên, bên trên",
+                  "en": "On / Above",
+                  "id": "b1a_l4-item-22"
+                },
+                {
+                  "korean": "아래",
+                  "vi": "Phía dưới, bên dưới (đồng nghĩa 밑)",
+                  "en": "Under / Below",
+                  "id": "b1a_l4-item-23"
+                },
+                {
+                  "korean": "사이",
+                  "vi": "Ở giữa (khoảng cách giữa hai đối tượng)",
+                  "en": "Between",
+                  "id": "b1a_l4-item-24"
+                },
+                {
+                  "korean": "오른쪽",
+                  "vi": "Bên phải, phía bên phải",
+                  "en": "Right side",
+                  "id": "b1a_l4-item-25"
+                },
+                {
+                  "korean": "왼쪽",
+                  "vi": "Bên trái, phía bên trái",
+                  "en": "Left side",
+                  "id": "b1a_l4-item-26"
+                },
+                {
+                  "korean": "여기",
+                  "vi": "Ở đây, chỗ này (đại từ chỉ vị trí gần người nói)",
+                  "en": "Here",
+                  "id": "b1a_l4-item-27"
+                },
+                {
+                  "korean": "어디",
+                  "vi": "Ở đâu, nơi nào (từ để hỏi vị trí/địa điểm)",
+                  "en": "Where",
+                  "id": "b1a_l4-item-28"
+                }
+              ],
+              "examples": "여기가 인사동이에요? - 네, 인사동이에요.\n인사동에서 뭐 해요? - 차를 마셔요. 인사동에는 찻집이 있어요.\n스티븐 씨, 어디에 가요? - 공항에 가요. 친구가 한국에 와요.\n우체국이 어디에 있어요? - 한국은행 알아요? 한국은행 앞에 있어요.\n약국이 어디에 있어요? - 약국은 병원 뒤에 있어요.\n백화점이 어디에 있어요? - 백화점은 병원 옆에 있어요.\n우산이 어디에 있어요? - 창문 아래에 있어요.\n휴대폰은 가방 안에 없어요. 책상 위에 있어요.\n안경은 텔레비전 위에 있어요.\n냉장고 안에 맥주가 있어요? - 아니요, 없어요.\n저는 지금 제 방에 있어요. 제 방은 기숙사에 있어요.\n책상 위에는 어머니하고 아버지 사진이 있어요.",
+              "situations": "Yujin hỏi đây có phải khu Insadong không | 여기가 인사동이에요?\nJungwoo xác nhận đúng là Insadong | 네, 인사동이에요.\nYujin hỏi ở Insadong mọi người thường làm gì | 인사동에서 뭐 해요?\nJungwoo giải thích mọi người thường uống trà ở quán truyền thống | 차를 마셔요. 인사동에는 찻집이 있어요.",
+              "notes": "📚 Giáo trình chuẩn: Seoul National University Korean 1A (Bài 4: 어디에 있어요?)\n\n1. 어휘 (Từ vựng cốt lõi):\n- Địa điểm công cộng (장소): 공항 (sân bay), 우체국 (bưu điện), 대사관 (đại sứ quán), 은행 (ngân hàng), 가게 (tiệm tạp hóa), 약국 [약꾹] (hiệu thuốc), 병원 (bệnh viện), 미용실 (tiệm tóc), 서점 (hiệu sách), 빵집 [빵찝] (tiệm bánh), 극장 [극짱] (rạp phim), 백화점 (TTTM), 기숙사 (KTX), 찻집 [찯찝] (quán trà), 식당 [식땅] (nhà ăn).\n- Vị trí & Phương hướng (위치와 방향): 앞 (trước), 뒤 (sau), 옆 (bên cạnh), 안 (trong), 밖 (ngoài), 위 (trên), 아래/밑 (dưới), 사이 (ở giữa), 오른쪽 (bên phải), 왼쪽 (bên trái).\n- Đại từ chỉ nơi chốn: 여기 (đây - gần người nói), 저기 (kia - xa cả hai), 거기 (đó - gần người nghe/đã nhắc trước), 어디 (ở đâu).\n\n2. 문법 (Ngữ pháp trọng tâm):\n- 여기가 N이에요/예요: Xác định địa điểm hiện tại (받침 O: 이에요, 받침 X: 예요).\n- N에 있어요[없어요]: Biểu thị vị trí/tồn tại của người hoặc vật. Nhấn mạnh: N에는.\n  * Phân biệt: N에 있다/없다 (tồn tại tĩnh) vs N에서 V (địa điểm diễn ra hành động động).\n- N에 가요[와요]: Điểm đến của di chuyển (가다: đi xa vị trí nói, 오다: đến gần vị trí nói).\n- [Vật chuẩn] + [Từ vị trí] + 에 있어요: Định vị không gian tương đối (은행 앞에, 병원 뒤에, 책상 위에).\n\n3. 발음 (Phát âm - 경음화 1):\n- Patchim [ㄱ] gặp ㄱ, ㄷ, ㅂ, ㅅ, ㅈ -> hóa âm căng [ㄲ, ㄸ, ㅃ, ㅆ, ㅉ]:\n  * 약국 [약꾹], 식당 [식땅], 책방 [책빵], 학생 [학쌩], 극장 [극짱], 학교 [학꾜], 숙제 [숙째].\n\n4. 문화 (Văn hóa):\n- Phố cổ Insadong (인사동): Uống trà truyền thống (차를 마셔요 / 찻집), ăn món ăn truyền thống (한국 음식), mua đồ lưu niệm mỹ nghệ (기념품을 사요), ngắm tranh triển lãm (그림 구경).",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 5: Hoạt động cuối tuần và Thời gian biểu (주말)",
+              "id": "b1a_l5",
+              "items": [
+                {
+                  "korean": "월요일",
+                  "vi": "Thứ Hai",
+                  "en": "Monday",
+                  "id": "b1a_l5-item-1"
+                },
+                {
+                  "korean": "화요일",
+                  "vi": "Thứ Ba",
+                  "en": "Tuesday",
+                  "id": "b1a_l5-item-2"
+                },
+                {
+                  "korean": "수요일",
+                  "vi": "Thứ Tư",
+                  "en": "Wednesday",
+                  "id": "b1a_l5-item-3"
+                },
+                {
+                  "korean": "목요일",
+                  "vi": "Thứ Năm",
+                  "en": "Thursday",
+                  "id": "b1a_l5-item-4"
+                },
+                {
+                  "korean": "금요일",
+                  "vi": "Thứ Sáu",
+                  "en": "Friday",
+                  "id": "b1a_l5-item-5"
+                },
+                {
+                  "korean": "토요일",
+                  "vi": "Thứ Bảy",
+                  "en": "Saturday",
+                  "id": "b1a_l5-item-6"
+                },
+                {
+                  "korean": "일요일",
+                  "vi": "Chủ Nhật",
+                  "en": "Sunday",
+                  "id": "b1a_l5-item-7"
+                },
+                {
+                  "korean": "주말",
+                  "vi": "Cuối tuần (thứ Bảy và Chủ Nhật)",
+                  "en": "Weekend",
+                  "id": "b1a_l5-item-8"
+                },
+                {
+                  "korean": "평일",
+                  "vi": "Ngày thường trong tuần (thứ Hai đến thứ Sáu)",
+                  "en": "Weekdays",
+                  "id": "b1a_l5-item-9"
+                },
+                {
+                  "korean": "어제",
+                  "vi": "Hôm qua (không đi với trợ từ 에)",
+                  "en": "Yesterday",
+                  "id": "b1a_l5-item-10"
+                },
+                {
+                  "korean": "오늘",
+                  "vi": "Hôm nay (không đi với trợ từ 에)",
+                  "en": "Today",
+                  "id": "b1a_l5-item-11"
+                },
+                {
+                  "korean": "내일",
+                  "vi": "Ngày mai (không đi với trợ từ 에)",
+                  "en": "Tomorrow",
+                  "id": "b1a_l5-item-12"
+                },
+                {
+                  "korean": "지난주",
+                  "vi": "Tuần trước",
+                  "en": "Last week",
+                  "id": "b1a_l5-item-13"
+                },
+                {
+                  "korean": "이번 주",
+                  "vi": "Tuần này",
+                  "en": "This week",
+                  "id": "b1a_l5-item-14"
+                },
+                {
+                  "korean": "다음 주",
+                  "vi": "Tuần sau, tuần tới",
+                  "en": "Next week",
+                  "id": "b1a_l5-item-15"
+                },
+                {
+                  "korean": "일 (1)",
+                  "vi": "Số 1 (Số Hán-Hàn: dùng cho ngày tháng, tiền, phút)",
+                  "en": "One (Sino-Korean)",
+                  "acceptedAnswers": [
+                    "일"
+                  ],
+                  "id": "b1a_l5-item-16"
+                },
+                {
+                  "korean": "이 (2)",
+                  "vi": "Số 2 (Số Hán-Hàn)",
+                  "en": "Two (Sino-Korean)",
+                  "acceptedAnswers": [
+                    "이"
+                  ],
+                  "id": "b1a_l5-item-17"
+                },
+                {
+                  "korean": "삼 (3)",
+                  "vi": "Số 3 (Số Hán-Hàn)",
+                  "en": "Three (Sino-Korean)",
+                  "acceptedAnswers": [
+                    "삼"
+                  ],
+                  "id": "b1a_l5-item-18"
+                },
+                {
+                  "korean": "사 (4)",
+                  "vi": "Số 4 (Số Hán-Hàn)",
+                  "en": "Four (Sino-Korean)",
+                  "acceptedAnswers": [
+                    "사"
+                  ],
+                  "id": "b1a_l5-item-19"
+                },
+                {
+                  "korean": "오 (5)",
+                  "vi": "Số 5 (Số Hán-Hàn)",
+                  "en": "Five (Sino-Korean)",
+                  "acceptedAnswers": [
+                    "오"
+                  ],
+                  "id": "b1a_l5-item-20"
+                },
+                {
+                  "korean": "육 (6)",
+                  "vi": "Số 6 (Số Hán-Hàn - Tháng 6 là 유월)",
+                  "en": "Six (Sino-Korean)",
+                  "acceptedAnswers": [
+                    "육"
+                  ],
+                  "id": "b1a_l5-item-21"
+                },
+                {
+                  "korean": "칠 (7)",
+                  "vi": "Số 7 (Số Hán-Hàn)",
+                  "en": "Seven (Sino-Korean)",
+                  "acceptedAnswers": [
+                    "칠"
+                  ],
+                  "id": "b1a_l5-item-22"
+                },
+                {
+                  "korean": "팔 (8)",
+                  "vi": "Số 8 (Số Hán-Hàn)",
+                  "en": "Eight (Sino-Korean)",
+                  "acceptedAnswers": [
+                    "팔"
+                  ],
+                  "id": "b1a_l5-item-23"
+                },
+                {
+                  "korean": "구 (9)",
+                  "vi": "Số 9 (Số Hán-Hàn)",
+                  "en": "Nine (Sino-Korean)",
+                  "acceptedAnswers": [
+                    "구"
+                  ],
+                  "id": "b1a_l5-item-24"
+                },
+                {
+                  "korean": "십 (10)",
+                  "vi": "Số 10 (Số Hán-Hàn - Tháng 10 là 시월)",
+                  "en": "Ten (Sino-Korean)",
+                  "acceptedAnswers": [
+                    "십"
+                  ],
+                  "id": "b1a_l5-item-25"
+                },
+                {
+                  "korean": "며칠",
+                  "vi": "Ngày mấy, bao nhiêu ngày (hỏi ngày)",
+                  "en": "What date / how many days",
+                  "id": "b1a_l5-item-26"
+                },
+                {
+                  "korean": "언제",
+                  "vi": "Khi nào, bao giờ (từ để hỏi thời gian)",
+                  "en": "When",
+                  "id": "b1a_l5-item-27"
+                },
+                {
+                  "korean": "약속",
+                  "vi": "Cuộc hẹn, lời hẹn, kế hoạch",
+                  "en": "Appointment / plan",
+                  "id": "b1a_l5-item-28"
+                }
+              ],
+              "examples": "오늘이 며칠이에요? - 유월 팔 일이에요.\n9일이 무슨 요일이에요? - 금요일이에요.\n금요일에 약속이 있어요. 친구하고 같이 영화를 봐요.\n주말에 뭐 했어요? - 친구를 만나고 쇼핑했어요.\n어제 식당에서 한국 음식을 먹었어요.\n내일은 아키라 씨 생일이에요. 그래서 백화점에서 모자를 샀어요.\n밥을 먹고 커피를 마셨어요.",
+              "situations": "Minsoo hỏi Akira có rảnh vào ngày 9 tháng 5 không | 5월 9일에 시간이 있어요?\nAkira hỏi ngày mùng 9 là thứ mấy | 9일이 무슨 요일이에요?\nMinsoo nói đó là thứ Sáu có bữa tiệc | 금요일이에요. 금요일에 파티가 있어요.\nAkira xin lỗi vì đã có hẹn đi xem phim cùng bạn | 아, 미안해요. 금요일에는 약속이 있어요. 친구하고 같이 영화를 봐요.",
+              "notes": "📚 Giáo trình chuẩn: Seoul National University Korean 1A (Bài 5: 주말에 친구를 만났어요)\n\n1. 어휘 (Từ vựng cốt lõi):\n- Thứ trong tuần (요일): 월요일, 화요일, 수요일, 목요일, 금요일, 토요일, 일요일. Cuối tuần: 주말. Ngày thường: 평일.\n- Số Hán-Hàn (1–10): 일, 이, 삼, 사, 오, 육, 칠, 팔, 구, 십. Dùng cho: ngày (일), tháng (월), năm (년), phút (분), tiền (원).\n- Biến âm tháng đặc biệt: Tháng 6 đọc là 유월 (bỏ patchim ㄱ), Tháng 10 đọc là 시월 (bỏ patchim ㅂ).\n\n2. 문법 (Ngữ pháp cốt lõi):\n- 날짜와 요일: Hôm nay ngày mấy: 오늘이 며칠이에요? Thứ mấy: 무슨 요일이에요?\n- N에 (Trợ từ thời gian): Gắn sau thời gian xảy ra hành động (토요일에, 3시에). Lưu ý ngoại lệ: 어제, 오늘, 내일, 지금, 언제 KHÔNG dùng với '에'.\n- V/A-았/었-: Đuôi thì quá khứ. Thân từ có ㅏ, ㅗ + -았어요 (갔어요, 봤어요); Thân từ khác + -었어요 (먹었어요, 마셨어요); 하다 -> 했어요 (공부했어요).\n- V-고: Nối hai hành động theo trình tự thời gian hoặc song song. Thì quá khứ chỉ chia ở động từ cuối câu (숙제하고 텔레비전을 봤어요).\n\n3. 발음 (Quy tắc phát âm số 십):\n- Sau patchim [ㅂ] của 십: 십삼 [십쌈], 십구 [십꾸] (Căng âm hóa).\n- Đi với số 6 (육): 십육 [심뉵], 이십육 [이심뉵] (Chèn âm ㄴ và biến âm mũi).\n- Nối âm trước nguyên âm: 십일 [시빌], 십이 [시비].",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 6: Ngôn ngữ thương mại cơ bản & Mua sắm (쇼핑)",
+              "id": "b1a_l6",
+              "items": [
+                {
+                  "korean": "비빔밥",
+                  "vi": "Cơm trộn Hàn Quốc (Bibimbap)",
+                  "en": "Mixed rice with vegetables and meat",
+                  "id": "b1a_l6-item-1"
+                },
+                {
+                  "korean": "불고기",
+                  "vi": "Thịt bò ướp gia vị, nướng hoặc áp chảo (Bulgogi)",
+                  "en": "Marinated beef",
+                  "id": "b1a_l6-item-2"
+                },
+                {
+                  "korean": "갈비탕",
+                  "vi": "Canh sườn bò hầm ngọt thanh (Galbitang)",
+                  "en": "Short rib soup",
+                  "id": "b1a_l6-item-3"
+                },
+                {
+                  "korean": "김치찌개",
+                  "vi": "Canh kim chi cải thảo cay nồng",
+                  "en": "Kimchi stew",
+                  "id": "b1a_l6-item-4"
+                },
+                {
+                  "korean": "냉면",
+                  "vi": "Mì kiều mạch nước dùng lạnh (Naengmyeon)",
+                  "en": "Cold noodles",
+                  "id": "b1a_l6-item-5"
+                },
+                {
+                  "korean": "라면",
+                  "vi": "Mì tôm gói ăn liền Hàn Quốc (Ramyeon)",
+                  "en": "Instant noodles",
+                  "id": "b1a_l6-item-6"
+                },
+                {
+                  "korean": "김밥",
+                  "vi": "Cơm cuộn rong biển (Kimbap)",
+                  "en": "Seaweed rice roll",
+                  "id": "b1a_l6-item-7"
+                },
+                {
+                  "korean": "돈가스",
+                  "vi": "Cốt lết thịt heo tẩm bột chiên xù (Donkatsu)",
+                  "en": "Pork cutlet",
+                  "id": "b1a_l6-item-8"
+                },
+                {
+                  "korean": "사과",
+                  "vi": "Quả táo",
+                  "en": "Apple",
+                  "id": "b1a_l6-item-9"
+                },
+                {
+                  "korean": "오렌지",
+                  "vi": "Quả cam",
+                  "en": "Orange",
+                  "id": "b1a_l6-item-10"
+                },
+                {
+                  "korean": "딸기",
+                  "vi": "Quả dâu tây",
+                  "en": "Strawberry",
+                  "id": "b1a_l6-item-11"
+                },
+                {
+                  "korean": "수박",
+                  "vi": "Quả dưa hấu",
+                  "en": "Watermelon",
+                  "id": "b1a_l6-item-12"
+                },
+                {
+                  "korean": "하나 (한)",
+                  "vi": "Số 1 (Số thuần Hàn - biến thành 한 trước lượng từ)",
+                  "en": "One (native Korean)",
+                  "acceptedAnswers": [
+                    "하나",
+                    "한"
+                  ],
+                  "id": "b1a_l6-item-13"
+                },
+                {
+                  "korean": "둘 (두)",
+                  "vi": "Số 2 (Số thuần Hàn - biến thành 두 trước lượng từ)",
+                  "en": "Two (native Korean)",
+                  "acceptedAnswers": [
+                    "둘",
+                    "두"
+                  ],
+                  "id": "b1a_l6-item-14"
+                },
+                {
+                  "korean": "셋 (세)",
+                  "vi": "Số 3 (Số thuần Hàn - biến thành 세 trước lượng từ)",
+                  "en": "Three (native Korean)",
+                  "acceptedAnswers": [
+                    "셋",
+                    "세"
+                  ],
+                  "id": "b1a_l6-item-15"
+                },
+                {
+                  "korean": "넷 (네)",
+                  "vi": "Số 4 (Số thuần Hàn - biến thành 네 trước lượng từ)",
+                  "en": "Four (native Korean)",
+                  "acceptedAnswers": [
+                    "넷",
+                    "네"
+                  ],
+                  "id": "b1a_l6-item-16"
+                },
+                {
+                  "korean": "다섯",
+                  "vi": "Số 5 (Số thuần Hàn)",
+                  "en": "Five (native Korean)",
+                  "id": "b1a_l6-item-17"
+                },
+                {
+                  "korean": "여섯",
+                  "vi": "Số 6 (Số thuần Hàn)",
+                  "en": "Six (native Korean)",
+                  "id": "b1a_l6-item-18"
+                },
+                {
+                  "korean": "일곱",
+                  "vi": "Số 7 (Số thuần Hàn)",
+                  "en": "Seven (native Korean)",
+                  "id": "b1a_l6-item-19"
+                },
+                {
+                  "korean": "여덟",
+                  "vi": "Số 8 (Số thuần Hàn [여덜])",
+                  "en": "Eight (native Korean)",
+                  "id": "b1a_l6-item-20"
+                },
+                {
+                  "korean": "아홉",
+                  "vi": "Số 9 (Số thuần Hàn)",
+                  "en": "Nine (native Korean)",
+                  "id": "b1a_l6-item-21"
+                },
+                {
+                  "korean": "열",
+                  "vi": "Số 10 (Số thuần Hàn)",
+                  "en": "Ten (native Korean)",
+                  "id": "b1a_l6-item-22"
+                },
+                {
+                  "korean": "개",
+                  "vi": "Cái, quả, chiếc (Lượng từ đồ vật, hoa quả)",
+                  "en": "Item counter (general)",
+                  "id": "b1a_l6-item-23"
+                },
+                {
+                  "korean": "병",
+                  "vi": "Chai, bình (Lượng từ đồ uống đóng chai)",
+                  "en": "Bottle counter",
+                  "id": "b1a_l6-item-24"
+                },
+                {
+                  "korean": "잔",
+                  "vi": "Ly, cốc, tách (Lượng từ đồ uống rót ly)",
+                  "en": "Cup / glass counter",
+                  "id": "b1a_l6-item-25"
+                },
+                {
+                  "korean": "그릇",
+                  "vi": "Bát, tô (Lượng từ món ăn dọn theo tô)",
+                  "en": "Bowl counter",
+                  "id": "b1a_l6-item-26"
+                },
+                {
+                  "korean": "얼마",
+                  "vi": "Bao nhiêu (hỏi giá tiền)",
+                  "en": "How much",
+                  "id": "b1a_l6-item-27"
+                },
+                {
+                  "korean": "원",
+                  "vi": "Đồng Won (đơn vị tiền tệ Hàn Quốc)",
+                  "en": "Won (currency unit)",
+                  "id": "b1a_l6-item-28"
+                }
+              ],
+              "examples": "여기 앉으세요. 메뉴 좀 주세요.\n비빔밥 한 그릇하고 갈비탕 한 그릇 주세요.\n이 사과는 얼마예요? - 세 개에 이천 원이에요.\n오렌지 여섯 개 주세요. 사과도 세 개 주세요.\n냉장고에 맥주 두 병하고 콜라 세 캔이 있어요.\n한국 음식이 아주 맛있어요.\n책이 아주 깨끗해요. 한 권에 이천 원이에요.",
+              "situations": "Nhân viên chào đón và mời khách ngồi | 어서 오세요. 여기 앉으세요.\nStephen lịch sự xin thực đơn | 메뉴 좀 주세요.\nNhân viên đưa thực đơn cho khách | 네, 여기 있어요.\nStephen hỏi Yujin thích ăn món gì | 유진 씨는 뭐 좋아해요?\nYujin trả lời thích món cơm trộn bibimbap | 저는 비빔밥을 좋아해요.\nStephen gọi 1 suất cơm trộn và 1 suất canh sườn | 그럼, 비빔밥 한 그릇하고 갈비탕 한 그릇 주세요.\nNhân viên nhận món và bảo khách đợi trong giây lát | 네, 잠깐만 기다리세요.",
+              "notes": "📚 Giáo trình chuẩn: Seoul National University Korean 1A (Bài 6: 얼마예요?)\n\n1. 어휘 (Từ vựng cốt lõi):\n- Món ăn & Đồ uống: 비빔밥, 불고기, 갈비탕, 김치찌개, 냉면, 라면, 김밥, 돈가스, 커피, 콜라, 사이다, 맥주.\n- Số thuần Hàn (1–10): 하나, 둘, 셋, 넷, 다섯, 여섯, 일곱, 여덟, 아홉, 열. (Khi gắn danh từ đếm: 하나 -> 한, 둘 -> 두, 셋 -> 세, 넷 -> 네).\n- Danh từ chỉ đơn vị đếm: 개 (cái/quả), 병 (chai), 잔 (ly/tách), 그릇 (bát/tô), 권 (cuốn/quyển), 명 (người).\n- Tiền tệ: 원 (won), 십, 백, 천, 만. Cụm hỏi giá: ~ 얼마예요? / ~에 얼마예요?\n\n2. 문법 (Ngữ pháp cốt lõi):\n- V-(으)세요: Yêu cầu, mệnh lệnh lịch sự trong giao tiếp thân mật. Không patchim hoặc patchim ㄹ (lược ㄹ) + -세요; Có patchim + -으세요. Thường đi kèm '좀' để tăng tính nhã nhặn.\n- Trật tự từ đếm: Danh từ + Số thuần Hàn + Lượng từ (VD: 비빔밥 한 그릇, 사과 세 개).\n- N이/가 A-아요/어요: Tính từ làm vị ngữ miêu tả đặc tính (맛있어요, 싸요, 커요).\n- N도: Trợ từ \"cũng\", thay thế hoàn toàn trợ từ chủ ngữ (은/는, 이/가) và tân ngữ (을/를).\n\n3. 발음 (Quy tắc phát âm - Giản lược 'ㅎ' 탈락):\n- Khi patchim 'ㅎ, ㄶ, ㅀ' gặp nguyên âm phía sau (ㅇ), âm [ㅎ] bị câm hoàn toàn:\n  * 좋아요 [조아요]\n  * 좋아해요 [조아해요]\n  * 많아요 [마나요]\n  * 싫어해요 [시러해요]",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 7: Quan sát và Miêu tả thời tiết (날씨)",
+              "id": "b1a_l7",
+              "items": [
+                {
+                  "korean": "날씨",
+                  "vi": "Thời tiết",
+                  "en": "Weather",
+                  "id": "b1a_l7-item-1"
+                },
+                {
+                  "korean": "어떻습니까?",
+                  "vi": "Như thế nào ạ? (Kính ngữ trang trọng nghi thức)",
+                  "en": "How is it? (Formal polite)",
+                  "id": "b1a_l7-item-2"
+                },
+                {
+                  "korean": "사계절",
+                  "vi": "Bốn mùa (봄, 여름, 가을, 겨울)",
+                  "en": "Four seasons",
+                  "id": "b1a_l7-item-3"
+                },
+                {
+                  "korean": "봄",
+                  "vi": "Mùa xuân (ấm áp, trăm hoa đua nở)",
+                  "en": "Spring",
+                  "id": "b1a_l7-item-4"
+                },
+                {
+                  "korean": "여름",
+                  "vi": "Mùa hè (nóng bức, mùa mưa changma)",
+                  "en": "Summer",
+                  "id": "b1a_l7-item-5"
+                },
+                {
+                  "korean": "가을",
+                  "vi": "Mùa thu (mát mẻ, lá đỏ danpung)",
+                  "en": "Autumn / Fall",
+                  "id": "b1a_l7-item-6"
+                },
+                {
+                  "korean": "겨울",
+                  "vi": "Mùa đông (lạnh giá, có tuyết rơi)",
+                  "en": "Winter",
+                  "id": "b1a_l7-item-7"
+                },
+                {
+                  "korean": "따뜻하다",
+                  "vi": "Ấm áp (thời tiết, tính cách)",
+                  "en": "To be warm",
+                  "id": "b1a_l7-item-8"
+                },
+                {
+                  "korean": "덥다",
+                  "vi": "Nóng bức (bất quy tắc ㅂ -> 더워요)",
+                  "en": "To be hot (weather)",
+                  "id": "b1a_l7-item-9"
+                },
+                {
+                  "korean": "시원하다",
+                  "vi": "Mát mẻ, dễ chịu sảng khoái",
+                  "en": "To be cool, refreshing",
+                  "id": "b1a_l7-item-10"
+                },
+                {
+                  "korean": "춥다",
+                  "vi": "Lạnh rét (bất quy tắc ㅂ -> 추워요)",
+                  "en": "To be cold (weather)",
+                  "id": "b1a_l7-item-11"
+                },
+                {
+                  "korean": "맑다",
+                  "vi": "Trời trong xanh, quang đãng [막따]",
+                  "en": "To be clear, sunny",
+                  "id": "b1a_l7-item-12"
+                },
+                {
+                  "korean": "흐리다",
+                  "vi": "Âm u, trời nhiều mây u ám",
+                  "en": "To be cloudy, overcast",
+                  "id": "b1a_l7-item-13"
+                },
+                {
+                  "korean": "비가 오다",
+                  "vi": "Mưa rơi, trời mưa (비가 내려요)",
+                  "en": "To rain",
+                  "id": "b1a_l7-item-14"
+                },
+                {
+                  "korean": "눈이 오다",
+                  "vi": "Tuyết rơi (눈이 내려요)",
+                  "en": "To snow",
+                  "id": "b1a_l7-item-15"
+                },
+                {
+                  "korean": "바람이 불다",
+                  "vi": "Gió thổi mạnh",
+                  "en": "The wind blows",
+                  "id": "b1a_l7-item-16"
+                },
+                {
+                  "korean": "꽃이 피다",
+                  "vi": "Hoa nở",
+                  "en": "Flowers bloom",
+                  "id": "b1a_l7-item-17"
+                },
+                {
+                  "korean": "수영하다",
+                  "vi": "Bơi lội (đi biển mùa hè)",
+                  "en": "To swim",
+                  "id": "b1a_l7-item-18"
+                },
+                {
+                  "korean": "단풍이 들다",
+                  "vi": "Lá chuyển màu đỏ vàng mùa thu",
+                  "en": "Autumn leaves turn red/gold",
+                  "id": "b1a_l7-item-19"
+                },
+                {
+                  "korean": "스키를 타다",
+                  "vi": "Trượt tuyết (hoạt động mùa đông)",
+                  "en": "To ski",
+                  "id": "b1a_l7-item-20"
+                },
+                {
+                  "korean": "어렵다",
+                  "vi": "Khó (bất quy tắc ㅂ -> 어려워요)",
+                  "en": "To be difficult",
+                  "id": "b1a_l7-item-21"
+                },
+                {
+                  "korean": "쉽다",
+                  "vi": "Dễ dàng (bất quy tắc ㅂ -> 쉬워요)",
+                  "en": "To be easy",
+                  "id": "b1a_l7-item-22"
+                },
+                {
+                  "korean": "맵다",
+                  "vi": "Cay (bất quy tắc ㅂ -> 매워요)",
+                  "en": "To be spicy",
+                  "id": "b1a_l7-item-23"
+                },
+                {
+                  "korean": "무겁다",
+                  "vi": "Nặng (bất quy tắc ㅂ -> 무거워요)",
+                  "en": "To be heavy",
+                  "id": "b1a_l7-item-24"
+                },
+                {
+                  "korean": "가볍다",
+                  "vi": "Nhẹ (bất quy tắc ㅂ -> 가벼워요)",
+                  "en": "To be light (weight)",
+                  "id": "b1a_l7-item-25"
+                },
+                {
+                  "korean": "아주 / 정말",
+                  "vi": "Rất / thực sự",
+                  "en": "Very / really",
+                  "acceptedAnswers": [
+                    "아주",
+                    "정말"
+                  ],
+                  "id": "b1a_l7-item-26"
+                },
+                {
+                  "korean": "조금",
+                  "vi": "Một chút, hơi hơi",
+                  "en": "A little, slightly",
+                  "id": "b1a_l7-item-27"
+                },
+                {
+                  "korean": "하지만",
+                  "vi": "Nhưng, tuy nhiên (liên từ đầu câu)",
+                  "en": "However, but",
+                  "id": "b1a_l7-item-28"
+                }
+              ],
+              "examples": "오늘 날씨가 어떻습니까? - 날씨가 아주 좋습니다.\n서울의 여름은 덥지만 겨울은 춥습니다.\n가을은 시원하고 하늘이 맑습니다.\n비가 오지만 따뜻합니다.\n봄에는 꽃이 피고 따뜻합니다. 겨울에는 눈이 오고 춥습니다.\n한국어 공부가 어렵지만 재미있습니다.\n오늘 바람이 많이 불고 날씨가 흐립니다.",
+              "situations": "Akira ở Tokyo gọi điện hỏi thăm thời tiết Seoul | 서울은 오늘 날씨가 어때요?\nMinsoo trả lời trời nóng và hỏi thời tiết Tokyo | 더워요. 도쿄도 더워요?\nAkira so sánh hôm qua nóng nhưng hôm nay không nóng | 아니요. 어제는 더웠지만 오늘은 안 더워요.\nMinsoo hỏi khi nào Akira đến Seoul | 아, 그래요? 서울에 언제 와요?\nAkira trả lời thứ Bảy sẽ đi | 토요일에 가요.\nMinsoo chúc Akira đi đường bình an cẩn thận | 그럼 조심해서 오세요.",
+              "notes": "📚 Giáo trình chuẩn: Seoul National University Korean 1A (Bài 7: 날씨가 어떻습니까?)\n\n1. 어휘 (Từ vựng cốt lõi):\n- Bốn mùa (사계절): 봄 (xuân - 꽃이 피다), 여름 (hè - 덥다, 수영하다), 가을 (thu - 시원하다, 단풍이 들다), 겨울 (đông - 춥다, 눈이 오다, 스키를 타다).\n- Thời tiết: 맑다 (quang đãng), 흐리다 (âm u), 비가 오다 (mưa), 눈이 오다 (tuyết), 바람이 불다 (gió thổi).\n- Tính từ bất quy tắc 'ㅂ': 덥다 (더워요), 춥다 (추워요), 어렵다 (어려워요), 쉽다 (쉬워요), 맵다 (매워요), 무겁다 (무거워요), 가볍다 (가벼워요). (Gặp nguyên âm: ㅂ biến thành 우).\n\n2. 문법 (Ngữ pháp cốt lõi):\n- A/V-습니다/ㅂ니다 & -습니까/ㅂ니까?: Đuôi câu kính ngữ trang trọng nghi thức. Không patchim hoặc patchim ㄹ (lược ㄹ) + -ㅂ니다/ㅂ니까; Có patchim + -습니다/습니까.\n- A/V-지만: Liên từ liên kết diễn tả quan hệ tương phản đối lập (\"nhưng\"). Gắn trực tiếp vào thân từ không đổi hình thức.\n- A/V-고: Liên từ liên kết nối hai hành động hoặc trạng thái song song (\"và\", \"còn\").\n\n3. 발음 (Quy tắc phát âm - 비음화 1 - Đồng hóa mũi):\n- Khi âm patchim [ㅂ/ㅍ] gặp phụ âm bắt đầu [ㄴ/ㅁ] ở âm tiết sau, patchim biến thành âm [ㅁ]:\n  * 춥다 + 습니다 -> 춥습니다 [춤씀니다]\n  * 입다 + 습니까 -> 입습니까 [임씀니까]\n  * 십 + 년 -> 십년 [심년]",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 8: Rủ rê, Hẹn hò và Hoạt động giải trí (영화 볼까요?)",
+              "id": "b1a_l8",
+              "items": [
+                {
+                  "korean": "골프",
+                  "vi": "Môn gôn, chơi gôn (golf)",
+                  "en": "Golf",
+                  "id": "b1a_l8-item-1"
+                },
+                {
+                  "korean": "테니스",
+                  "vi": "Môn quần vợt (tennis)",
+                  "en": "Tennis",
+                  "id": "b1a_l8-item-2"
+                },
+                {
+                  "korean": "당구",
+                  "vi": "Môn bi-da, bida (chữ Hán: 撞球)",
+                  "en": "Billiards",
+                  "id": "b1a_l8-item-3"
+                },
+                {
+                  "korean": "피아노",
+                  "vi": "Đàn piano, dương cầm",
+                  "en": "Piano",
+                  "id": "b1a_l8-item-4"
+                },
+                {
+                  "korean": "기타",
+                  "vi": "Đàn ghi-ta, tây ban cầm",
+                  "en": "Guitar",
+                  "id": "b1a_l8-item-5"
+                },
+                {
+                  "korean": "자전거",
+                  "vi": "Xe đạp (chữ Hán: 自轉車)",
+                  "en": "Bicycle",
+                  "id": "b1a_l8-item-6"
+                },
+                {
+                  "korean": "스키",
+                  "vi": "Môn trượt tuyết, ván trượt tuyết (ski)",
+                  "en": "Ski",
+                  "id": "b1a_l8-item-7"
+                },
+                {
+                  "korean": "스케이트",
+                  "vi": "Môn trượt băng, giày trượt băng (skate)",
+                  "en": "Ice skate",
+                  "id": "b1a_l8-item-8"
+                },
+                {
+                  "korean": "농구",
+                  "vi": "Môn bóng rổ (chữ Hán: 籠球)",
+                  "en": "Basketball",
+                  "id": "b1a_l8-item-9"
+                },
+                {
+                  "korean": "축구",
+                  "vi": "Môn bóng đá (chữ Hán: 蹴球)",
+                  "en": "Football / Soccer",
+                  "id": "b1a_l8-item-10"
+                },
+                {
+                  "korean": "게임",
+                  "vi": "Trò chơi điện tử, game",
+                  "en": "Video game",
+                  "id": "b1a_l8-item-11"
+                },
+                {
+                  "korean": "낮잠",
+                  "vi": "Giấc ngủ trưa (낮잠을 자다: ngủ trưa)",
+                  "en": "Nap",
+                  "id": "b1a_l8-item-12"
+                },
+                {
+                  "korean": "산책",
+                  "vi": "Đi dạo, tản bộ (chữ Hán: 散策)",
+                  "en": "Walk / Stroll",
+                  "id": "b1a_l8-item-13"
+                },
+                {
+                  "korean": "등산",
+                  "vi": "Leo núi (chữ Hán: 登山)",
+                  "en": "Mountain hiking",
+                  "id": "b1a_l8-item-14"
+                },
+                {
+                  "korean": "치다",
+                  "vi": "Đánh, chơi (nhạc cụ có phím/dây hoặc thể thao dùng gậy/vợt)",
+                  "en": "To play / hit",
+                  "id": "b1a_l8-item-15"
+                },
+                {
+                  "korean": "타다",
+                  "vi": "Đi, cưỡi, trượt (xe cộ hoặc môn thể thao trượt)",
+                  "en": "To ride",
+                  "id": "b1a_l8-item-16"
+                },
+                {
+                  "korean": "걷다",
+                  "vi": "Đi bộ, dạo bước (bất quy tắc ㄷ: 걸어요)",
+                  "en": "To walk",
+                  "id": "b1a_l8-item-17"
+                },
+                {
+                  "korean": "듣다",
+                  "vi": "Nghe (nhạc, đài phát thanh; bất quy tắc ㄷ: 들어요)",
+                  "en": "To listen",
+                  "id": "b1a_l8-item-18"
+                },
+                {
+                  "korean": "심심하다",
+                  "vi": "Buồn chán (vì rảnh rỗi không có việc gì làm)",
+                  "en": "To be bored",
+                  "id": "b1a_l8-item-19"
+                },
+                {
+                  "korean": "시원하다",
+                  "vi": "Mát mẻ, sảng khoái (thời tiết, đồ uống, cảm giác)",
+                  "en": "To be cool / refreshing",
+                  "id": "b1a_l8-item-20"
+                },
+                {
+                  "korean": "가깝다",
+                  "vi": "Gần về khoảng cách (bất quy tắc ㅂ: 가까워요)",
+                  "en": "To be close / near",
+                  "id": "b1a_l8-item-21"
+                },
+                {
+                  "korean": "피곤하다",
+                  "vi": "Mệt mỏi, uể oải (chữ Hán: 疲困하다)",
+                  "en": "To be tired",
+                  "id": "b1a_l8-item-22"
+                },
+                {
+                  "korean": "자주",
+                  "vi": "Thường xuyên, hay làm việc gì đó",
+                  "en": "Often / Frequently",
+                  "id": "b1a_l8-item-23"
+                },
+                {
+                  "korean": "다음에",
+                  "vi": "Lần sau, dịp khác, sau này",
+                  "en": "Next time",
+                  "id": "b1a_l8-item-24"
+                },
+                {
+                  "korean": "또",
+                  "vi": "Lại, nữa, một lần nữa",
+                  "en": "Again / Also",
+                  "id": "b1a_l8-item-25"
+                },
+                {
+                  "korean": "정말",
+                  "vi": "Thật sự, quả thực (chữ Hán/thuần: 正말)",
+                  "en": "Really / Truly",
+                  "id": "b1a_l8-item-26"
+                },
+                {
+                  "korean": "한강",
+                  "vi": "Sông Hán (con sông biểu tượng tại Seoul, chữ Hán: 漢江)",
+                  "en": "Han River",
+                  "id": "b1a_l8-item-27"
+                },
+                {
+                  "korean": "식혜",
+                  "vi": "Nước gạo ngọt lên men truyền thống Hàn Quốc (chữ Hán: 食醯)",
+                  "en": "Sikhye (Sweet rice drink)",
+                  "id": "b1a_l8-item-28"
+                }
+              ],
+              "examples": "우리 주말에 영화 볼까요? - 좋아요, 같이 영화 봐요.\n내일 몇 시에 만날까요? - 오후 두 시에 만나요.\n점심에 뭘 먹을까요? - 시원한 냉면을 먹어요.\n오늘 날씨가 좋으니까 한강공원에서 걸을까요? - 그래요, 걸어서 가요.\n한국어 공부는 재미있지만 주말에는 조금 심심해요.\n음악이 정말 좋네요. 무슨 노래 들어요?\n한국 노래를 들어요. 매일 아침 라디오를 들어요.\n이 가방이 예쁘네요. 그 가방 얼마예요?\n저 식당 음식이 정말 맛있네요.\n모자가 2,000원이에요? 와, 정말 싸네요!\n정우 씨는 운동을 자주 해요? - 네, 수요일과 금요일에 농구를 해요.\n주말에 친구하고 같이 기타도 치고 노래방에도 가요.\n날씨가 더우니까 시원한 식혜 마실까요?\n오늘은 피곤하니까 일찍 집에서 쉴까요?",
+              "situations": "Jungwoo hỏi Kelly cuộc sống ở Hàn Quốc thế nào | 켈리 씨, 한국 생활이 어때요?\nKelly chia sẻ việc học tiếng Hàn vui nhưng cuối tuần hơi buồn chán | 한국어 공부는 재미있지만 주말에는 조금 심심해요.\nJungwoo rủ cuối tuần cùng đi đạp xe | 그래요? 그럼 주말에 같이 자전거 탈까요?\nKelly đồng ý và hỏi sẽ đạp xe ở đâu | 좋아요. 어디에서 탈까요?\nJungwoo đề xuất đạp xe ở sông Hán | 한강에서 타요.\nKelly hỏi cách thức đi đến sông Hán | 네. 그런데 한강에 어떻게 가요?\nJungwoo bảo gần lắm có thể đi bộ đến | 가까워요. 걸어서 가요.",
+              "notes": "📚 Giáo trình chuẩn: Seoul National University Korean 1A (Bài 8: 영화 볼까요?)\n\n1. 어휘 (Từ vựng cốt lõi):\n- Hoạt động thể thao & giải trí kết hợp với động từ chuyên dụng:\n  * 치다 (đánh/chơi bằng vợt, gậy hoặc nhạc cụ phím/dây): 골프를 치다 (chơi gôn), 테니스를 치다 (chơi quần vợt), 당구를 치다 (chơi bi-da), 기타를 치다 (chơi đàn ghi-ta), 피아노를 치다 (chơi đàn piano).\n  * 타다 (cưỡi, trượt, đi phương tiện): 자전거를 타다 (đi xe đạp), 스키를 타다 (trượt tuyết), 스케이트를 타다 (trượt băng).\n  * 하다 (làm/chơi các môn thể thao tập thể, trí tuệ): 농구를 하다 (chơi bóng rổ), 축구를 하다 (chơi bóng đá), 게임을 하다 (chơi game), 등산을 하다 (leo núi), 산책을 하다 (đi dạo), 여행을 하다 (đi du lịch).\n  * 자다: 낮잠을 자다 (ngủ trưa).\n- Tính từ & Trạng từ: 심심하다 (buồn chán vì rảnh), 시원하다 (mát mẻ, sảng khoái), 가깝다 (gần), 피곤하다 (mệt mỏi), 자주 (thường xuyên), 다음에 (lần sau), 또 (lại, nữa), 정말 (thật sự).\n- Địa điểm & Đồ uống truyền thống: 한강 (sông Hán), 관악산 (núi Gwanak), 한강공원 (công viên sông Hán), 노래방 (phòng karaoke), 찜질방 (nhà tắm hơi, xông hơi truyền thống), 식혜 (nước gạo ngọt).\n\n2. 문법 (Ngữ pháp trọng tâm):\n- V-(으)ㄹ까요?: Rủ rê, đề xuất hoặc hỏi ý kiến người nghe về một kế hoạch chưa quyết định (\"Chúng ta cùng... nhé?\", \"Tôi làm... nhé?\").\n  * Thân động từ không có 받침 hoặc có 받침 'ㄹ' + -ㄹ까요? (가다 -> 갈까요?, 만들다 -> 만들까요?).\n  * Thân động từ có 받침 khác + -을까요? (먹다 -> 먹을까요?, 앉다 -> 앉을까요?).\n  * Trả lời đồng thuận thường dùng đuôi '-아요/어요' (청유: \"네, 같이 가요\", \"좋아요, 극장에 가요\") hoặc phong cách trang trọng '-(으)ㅂ시다' (\"비빔밥을 먹읍시다\" - lưu ý không dùng -(으)ㅂ시다 với người bề trên).\n- 'ㄷ' 불규칙 (Bất quy tắc phụ âm cuối 'ㄷ'):\n  * Khi gốc động từ kết thúc bằng 'ㄷ' gặp đuôi bắt đầu bằng nguyên âm (-아/어, -(으)ㄹ, -(으)시), 'ㄷ' biến đổi thành 'ㄹ'.\n  * 듣다 (nghe) -> 들어요, 들었어요, 들을까요?, 들으세요. (Trước phụ âm giữ nguyên: 듣고, 듣지만, 듣습니다).\n  * 걷다 (đi bộ) -> 걸어요, 걸었어요, 걸을까요?, 걸으세요. (Trước phụ âm: 걷고, 걷지만, 걷습니다).\n  * 묻다 (hỏi) -> 물어요, 물었어요, 물을까요?, 물으세요.\n  * Các động từ có quy tắc (không đổi): 닫다 (đóng -> 닫아요), 받다 (nhận -> 받아요), 믿다 (tin tưởng -> 믿어요).\n- 이, 그, 저 N (Định từ chỉ định bổ nghĩa trực tiếp cho danh từ đứng sau):\n  * 이 N: Cái/Người N này (gần người nói). Ví dụ: 이 공원, 이 사람, 이 가방.\n  * 그 N: Cái/Người N đó (gần người nghe hoặc đã được nhắc đến trước đó trong cuộc trò chuyện). Ví dụ: 그 가방, 그 영화.\n  * 저 N: Cái/Người N kia (ở xa cả người nói và người nghe). Ví dụ: 저 식당, 저 산.\n  * Phân biệt: '이거/그거/저거' là đại từ độc lập (thay thế cho danh từ), còn '이/그/저' là định từ đi liền trước danh từ.\n- A/V-네요: Đuôi kết thúc câu cảm thán biểu thị sự ngạc nhiên, cảm nhận trực tiếp khi nhận ra một điều mới mẻ (\"...quá nhỉ!\", \"...thế nhỉ!\").\n  * Gắn trực tiếp vào thân tính từ và động từ, không phụ thuộc vào 받침 (싸다 -> 싸네요, 덥다 -> 덥네요, 시원하다 -> 시원하네요, 오다 -> 오네요, 먹다 -> 먹네요).\n  * Chú ý hiện tượng mũi hóa khi phát âm: 맛있다 + 네요 -> [마신네요], 재미있다 + 네요 -> [재미인네요], 덥네요 -> [덤네요].\n\n3. 발음 (Phát âm chuẩn):\n- Ngữ điệu câu thỉnh dụ / đề nghị (청유문의 억양):\n  * Trong câu đề nghị, rủ rê (như \"같이 숙제해요\", \"극장에 가요\"), ngữ điệu cuối câu hơi nâng nhẹ lên rồi hạ xuống (↗↘).\n  * Khác với câu trần thuật thông thường ngữ điệu chỉ đi xuống (↘), và câu hỏi nghi vấn ngữ điệu nâng hẳn lên (↗).\n\n4. 문화 산책 (Văn hóa gặp gỡ & Hẹn hò của người Hàn Quốc):\n- 미팅 (Meeting): Buổi gặp gỡ làm quen tập thể giữa nhóm nam sinh và nữ sinh (thường là sinh viên đại học), chơi các trò chơi kết đôi vui nhộn.\n- 소개팅 (Sogaeting): Cuộc hẹn hò giấu mặt 1-1 được người quen, bạn bè giới thiệu, nhằm mục đích tìm hiểu và kết bạn lãng mạn.\n- 선 (Seon / 맞선): Buổi gặp mặt trang trọng giữa hai người do cha mẹ, người lớn tuổi hoặc mai mối sắp đặt, hướng thẳng tới mục tiêu hôn nhân nghiêm túc.",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            }
+          ]
+        },
+        {
+          "id": "b1b",
+          "name": "Quyển 1B — Sơ cấp 1 (Nửa sau)",
+          "desc": "Bài 9–16",
+          "lessons": [
+            {
+              "title": "Bài 9: Hệ thống giao thông và Hướng di chuyển (교통)",
+              "id": "b1b_l1",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 10: Văn hóa ẩm thực và Giao tiếp tại nhà hàng (음식)",
+              "id": "b1b_l2",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 11: Cấu trúc gia đình và Kính ngữ cơ bản (가족)",
+              "id": "b1b_l3",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 12: Kỹ năng giao tiếp qua điện thoại (전화)",
+              "id": "b1b_l4",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 13: Giao dịch dịch vụ và Đặt vé (예약)",
+              "id": "b1b_l5",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 14: Kể lại trải nghiệm và Kinh nghiệm (경험)",
+              "id": "b1b_l6",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 15: Từ vựng y tế cơ bản và Bệnh viện (병원)",
+              "id": "b1b_l7",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 16: Hoạch định tương lai và Kế hoạch (계획)",
+              "id": "b1b_l8",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            }
+          ]
+        },
+        {
+          "id": "b2a",
+          "name": "Quyển 2A — Sơ cấp 2 (Nửa đầu)",
+          "desc": "Bài 1–9",
+          "lessons": [
+            {
+              "title": "Bài 1: Sở thích cá nhân và Mối quan tâm (취미)",
+              "id": "b2a_l1",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 2: Đánh giá và Đưa ra nhận xét (평가)",
+              "id": "b2a_l2",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 3: Văn hóa xin lỗi và Giải thích lý do (사과/변명)",
+              "id": "b2a_l3",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 4: Không gian sống và Việc chuyển nhà (집/이사)",
+              "id": "b2a_l4",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 5: Đề nghị và Cung cấp sự giúp đỡ (도움)",
+              "id": "b2a_l5",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 6: Hoạch định kỳ nghỉ và Du lịch (휴가)",
+              "id": "b2a_l6",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 7: Tình trạng sức khỏe và Sự biến đổi cơ thể (건강/변화)",
+              "id": "b2a_l7",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 8: Giao dịch tiêu dùng nâng cao — Đổi/Trả hàng (교환/환불)",
+              "id": "b2a_l8",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 9: Trải nghiệm du lịch quốc tế (해외 여행)",
+              "id": "b2a_l9",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            }
+          ]
+        },
+        {
+          "id": "b2b",
+          "name": "Quyển 2B — Sơ cấp 2 (Nửa sau)",
+          "desc": "Bài 10–18",
+          "lessons": [
+            {
+              "title": "Bài 10: Tiến trình học tập và Đo lường thời gian (학습 기간)",
+              "id": "b2b_l1",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 11: Thưởng thức nghệ thuật và Biểu diễn (공연)",
+              "id": "b2b_l2",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 12: Thích nghi với đời sống Hàn Quốc (한국 생활)",
+              "id": "b2b_l3",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 13: Sự kiện gia đình và Lễ tết truyền thống (가족 행사)",
+              "id": "b2b_l4",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 14: Phân tích thói quen cá nhân (습관)",
+              "id": "b2b_l5",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 15: Mở rộng các mối quan hệ xã hội (대인관계)",
+              "id": "b2b_l6",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 16: Phỏng vấn và Tìm kiếm việc làm (취업)",
+              "id": "b2b_l7",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 17: Báo cáo sự cố và Mất mát tài sản (분실/사고)",
+              "id": "b2b_l8",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 18: Lễ chia tay và Hồi tưởng (송별/추억)",
+              "id": "b2b_l9",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "name": "Giai đoạn 2 — Tích hợp Diễn ngôn Xã hội (Trung cấp)",
+      "desc": "Dịch chuyển sang hiện tượng xã hội, lập luận, miêu tả trừu tượng và văn viết (문어체).",
+      "books": [
+        {
+          "id": "b3a",
+          "name": "Quyển 3A — Trung cấp 1 (Nửa đầu)",
+          "desc": "Bài 1–9",
+          "lessons": [
+            {
+              "title": "Bài 1: Tâm lý học trong Gặp gỡ và Thiết lập quan hệ",
+              "id": "b3a_l1",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 2: So sánh Văn hóa dân gian",
+              "id": "b3a_l2",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 3: Hành vi Mua sắm và Tiêu dùng",
+              "id": "b3a_l3",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 4: Văn hóa Công sở và Môi trường học thuật",
+              "id": "b3a_l4",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 5: Tác động của Báo chí và Phương tiện truyền thông",
+              "id": "b3a_l5",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 6: Ý nghĩa các Lễ kỷ niệm xã hội",
+              "id": "b3a_l6",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 7: Khủng hoảng và Biến đổi lối sống",
+              "id": "b3a_l7",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 8: Y học dự phòng và Chăm sóc sức khỏe",
+              "id": "b3a_l8",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 9: Khủng hoảng Môi trường sinh thái",
+              "id": "b3a_l9",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            }
+          ]
+        },
+        {
+          "id": "b3b",
+          "name": "Quyển 3B — Trung cấp 1 (Nửa sau)",
+          "desc": "Bài 10–18",
+          "lessons": [
+            {
+              "title": "Bài 10: Kỹ năng Giải quyết vấn đề và Xử lý tình huống",
+              "id": "b3b_l1",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 11: Nghệ thuật đại chúng và Tính thẩm mỹ",
+              "id": "b3b_l2",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 12: Kỹ năng Tìm kiếm và Xử lý thông tin số",
+              "id": "b3b_l3",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 13: Giao lưu và Hội nhập văn hóa",
+              "id": "b3b_l4",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 14: Tiến bộ của Khoa học đời sống",
+              "id": "b3b_l5",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 15: Phân tích các Sự kiện Lịch sử",
+              "id": "b3b_l6",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 16: Phân tích Tâm lý và Hành vi con người",
+              "id": "b3b_l7",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 17: Cấu trúc Biểu đạt ngôn ngữ đa dạng",
+              "id": "b3b_l8",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 18: Hoạch định Tầm nhìn và Tương lai cá nhân",
+              "id": "b3b_l9",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            }
+          ]
+        },
+        {
+          "id": "b4a",
+          "name": "Quyển 4A — Trung cấp 2 (Nửa đầu)",
+          "desc": "Bài 1–9",
+          "lessons": [
+            {
+              "title": "Bài 1: Phân loại Đặc trưng tính cách",
+              "id": "b4a_l1",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 2: Đô thị hóa và Đời sống thành thị",
+              "id": "b4a_l2",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 3: Triết lý Giáo dục và Định hướng nghề nghiệp",
+              "id": "b4a_l3",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 4: Các Hiện tượng xã hội đương đại",
+              "id": "b4a_l4",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 5: Phê bình Công nghiệp giải trí và Văn hóa đại chúng",
+              "id": "b4a_l5",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 6: Khái niệm Kinh tế vĩ mô cơ bản",
+              "id": "b4a_l6",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 7: Hệ thống Luật pháp và Trật tự xã hội",
+              "id": "b4a_l7",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 8: Sự biến đổi của Cấu trúc gia đình hiện đại",
+              "id": "b4a_l8",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 9: Thể thao, Giải trí và Cạnh tranh",
+              "id": "b4a_l9",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            }
+          ]
+        },
+        {
+          "id": "b4b",
+          "name": "Quyển 4B — Trung cấp 2 (Nửa sau)",
+          "desc": "Bài 10–18",
+          "lessons": [
+            {
+              "title": "Bài 10: Ý nghĩa của Nỗ lực và Thành công",
+              "id": "b4b_l1",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 11: Đạo đức tiêu dùng và Quyền lợi khách hàng",
+              "id": "b4b_l2",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 12: Hệ thống Giao tiếp phi ngôn ngữ (Cử chỉ, Biểu cảm)",
+              "id": "b4b_l3",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 13: Nguồn gốc Phong tục và Tập quán",
+              "id": "b4b_l4",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 14: Thị trường lao động và Môi trường làm việc",
+              "id": "b4b_l5",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 15: Đạo đức sinh học và Khoa học ứng dụng",
+              "id": "b4b_l6",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 16: Tinh thần Khởi nghiệp và Kinh doanh",
+              "id": "b4b_l7",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 17: Khoảng cách thế hệ và Xung đột xã hội",
+              "id": "b4b_l8",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Bài 18: Toàn cầu hóa và Hợp tác quốc tế",
+              "id": "b4b_l9",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "name": "Giai đoạn 3 — Phân tích Học thuật và Biện luận (Cao cấp — TOPIK 5)",
+      "desc": "Ngôn ngữ chuyên ngành, tranh luận logic, đọc hiểu học thuật, tu từ phức tạp.",
+      "books": [
+        {
+          "id": "b5a",
+          "name": "Quyển 5A — Cao cấp 1",
+          "desc": "Chủ đề biện luận 1–9",
+          "lessons": [
+            {
+              "title": "Chủ đề 1: Cấu trúc nhân khẩu học và Vấn đề già hóa dân số",
+              "id": "b5a_l1",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Chủ đề 2: Hệ tư tưởng và Chênh lệch giàu nghèo trong xã hội tư bản",
+              "id": "b5a_l2",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Chủ đề 3: Phân tích cấu trúc thể loại Văn học truyền thống Hàn Quốc",
+              "id": "b5a_l3",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Chủ đề 4: Ảnh hưởng của truyền thông đại chúng đối với nhận thức chính trị",
+              "id": "b5a_l4",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Chủ đề 5: Quy luật kinh tế thị trường và Trách nhiệm xã hội của doanh nghiệp",
+              "id": "b5a_l5",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Chủ đề 6: Biến đổi khí hậu và Thỏa thuận môi trường toàn cầu",
+              "id": "b5a_l6",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Chủ đề 7: Kiến trúc đô thị và Sinh thái học con người",
+              "id": "b5a_l7",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Chủ đề 8: (Chờ nội dung)",
+              "id": "b5a_l8",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Chủ đề 9: (Chờ nội dung)",
+              "id": "b5a_l9",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            }
+          ]
+        },
+        {
+          "id": "b5b",
+          "name": "Quyển 5B — Cao cấp 1",
+          "desc": "Chủ đề biện luận 10–18",
+          "lessons": [
+            {
+              "title": "Chủ đề 10: (Chờ nội dung)",
+              "id": "b5b_l1",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Chủ đề 11: (Chờ nội dung)",
+              "id": "b5b_l2",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Chủ đề 12: (Chờ nội dung)",
+              "id": "b5b_l3",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Chủ đề 13: (Chờ nội dung)",
+              "id": "b5b_l4",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Chủ đề 14: (Chờ nội dung)",
+              "id": "b5b_l5",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Chủ đề 15: (Chờ nội dung)",
+              "id": "b5b_l6",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Chủ đề 16: (Chờ nội dung)",
+              "id": "b5b_l7",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Chủ đề 17: (Chờ nội dung)",
+              "id": "b5b_l8",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            },
+            {
+              "title": "Chủ đề 18: (Chờ nội dung)",
+              "id": "b5b_l9",
+              "items": [],
+              "examples": "",
+              "situations": "",
+              "notes": "",
+              "studied": false,
+              "level": 0,
+              "lastStudied": null,
+              "nextReview": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+};
+if(typeof window!=="undefined"){window.CURRICULUM_DATA=CURRICULUM_DATA;window.DEFAULT_CURRICULUM=CURRICULUM_DATA;}
+if(typeof module!=="undefined")module.exports=CURRICULUM_DATA;

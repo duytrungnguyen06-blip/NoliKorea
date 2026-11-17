@@ -1,0 +1,153 @@
+{
+  "id": "l_snu1a_01",
+  "title": "Bài 1: Giới thiệu bản thân và Chào hỏi (소개)",
+  "studied": false,
+  "level": 0,
+  "lastStudied": null,
+  "nextReview": null,
+  "items": [
+    {
+      "korean": "안녕하세요?",
+      "vi": "Xin chào? (Lời chào thông dụng nhất, dùng mọi lúc)",
+      "en": "Hello / How are you? (Standard polite greeting)"
+    },
+    {
+      "korean": "안녕하십니까?",
+      "vi": "Xin chào (Trang trọng, nghi thức, phỏng vấn, sự kiện)",
+      "en": "Hello / Good day (Formal polite greeting)"
+    },
+    {
+      "korean": "만나서 반가워요.",
+      "vi": "Rất vui được gặp bạn. (Giao tiếp lịch sự hằng ngày)",
+      "en": "Nice to meet you. (Informal polite)"
+    },
+    {
+      "korean": "만나서 반갑습니다.",
+      "vi": "Rất hân hạnh được gặp bạn. (Trang trọng)",
+      "en": "Pleased to meet you. (Formal polite)"
+    },
+    {
+      "korean": "안녕히 계세요.",
+      "vi": "Tạm biệt (chúc ở lại bình an - dùng khi mình ra về)",
+      "en": "Goodbye (said when you are leaving and other person is staying)"
+    },
+    {
+      "korean": "안녕히 가세요.",
+      "vi": "Tạm biệt (chúc đi về bình an - dùng khi đối phương ra về)",
+      "en": "Goodbye (said when the other person is leaving)"
+    },
+    {
+      "korean": "저는 유진이에요.",
+      "vi": "Tôi là Yujin.",
+      "en": "I am Yujin."
+    },
+    {
+      "korean": "저는 나나예요.",
+      "vi": "Tôi là Nana.",
+      "en": "I am Nana."
+    },
+    {
+      "korean": "스티븐은 미국 사람이에요.",
+      "vi": "Steven là người Mỹ.",
+      "en": "Steven is American."
+    },
+    {
+      "korean": "스티븐은 학생이에요.",
+      "vi": "Steven là học sinh / sinh viên.",
+      "en": "Steven is a student."
+    },
+    {
+      "korean": "마이클 씨는 영국 사람이에요.",
+      "vi": "Anh Michael là người Anh.",
+      "en": "Mr. Michael is British."
+    },
+    {
+      "korean": "저는 베트남 사람이에요.",
+      "vi": "Tôi là người Việt Nam.",
+      "en": "I am Vietnamese."
+    },
+    {
+      "korean": "나나 씨는 어느 나라 사람이에요?",
+      "vi": "Bạn Nana là người nước nào?",
+      "en": "Nana, which country are you from?"
+    },
+    {
+      "korean": "저는 중국 사람이에요.",
+      "vi": "Tôi là người Trung Quốc.",
+      "en": "I am Chinese."
+    },
+    {
+      "korean": "스티븐 씨는 미국 사람입니까?",
+      "vi": "Anh Steven có phải là người Mỹ không? (Trang trọng)",
+      "en": "Is Mr. Steven American? (Formal)"
+    },
+    {
+      "korean": "네, 저는 미국 사람입니다.",
+      "vi": "Vâng, tôi là người Mỹ. (Trang trọng)",
+      "en": "Yes, I am American. (Formal)"
+    },
+    {
+      "korean": "마이클 씨는 미국 사람입니까?",
+      "vi": "Anh Michael có phải là người Mỹ không?",
+      "en": "Is Mr. Michael American?"
+    },
+    {
+      "korean": "아니요, 저는 미국 사람이 아닙니다.",
+      "vi": "Không, tôi không phải là người Mỹ.",
+      "en": "No, I am not American."
+    },
+    {
+      "korean": "마이클 씨는 의사가 아닙니다.",
+      "vi": "Anh Michael không phải là bác sĩ.",
+      "en": "Mr. Michael is not a doctor."
+    },
+    {
+      "korean": "직업은 무엇입니까?",
+      "vi": "Nghề nghiệp của bạn là gì? (Trang trọng)",
+      "en": "What is your occupation? (Formal)"
+    },
+    {
+      "korean": "기자입니다.",
+      "vi": "Tôi là phóng viên / nhà báo.",
+      "en": "I am a reporter / journalist."
+    },
+    {
+      "korean": "선생님은 한국 사람이에요.",
+      "vi": "Cô giáo là người Hàn Quốc.",
+      "en": "The teacher is Korean."
+    },
+    {
+      "korean": "니콜 씨는 영어 선생님입니다.",
+      "vi": "Cô Nicole là giáo viên tiếng Anh.",
+      "en": "Ms. Nicole is an English teacher."
+    },
+    {
+      "korean": "아키라 씨는 일본 사람이에요.",
+      "vi": "Anh Akira là người Nhật Bản.",
+      "en": "Mr. Akira is Japanese."
+    },
+    {
+      "korean": "마리아 씨는 독일 사람이에요. 의사예요.",
+      "vi": "Cô Maria là người Đức. Là bác sĩ.",
+      "en": "Ms. Maria is German. She is a doctor."
+    },
+    {
+      "korean": "줄리앙 씨는 프랑스 사람이에요. 학생이에요.",
+      "vi": "Anh Julien là người Pháp. Là sinh viên.",
+      "en": "Mr. Julien is French. He is a student."
+    },
+    {
+      "korean": "제 명함입니다.",
+      "vi": "Đây là danh thiếp của tôi.",
+      "en": "Here is my business card."
+    },
+    {
+      "korean": "여러분, 만나서 반갑습니다.",
+      "vi": "Chào mọi người, rất hân hạnh được gặp các bạn.",
+      "en": "Everyone, pleased to meet you."
+    }
+  ],
+  "situations": "Lần đầu gặp bạn tại nhà khách (Guest House) | 안녕하세요? 저는 나나예요. 만나서 반가워요.\nĐối phương đáp lại và hỏi quốc tịch | 반가워요, 나나 씨. 나나 씨는 어느 나라 사람이에요?\nGiới thiệu quốc tịch của mình | 저는 베트남 사람이에요. 마이클 씨는 미국 사람이에요?\nĐối phương phủ định và đính chính quốc tịch | 아니요, 저는 미국 사람이 아닙니다. 영국 사람입니다.\nHỏi nghề nghiệp trong bối cảnh trang trọng | 직업은 무엇입니까?\nTrả lời nghề nghiệp | 저는 학생입니다. 마이클 씨는 기자입니까?",
+  "examples": "안녕하세요? 저는 유진이에요.\n스티븐은 미국 사람이에요. 학생이에요.\n나나 씨는 어느 나라 사람이에요? - 저는 중국 사람이에요.\n스티븐 씨는 미국 사람입니까? - 네, 저는 미국 사람입니다.\n마이클 씨는 미국 사람입니까? - 아니요, 저는 미국 사람이 아닙니다. 영국 사람입니다.\n직업은 무엇입니까? - 기자입니다.\n여러분, 만나서 반갑습니다. 저는 최정우입니다.",
+  "notes": "📚 Giáo trình chuẩn: Seoul National University Korean 1A (Bài 1: 안녕하세요?)\n\n1. 어휘 (Từ vựng):\n- Quốc gia & Quốc tịch: 한국 (Hàn), 베트남 (Việt), 미국 (Mỹ), 일본 (Nhật), 중국 (Trung), 영국 (Anh), 독일 (Đức), 프랑스 (Pháp), 호주 (Úc), 캐나다 (Canada), 러시아 (Nga), 인도 (Ấn Độ).\n- Công thức quốc tịch: Tên nước + 사람 (Lưu ý luôn có dấu cách: 한국 사람, 베트남 사람).\n- Nghề nghiệp: 선생님 (giáo viên), 학생 (học sinh/sinh viên), 회사원 (nhân viên công ty), 의사 (bác sĩ), 기자 (phóng viên), 가수 (ca sĩ), 군인 (quân nhân), 요리사 (đầu bếp), 주부 (nội trợ), 영어 선생님 (giáo viên tiếng Anh).\n\n2. 문법 (Ngữ pháp cốt lõi):\n- N은/는 N이에요/예요 (Thân mật đời thường): Có patchim + 은 / 이에요; Không patchim + 는 / 예요.\n- N입니까?, N입니다 (Trang trọng nghi thức): Gắn trực tiếp vào danh từ, không phân biệt patchim.\n- N이/가 아닙니다 (Phủ định trang trọng): Có patchim + 이 아닙니다; Không patchim + 가 아닙니다.\n\n3. 발음 (Phát âm chuẩn SNU):\n- Biến âm ㅂ gặp ㄴ: 입니다 [임니다], 입니까 [임니까], 반갑습니다 [반갑씀니다].\n- Ngữ điệu: Câu trần thuật hạ giọng ở cuối câu ↘, câu hỏi lên giọng ở từ cuối ↗."
+}

@@ -1,0 +1,1 @@
+(() => { let mode='dark';try {mode=localStorage.getItem('kla_theme')||'dark';}catch{} document.documentElement.dataset.theme=mode==='system'?(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'):mode; })();

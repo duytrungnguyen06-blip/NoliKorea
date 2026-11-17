@@ -1,0 +1,67 @@
+.stage-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+}.stage-card {
+    background: var(--bg-s1);
+    border: 1px solid var(--border);
+    border-radius: var(--r-xl);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    position: relative;
+}.stage-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+    border-color: var(--border-hover);
+}.stage-card-banner {
+    height: 110px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+}.stage-card-banner::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.3));
+}.stage-emoji {
+    font-size: 2.75rem; position: relative; z-index: 1;
+    filter: drop-shadow(0 2px 10px rgba(0,0,0,0.5));
+    transition: transform 0.25s ease;
+}.stage-card:hover .stage-emoji { transform: scale(1.12); }.stage-actions {
+    position: absolute; top: 0.65rem; right: 0.65rem; z-index: 10;
+    display: flex; gap: 0.3rem; opacity: 0; transition: opacity 0.2s;
+}.stage-card:hover .stage-actions { opacity: 1; }.stage-body { padding: 1.25rem 1.25rem 1.1rem; }.stage-name { font-size: 1rem; font-weight: 700; color: var(--tx-1); margin-bottom: 0.3rem; letter-spacing: -0.01em; }.stage-desc { font-size: 0.8rem; color: var(--tx-2); margin-bottom: 1rem; line-height: 1.4; min-height: 1.1rem; }.stage-meta { display: flex; gap: 1.25rem; margin-bottom: 0.9rem; }.stage-meta-item { display: flex; flex-direction: column; }.stage-meta-label { font-size: 0.68rem; color: var(--tx-3); text-transform: uppercase; letter-spacing: 0.08em; }.stage-meta-value { font-size: 1.1rem; font-weight: 700; color: var(--tx-1); font-variant-numeric: tabular-nums; }.stage-progress-bar { height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden; }.stage-progress-fill {
+    height: 100%; border-radius: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-cyan));
+    transition: width 0.6s cubic-bezier(0.4,0,0.2,1);
+}.stage-card-add {
+    display: flex; align-items: center; justify-content: center; min-height: 220px;
+    border-style: dashed !important; opacity: 0.55;
+    transition: opacity 0.2s, transform 0.25s ease !important;
+}.stage-card-add:hover { opacity: 0.85; transform: translateY(-3px) !important; }.book-card {
+    display: flex; align-items: center; gap: 1.1rem;
+    padding: 1rem 1.25rem; background: var(--bg-s1);
+    border: 1px solid var(--border); border-radius: var(--r-lg);
+    margin-bottom: 0.6rem; cursor: pointer;
+    transition: all 0.2s ease; position: relative; overflow: hidden;
+}.book-card::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+    background: linear-gradient(to bottom, var(--accent), var(--accent-cyan));
+    opacity: 0; transition: opacity 0.2s;
+}.book-card:hover { background: var(--bg-s2); border-color: var(--border-hover); transform: translateX(3px); }.book-card:hover::before { opacity: 1; }.book-icon { font-size: 1.75rem; flex-shrink: 0; }.book-info { flex: 1; min-width: 0; }.book-name { font-size: 0.95rem; font-weight: 600; color: var(--tx-1); margin-bottom: 0.2rem; }.book-desc { font-size: 0.8rem; color: var(--tx-2); margin-bottom: 0.5rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }.book-progress { display: flex; align-items: center; gap: 0.75rem; }.book-progress-bar { flex: 1; height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden; }.book-progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-cyan)); border-radius: 2px; transition: width 0.5s ease; }.book-progress-text { font-size: 0.76rem; color: var(--tx-3); white-space: nowrap; }.book-actions { display: flex; gap: 0.3rem; opacity: 0; transition: opacity 0.2s; flex-shrink: 0; }.book-card:hover .book-actions { opacity: 1; }.lesson-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
+    gap: 0.9rem;
+}.lesson-card {
+    background: var(--bg-s1); border: 1px solid var(--border);
+    border-radius: var(--r-lg); padding: 1rem 1.1rem; cursor: pointer;
+    transition: all 0.2s ease; position: relative; overflow: hidden;
+}.lesson-card::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(129,140,248,0.04), transparent);
+    opacity: 0; transition: opacity 0.2s; pointer-events: none;
+}.lesson-card:hover { border-color: var(--border-hover); transform: translateY(-2px); box-shadow: var(--shadow-md); }.lesson-card:hover::after { opacity: 1; }.lesson-card.studied { border-color: rgba(52,211,153,0.18); }.lesson-card.due { border-color: rgba(251,191,36,0.3); background: rgba(251,191,36,0.025); }.lesson-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.55rem; }.lesson-status {
+    display: inline-flex; align-items: center; gap: 0.25rem;
+    padding: 0.18rem 0.55rem; border-radius: 999px;
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.03em;
+}.lesson-status:not(.studied):not(.due) { background: rgba(100,116,139,0.14); color: var(--tx-3); }.lesson-status.studied { background: var(--success-bg); color: var(--success); }.lesson-status.due { background: var(--warning-bg); color: var(--warning); }.lesson-card-actions { display: flex; gap: 0.25rem; opacity: 0; transition: opacity 0.2s; }.lesson-card:hover .lesson-card-actions { opacity: 1; }.lesson-card-title { font-size: 0.9rem; font-weight: 600; color: var(--tx-1); margin-bottom: 0.4rem; line-height: 1.35; }.lesson-card-preview { font-size: 0.82rem; color: var(--tx-2); font-family: 'Noto Sans KR', sans-serif; margin-bottom: 0.65rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }.lesson-card-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 0.6rem; border-top: 1px solid rgba(255,255,255,0.05); }.lesson-review-date { font-size: 0.72rem; color: var(--tx-3); }.empty-state { padding: 4rem 2rem; text-align: center; }.empty-icon { font-size: 3rem; margin-bottom: 1rem; opacity: 0.55; }.empty-state h3 { font-size: 1.05rem; font-weight: 600; color: var(--tx-1); margin-bottom: 0.4rem; }.empty-state p { color: var(--tx-2); font-size: 0.875rem; margin-bottom: 1.5rem; }
