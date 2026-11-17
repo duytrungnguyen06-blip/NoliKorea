@@ -3,7 +3,7 @@
   if (typeof module === "object" && module.exports) module.exports = api;
   else root.KLARequest = api;
 })(globalThis, () => {
-  function create(fetcher = globalThis.fetch, timeout = 20000) {
+  function create(fetcher = globalThis.fetch, timeout = 30000) {
     const pending = new Set();
     async function request(url, options = {}) {
       const controller = new AbortController();
