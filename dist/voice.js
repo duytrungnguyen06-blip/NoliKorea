@@ -201,66 +201,57 @@
         }
 
         stop() {
-            if (this.sharedInstance) {
-                try {
-                    this.sharedInstance.abort();
-                } catch (e) { /* ignore */ }
-            }
+            this.generation = (this.generation || 0) + 1;
+            const rec = this.sharedInstance;
+            this.sharedInstance = null;
             this.isBusy = false;
+            if (rec) {
+                rec.onstart = rec.onresult = rec.onerror = rec.onend = null;
+                try { rec.abort(); } catch {}
+            }
         }
 
         async startRecognition({ onStart, onResult, onError, onEnd }) {
-            if (!this.isSupported()) {
-                alert('Tính năng nhận diện giọng nói (Micro) cần trình duyệt Google Chrome, Microsoft Edge hoặc Safari để hoạt động tốt nhất.');
-                return null;
-            }
-
             this.stop();
-
-            // Request mic access once upfront so browser caches permission
-            await this.requestMicPermissionOnce();
-
-            const rec = this.getOrCreateInstance();
-            if (!rec) return null;
-
-            rec.onstart = () => {
-                this.isBusy = true;
-                if (onStart) onStart();
-            };
-
-            rec.onresult = (event) => {
-                const transcript = event.results?.[0]?.[0]?.transcript || '';
-                if (onResult) onResult(transcript.trim());
-            };
-
-            rec.onerror = (event) => {
-                this.isBusy = false;
-                let msg = 'Lỗi thu âm';
-                if (event.error === 'not-allowed') {
-                    msg = 'Chưa cấp quyền Micro. Hãy bấm vào biểu tượng Micro/Ổ khóa trên thanh địa chỉ để cấp quyền.';
-                } else if (event.error === 'no-speech') {
-                    msg = 'Không nhận thấy âm thanh';
-                } else if (event.error === 'network') {
-                    msg = 'Lỗi kết nối mạng dịch vụ nhận diện giọng nói';
-                }
-                if (onError) onError(msg, event.error);
-            };
-
-            rec.onend = () => {
-                this.isBusy = false;
-                if (onEnd) onEnd();
-            };
-
-            try {
-                rec.start();
-                return rec;
-            } catch (err) {
-                this.isBusy = false;
-                if (err.name !== 'InvalidStateError') {
-                    if (onError) onError(err.message, 'start-failed');
-                }
+            if (!this.isSupported()) {
+                onError?.('Thiết bị/trình duyệt này chưa hỗ trợ nhận diện giọng nói. Hãy dùng Chrome hoặc Safari có hỗ trợ.', 'unsupported');
+                onEnd?.();
                 return null;
             }
+            // Start directly from the user's tap. SpeechRecognition manages its own
+            // permission request; a separate getUserMedia prompt can lose activation.
+            const generation = this.generation;
+            const rec = this.getOrCreateInstance();
+            const active = () => generation === this.generation;
+            let delivered = false;
+            this.isBusy = true;
+            rec.onstart = () => { if(active()) onStart?.(); };
+            rec.onresult = event => {
+                if(!active() || delivered) return;
+                const text = event.results?.[0]?.[0]?.transcript?.trim();
+                if(text){delivered=true;onResult?.(text);}
+            };
+            rec.onerror = event => {
+                if(!active())return;
+                this.isBusy=false;
+                const messages = {
+                    'not-allowed':'Chưa được cấp quyền mic. Mở quyền của trang web trong trình duyệt, cho phép Micro rồi thử lại.',
+                    'service-not-allowed':'Trình duyệt đang chặn dịch vụ nhận diện giọng nói.',
+                    'no-speech':'Chưa nhận thấy lời nói. Hãy bấm mic và thử lại.',
+                    'audio-capture':'Không truy cập được mic. Kiểm tra mic hoặc đóng ứng dụng khác đang sử dụng mic.',
+                    'network':'Không kết nối được dịch vụ nhận diện giọng nói. Kiểm tra mạng rồi thử lại.',
+                    'aborted':'Đã dừng nhận diện giọng nói.'
+                };
+                onError?.(messages[event.error] || 'Không khởi động được nhận diện giọng nói. Hãy thử lại.',event.error);
+            };
+            rec.onend = () => {
+                if(!active())return;
+                this.isBusy=false;this.sharedInstance=null;
+                this.generation++;
+                onEnd?.();
+            };
+            try { rec.start();return rec; }
+            catch(err){this.stop();onError?.('Không mở được mic: '+err.message,'start-failed');onEnd?.();return null;}
         }
 
         /**

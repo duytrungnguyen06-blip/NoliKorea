@@ -229,6 +229,13 @@ function checkFloatingAudioVisibility() {
   const floating = $("floatingAudioPlayer");
   if (!panel || !floating) return;
 
+  if (
+    !$("studyModal").classList.contains("active") ||
+    !$("inputTab").classList.contains("active")
+  ) {
+    floating.classList.add("hidden");
+    return;
+  }
   if (floating._manuallyClosed) return;
 
   const rect = panel.getBoundingClientRect();
@@ -252,6 +259,11 @@ function initAudioKeyboardShortcuts() {
     if ($("rolePlayModal") && !$("rolePlayModal").classList.contains("hidden"))
       return;
 
+    if (
+      !$("studyModal").classList.contains("active") ||
+      !$("inputTab").classList.contains("active")
+    )
+      return;
     if (e.code === "Space") {
       e.preventDefault();
       toggleNativeAudioPlay();

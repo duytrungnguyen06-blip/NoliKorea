@@ -1,3 +1,16 @@
+let rolePlayTimer;
+let rolePlayRevision = 0;
+function cancelRolePlayTurn() {
+  clearTimeout(rolePlayTimer);
+  rolePlayRevision++;
+  window.KoreanVoice?.stop();
+}
+function rolePlayActive(revision) {
+  return (
+    revision === rolePlayRevision &&
+    $("rolePlayModal").classList.contains("active")
+  );
+}
 window._rolePlayState = {
   lid: null,
   diagIdx: 0,
@@ -8,6 +21,7 @@ window._rolePlayState = {
 };
 
 function openRolePlayModal(lid, diagIdx) {
+  cancelRolePlayTurn();
   const modal = $("rolePlayModal");
   if (!modal) {
     console.error("rolePlayModal not found in DOM");
@@ -42,6 +56,7 @@ function openRolePlayModal(lid, diagIdx) {
 }
 
 function closeRolePlayModal() {
+  cancelRolePlayTurn();
   window.KoreanVoice?.stt?.stop();
   const modal = $("rolePlayModal");
   if (modal) {
@@ -102,6 +117,8 @@ function selectRolePlayCharacter(userRole) {
 }
 
 function renderRolePlayTurn() {
+  cancelRolePlayTurn();
+  const revision = rolePlayRevision;
   const body = $("rolePlayModalBody");
   if (!body) return;
 
@@ -168,7 +185,7 @@ function renderRolePlayTurn() {
                     <button type="button" class="btn btn-secondary btn-sm" data-speak="${esc(currentLine.korean)}" title="Nghe câu mẫu">
                         <span>🔊 Nghe mẫu</span>
                     </button>
-                    <button type="button" class="btn btn-secondary btn-sm" onclick="advanceRolePlayTurn(75)" title="Bỏ qua lượt này">
+                    <button type="button" class="btn btn-secondary btn-sm" onclick="advanceRolePlayTurn()" title="Bỏ qua lượt này">
                         <span>Bỏ qua ⏩</span>
                     </button>
                 </div>
@@ -185,25 +202,50 @@ function renderRolePlayTurn() {
         `;
     body.innerHTML = html;
 
-    // Auto-play partner audio after small delay
-    setTimeout(() => {
-      if (window.KoreanVoice) {
-        window.KoreanVoice.speak(currentLine.korean);
+    const next = () => {
+      if (rolePlayActive(revision)) advanceRolePlayTurn();
+    };
+    const fallback = () => {
+      if (!rolePlayActive(revision)) return;
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "btn btn-secondary";
+      button.textContent = "Tiếp tục lượt sau";
+      button.onclick = next;
+      body.append(button);
+    };
+    rolePlayTimer = setTimeout(() => {
+      if (!rolePlayActive(revision)) return;
+      if (!window.KoreanVoice?.tts?.isSupported()) {
+        fallback();
+        return;
       }
-      setTimeout(() => {
-        advanceRolePlayTurn(100);
-      }, 2200);
+      window.KoreanVoice.speak(currentLine.korean, {
+        onEnd: next,
+        onError: fallback,
+      });
     }, 500);
   }
 }
 
 function startRolePlayUserSpeech() {
   const state = window._rolePlayState;
-  const currentLine = state.dialogue.lines[state.currentLineIdx];
+  const currentLine = state.dialogue?.lines[state.currentLineIdx];
+  if (
+    !currentLine ||
+    currentLine.role !== state.userRole ||
+    !$("rolePlayModal").classList.contains("active")
+  )
+    return;
+  if ($("rolePlayMicBtn")?.classList.contains("recording")) return;
+  cancelRolePlayTurn();
+  const revision = rolePlayRevision;
+  let gotResult = false,
+    failed = false;
   const micBtn = $("rolePlayMicBtn");
   const feedbackEl = $("rolePlaySpeechFeedback");
 
-  if (!window.KoreanVoice || !window.KoreanVoice.isSupported()) {
+  if (!window.KoreanVoice || !window.KoreanVoice.stt?.isSupported()) {
     alert(
       "Trình duyệt cần hỗ trợ Micro (Chrome, Edge hoặc Safari) để luyện nói!",
     );
@@ -223,8 +265,10 @@ function startRolePlayUserSpeech() {
         `;
   }
 
-  window.KoreanVoice.startRecognition({
+  window.KoreanVoice.stt.startRecognition({
     onResult: (spokenText) => {
+      if (!rolePlayActive(revision)) return;
+      gotResult = true;
       if (micBtn) {
         micBtn.classList.remove("recording");
         micBtn.innerHTML = "<span>🎙️ Nói lại</span>";
@@ -234,11 +278,11 @@ function startRolePlayUserSpeech() {
         currentLine.korean,
         spokenText,
       );
-      state.scores.push(accuracy);
+      state.scores[state.currentLineIdx] = accuracy;
 
       let badgeClass = "excellent";
       let badgeIcon = "🌟";
-      let comment = "Xuất sắc! Phát âm rất chuẩn!";
+      let comment = "Xuất sắc! Lời nhận dạng khớp câu mẫu!";
 
       if (accuracy < 50) {
         badgeClass = "retry";
@@ -247,13 +291,13 @@ function startRolePlayUserSpeech() {
       } else if (accuracy < 80) {
         badgeClass = "good";
         badgeIcon = "👍";
-        comment = "Khá tốt! Phát âm tương đối rõ!";
+        comment = "Khá tốt! Lời nhận dạng khá gần câu mẫu!";
       }
 
       if (feedbackEl) {
         feedbackEl.innerHTML = `
                     <div class="roleplay-feedback-badge ${badgeClass}">
-                        <span>${badgeIcon} Độ chính xác: ${accuracy}%</span> — <span>${comment}</span>
+                        <span>${badgeIcon} Độ khớp lời nhận dạng: ${accuracy}%</span> — <span>${comment}</span>
                     </div>
                     <div class="compact-text-64">
                         Bạn nói: <i>"${esc(spokenText)}"</i>
@@ -266,12 +310,14 @@ function startRolePlayUserSpeech() {
 
       // Auto-advance if excellent
       if (accuracy >= 85) {
-        setTimeout(() => {
-          advanceRolePlayTurn();
+        rolePlayTimer = setTimeout(() => {
+          if (rolePlayActive(revision)) advanceRolePlayTurn();
         }, 1400);
       }
     },
     onError: (err) => {
+      if (!rolePlayActive(revision)) return;
+      failed = true;
       if (micBtn) {
         micBtn.classList.remove("recording");
         micBtn.innerHTML = "<span>🎙️ Thử lại</span>";
@@ -279,19 +325,28 @@ function startRolePlayUserSpeech() {
       if (feedbackEl) {
         feedbackEl.innerHTML = `
                     <div class="roleplay-feedback-badge retry">
-                        <span>⚠️ Chưa nghe rõ âm thanh. Nhấn nút để thử lại!</span>
+                        <span>⚠️ ${esc(err)}</span>
                     </div>
                 `;
       }
+    },
+    onEnd: () => {
+      if (!rolePlayActive(revision)) return;
+      micBtn?.classList.remove("recording");
+      if (micBtn) micBtn.textContent = "🎙️ Nói lại";
+      if (!gotResult && !failed && feedbackEl)
+        feedbackEl.textContent = "Chưa nhận được lời nói. Bấm mic để thử lại.";
     },
   });
 }
 
 function advanceRolePlayTurn(fallbackScore) {
   const state = window._rolePlayState;
-  if (fallbackScore && state.scores.length <= state.currentLineIdx) {
-    state.scores.push(fallbackScore);
-  }
+  if (
+    !$("rolePlayModal").classList.contains("active") ||
+    state.currentLineIdx >= state.dialogue.lines.length
+  )
+    return;
   state.currentLineIdx++;
   renderRolePlayTurn();
 }
@@ -301,9 +356,9 @@ function renderRolePlaySummary() {
   if (!body) return;
 
   const state = window._rolePlayState;
-  const scores = state.scores.length > 0 ? state.scores : [85];
+  const scores = state.scores.filter(Number.isFinite);
   const avgScore = Math.round(
-    scores.reduce((a, b) => a + b, 0) / scores.length,
+    scores.reduce((a, b) => a + b, 0) / (scores.length || 1),
   );
 
   // Save habit/streak progress
@@ -312,9 +367,10 @@ function renderRolePlaySummary() {
   }
 
   let praise =
-    "Bạn đã hoàn thành đoạn hội thoại một cách tự nhiên và trôi chảy!";
+    "Bạn đã hoàn thành đoạn hội thoại. Điểm thể hiện độ khớp văn bản máy nhận dạng với câu mẫu.";
   if (avgScore >= 90)
-    praise = "Tuyệt vời! Bạn phản xạ và phát âm chuẩn như người bản xứ!";
+    praise =
+      "Lời máy nhận dạng khớp tốt với câu mẫu. Đây không phải đánh giá phát âm chuyên sâu.";
   else if (avgScore < 70)
     praise =
       "Rất đáng khen! Hãy thử đổi vai hoặc luyện lại thêm một lần để nhớ sâu hơn nhé!";
@@ -323,7 +379,7 @@ function renderRolePlaySummary() {
         <div class="roleplay-summary-card">
             <div class="roleplay-trophy">🏆</div>
             <h3 class="compact-text-66">Hoàn Thành Đoạn Đối Thoại!</h3>
-            <div class="roleplay-summary-score">${avgScore}%</div>
+            <div class="roleplay-summary-score">${scores.length ? avgScore + "%" : "Chưa có lượt ghi âm"}</div>
             <p class="compact-text-67">${praise}</p>
             <div class="action-row-68">
                 <button type="button" class="btn btn-secondary btn-sm" onclick="selectRolePlayCharacter('${state.userRole === "speaker-a" ? "speaker-b" : "speaker-a"}')">
@@ -336,3 +392,19 @@ function renderRolePlaySummary() {
         </div>
     `;
 }
+
+// Listening to the sample must release the mic and cancel automatic advancement.
+document.addEventListener(
+  "click",
+  (event) => {
+    if (!event.target.closest("#rolePlayModal [data-speak]")) return;
+    cancelRolePlayTurn();
+    const button = $("rolePlayMicBtn");
+    if (button) {
+      if(button.classList.contains("recording") && $("rolePlaySpeechFeedback")) $("rolePlaySpeechFeedback").textContent="Đã dừng mic để nghe mẫu. Bấm Bắt đầu nói khi bạn sẵn sàng.";
+      button.classList.remove("recording");
+      button.textContent = "🎙️ Bắt đầu nói";
+    }
+  },
+  true,
+);

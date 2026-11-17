@@ -61,6 +61,8 @@ function forms() {
       tab.classList.add("active");
       const content = $(tab.dataset.tab + "Tab");
       content.classList.add("active");
+      if (tab.dataset.tab !== "input") window.KoreanVoice?.nativeAudio?.pause();
+      checkFloatingAudioVisibility();
       updateStudyProgress(tab.dataset.tab);
       StudySession.ensure(tab.dataset.tab);
       StudySession.tab(tab.dataset.tab);
