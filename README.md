@@ -1,6 +1,18 @@
-# NoliKorea · V5
+# NoliKorea · V6.0.0 Final
 
-Học tiếng Hàn Seoul 1A: 8 bài, 224 mục, 89 tệp audio hiện hữu. Phiên ngắn, đọc/nghe, Recall, tự viết và lịch ôn. Dữ liệu lưu trên thiết bị; Gemini là lựa chọn riêng.
+Học tiếng Hàn Seoul 1A: 8 bài, 224 mục, 32 track CD Audio thực dùng trong `AUDIO_MAP` (4 file/bài). Phiên ngắn, đọc/nghe, Recall, tự viết, Đóng vai, Sổ tay sửa lỗi thông minh và lịch ôn. Dữ liệu lưu trên thiết bị; Gemini là lựa chọn riêng.
+
+## Bản V6.0.0 Final (Big Update)
+
+- **Mở trực tiếp 1-Click HTML & Zero-Install**: Mở trực tiếp `Mo_NoliKorea_V6.html` hoặc `dist/index.html` (`file://`), chạy local với Python (`python -m http.server 8000 --directory dist`), hoặc cài PWA trên GitHub Pages — không cần cài Node.js.
+- **Giao diện khóa chuẩn Final**: Hoàn thiện 100% Dark Mode & Light Mode trên Desktop, Tablet và Mobile (Header đồng bộ trái–phải, 3 modal CRUD, chế độ quản lý giáo trình, bàn phím ảo Hàn, Noli AI và các banner thông báo).
+- **Active Recall thế hệ mới (506 câu · 5 kỹ năng · Hiệp ngắn 12 câu)**:
+  - 96 bài tập Điền từ ngữ pháp có dịch nghĩa cả câu + 64 tình huống giao tiếp Seoul 1A + dạng bài mới **🎧 Nghe phản xạ** (thường & chậm `0.72x`).
+  - Mặc định chia **Hiệp 12 câu cân bằng 5 kỹ năng** theo chế độ **🃏 Từng câu 1 thẻ** (chuyển 1 chạm sang Danh sách / Cả kho bài / Làm lại câu sai).
+- **🐶 Noli · Luyện theo sách 100% Offline (không cần API Key)**: Hội thoại nhiều lượt theo ngữ cảnh 8 bài Seoul 1A (Chat & Gọi), gợi ý trả lời động, tự bắt lỗi ngữ pháp/chia đuôi và tra từ ngay trong sách; tương thích mở rộng cho Seoul 1B, 2A+.
+- **🎵 Nhạc nền khi học Offline + Icon âm lượng trên Header**: 3 không gian âm thanh Web Audio API (Lo-fi Piano Seoul, Mưa rơi Seoul, Ambient) + chọn file nhạc riêng, tự động hạ nhỏ/tắt khi nghe CD, phát âm hoặc bật Micro.
+- **Gamification ⚡ XP & 🔥 Streak + Sổ tay Sửa Lỗi Thông Minh**: Thưởng XP ở đủ 5 luồng học tập, chấm chuẩn mọi từ có biến thể ngoặc đơn / gạch chéo, đồng bộ khi Đặt lại / Nhập / Khôi phục.
+- **Lưu trữ IndexedDB & Audio Offline (32 tracks)**: Lưu song song `localStorage` + IndexedDB; tải 32 track CD Audio thực dùng từ `AUDIO_MAP`, Service Worker hỗ trợ cache mọi `/audio/**/*.mp3` bổ sung sau này.
 
 ## Bản 5.0.6
 
@@ -55,4 +67,4 @@ Cài đặt thông thường gồm giao diện, âm thanh, sao lưu. Khôi phụ
 
 Đã kiểm thử Node/jsdom, dữ liệu, bài luyện, migration, lưu/khôi phục, AI giả lập và vòng đời service worker. Chưa kiểm thử thực tế iPhone/Android/Home Screen, micro và API key thật trong môi trường này. Chưa nghe đối chiếu 32 track tham chiếu với transcript; không tuyên bố học liệu đã được thẩm định ngôn ngữ hoàn toàn.
 
-Không thêm tải audio offline. Giữ cơ chế phát/cache audio hiện hữu. Nội dung tham khảo gốc được giữ riêng.
+Hỗ trợ tải sẵn offline 32 track CD Audio đang dùng trong `AUDIO_MAP` và cache tự động theo yêu cầu cho mọi bài học mới. Nội dung tham khảo gốc được giữ riêng.
