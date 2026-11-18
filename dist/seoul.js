@@ -136,10 +136,9 @@ window.SeoulUI = (() => {
       b.onclick = () => navigate(b.dataset.view);
     });
     document.querySelector(".search-icon").innerHTML = icon("search");
-    document.querySelector(".ai-sparkle-icon").innerHTML = icon("spark");
     document
       .querySelector(".header-ai-btn")
-      .setAttribute("aria-label", "Mở Bạn học AI");
+      .setAttribute("aria-label", "Noli, bạn học AI");
     document.querySelector(".header-ai-btn").onclick = () =>
       openGlobalAIBot("chat");
     document.querySelectorAll(".modal-close").forEach((b) => {

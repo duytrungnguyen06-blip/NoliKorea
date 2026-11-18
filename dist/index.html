@@ -50,10 +50,9 @@
             </div>
 
             <!-- Global AI Companion Button (Sesame Call & Chat) -->
-            <button type="button" class="header-ai-btn" onclick="openGlobalAIBot('call')" title="Trò chuyện AI toàn diện (Sesame Call & Chat)">
-                <span class="ai-sparkle-icon">✨</span>
-                <span class="ai-btn-text">Bạn học AI</span>
-                <span class="ai-pulse-dot"></span>
+            <button type="button" class="header-ai-btn" onclick="openGlobalAIBot('chat')" title="Nói chuyện với Noli" aria-label="Noli, bạn học AI">
+                <img src="./assets/noli-shiba.webp" class="noli-shiba" alt="" width="64" height="64">
+                <span class="ai-btn-text">Noli</span>
             </button>
 
             <button class="theme-toggle icon-btn" type="button" onclick="SeoulUI.cycleTheme()" aria-label="Đổi giao diện" title="Đổi giao diện sáng / tối / hệ thống"></button>
@@ -94,15 +93,15 @@
             <!-- Book AI Banner (Appears when viewing lessons of a book) -->
             <div id="bookAiBanner" class="book-ai-banner hidden">
                 <div class="book-ai-info">
-                    <span class="book-ai-avatar">🇰🇷</span>
+                    <span class="book-ai-avatar"><img src="./assets/noli-shiba.webp" class="noli-shiba" alt="" width="64" height="64"></span>
                     <div>
-                        <div class="book-ai-title">Bạn học AI · <span id="bookAiName">민수 (Min-soo)</span></div>
-                        <div class="book-ai-desc" id="bookAiDesc">Chỉ sử dụng từ vựng & ngữ pháp trong quyển sách này</div>
+                        <div class="book-ai-title"><span id="bookAiName">Noli</span></div>
+                        <div class="book-ai-desc" id="bookAiDesc">Luyện theo sách</div>
                     </div>
                 </div>
                 <div class="book-ai-actions">
-                    <button type="button" class="btn btn-secondary btn-sm" onclick="openBookAIBot('chat')">💬 Nhắn tin</button>
-                    <button type="button" class="btn btn-primary btn-sm btn-call" onclick="openBookAIBot('call')">📞 Gọi thoại</button>
+                    <button type="button" class="btn btn-secondary btn-sm" onclick="openBookAIBot('chat')" aria-label="Nhắn tin với Noli theo sách">Chat</button>
+                    <button type="button" class="btn btn-primary btn-sm btn-call" onclick="openBookAIBot('call')" aria-label="Gọi Noli theo sách">Gọi</button>
                 </div>
             </div>
             <div id="stageList" class="stage-grid"></div>
@@ -487,23 +486,23 @@
 </div>
 
 <!-- Modal: AI Conversation (Messenger & Sesame Live Phone Call) -->
-<div class="modal" id="aiModal">
+<div class="modal" id="aiModal" aria-labelledby="aiModalTitle">
     <div class="modal-overlay" onclick="closeAiModal()"></div>
     <div class="modal-content modal-ai-dialog">
         <!-- AI Modal Header -->
         <div class="ai-modal-header">
             <div class="ai-partner-profile">
-                <div class="ai-avatar-badge" id="aiModalAvatar">✨</div>
+                <div class="ai-avatar-badge" id="aiModalAvatar"><img src="./assets/noli-shiba.webp" class="noli-shiba" alt="" width="64" height="64"></div>
                 <div>
-                    <div class="ai-partner-name" id="aiModalTitle">Bạn học AI Companion</div>
-                    <div class="ai-partner-scope" id="aiModalScope">Trợ lý tiếng Hàn toàn diện</div>
+                    <div class="ai-partner-name" id="aiModalTitle">Noli</div>
+                    <div class="ai-partner-scope" id="aiModalScope">Bạn học AI</div>
                 </div>
             </div>
             <div class="ai-mode-switch">
-                <button type="button" class="ai-mode-btn active" id="btnAiModeChat" onclick="switchAiMode('chat')" title="Chế độ Nhắn tin">💬 Chat</button>
-                <button type="button" class="ai-mode-btn" id="btnAiModeCall" onclick="switchAiMode('call')" title="Chế độ Gọi điện thoại">📞 Call</button>
+                <button type="button" class="ai-mode-btn active" id="btnAiModeChat" onclick="switchAiMode('chat')" title="Chế độ Nhắn tin">Chat</button>
+                <button type="button" class="ai-mode-btn" id="btnAiModeCall" onclick="switchAiMode('call')" title="Chế độ Gọi điện thoại">Gọi</button>
             </div>
-            <button class="modal-close" onclick="closeAiModal()">&times;</button>
+            <button type="button" class="modal-close" aria-label="Đóng trò chuyện" onclick="closeAiModal()">&times;</button>
         </div>
 
         <!-- 1. AI Messenger View -->
@@ -518,7 +517,7 @@
             <div class="ai-chat-input-bar">
                 <button type="button" class="vk-quick-btn" onclick="if(window.KoreanKeyboard) window.KoreanKeyboard.toggle()" title="Mở bàn phím ảo (Ctrl+K)">⌨️</button>
                 <button type="button" class="study-action-btn ai-mic-btn" id="aiChatMicBtn" onclick="toggleAiChatMic()" title="Nói tiếng Hàn (Micro)">🎙️</button>
-                <input type="text" id="aiChatInput" placeholder="Nhập tin nhắn tiếng Hàn..." autocomplete="off">
+                <input type="text" id="aiChatInput" placeholder="Nhắn cho Noli…" aria-label="Tin nhắn cho Noli" autocomplete="off">
                 <button type="button" class="btn btn-primary btn-send-ai" id="aiChatSendBtn" onclick="sendAiChatMessage()">Gửi</button>
             </div>
         </div>
@@ -527,7 +526,7 @@
         <div class="ai-view-container" id="aiCallView">
             <div class="ai-call-screen">
                 <div class="ai-call-top-bar">
-                    <span class="ai-call-encrypted">🔒 Cuộc gọi thoại mô phỏng</span>
+                    <span class="ai-call-encrypted">Luyện nói · AI</span>
                     <span class="ai-call-timer" id="aiCallTimer">00:00</span>
                 </div>
 
@@ -535,17 +534,17 @@
                     <div class="ai-call-pulse-ring ring-3"></div>
                     <div class="ai-call-pulse-ring ring-2"></div>
                     <div class="ai-call-pulse-ring ring-1"></div>
-                    <div class="ai-call-avatar-circle" id="aiCallAvatar">🇰🇷</div>
+                    <div class="ai-call-avatar-circle" id="aiCallAvatar"><img src="./assets/noli-shiba.webp" class="noli-shiba" alt="" width="64" height="64"></div>
                 </div>
 
                 <div class="ai-call-partner-info">
-                    <div class="ai-call-name" id="aiCallName">민수 (Min-soo)</div>
+                    <div class="ai-call-name" id="aiCallName">Noli</div>
                     <div class="ai-call-status" id="aiCallStatus">Đang kết nối...</div>
                 </div>
 
                 <!-- Subtitles / Live Transcript -->
                 <div class="ai-call-subtitles" id="aiCallSubtitles">
-                    <div class="ai-sub-line ai" id="aiCallLastAiMsg">Đang chuẩn bị cuộc gọi...</div>
+                    <div class="ai-sub-line ai" id="aiCallLastAiMsg">Noli đang kết nối…</div>
                     <div class="ai-sub-line user" id="aiCallLastUserMsg"></div>
                 </div>
 

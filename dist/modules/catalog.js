@@ -94,11 +94,11 @@ function render() {
     if (bid) {
       const b = book(sid, bid);
       banner.classList.remove("hidden");
-      if ($("bookAiName"))
-        $("bookAiName").textContent = b ? b.name : "Quyển sách";
-      if ($("bookAiDesc"))
-        $("bookAiDesc").textContent =
-          `Chỉ trò chuyện bằng từ vựng & mẫu câu trong ${b ? b.name : "quyển này"}`;
+      if ($("bookAiName")) $("bookAiName").textContent = "Noli";
+      if ($("bookAiDesc")) {
+        $("bookAiDesc").textContent = "Luyện theo sách";
+        $("bookAiDesc").title = b ? b.name : "Quyển sách hiện tại";
+      }
     } else {
       banner.classList.add("hidden");
     }
@@ -177,7 +177,7 @@ function renderStages() {
     const pct = totalLessons ? Math.round((studied / totalLessons) * 100) : 0;
 
     html += `
-        <div class="stage-card ${s.books.some(b=>b.lessons.some(l=>l.items?.length))?'':'empty-curriculum'}" onclick="go('${s.id}',null)">
+        <div class="stage-card ${s.books.some((b) => b.lessons.some((l) => l.items?.length)) ? "" : "empty-curriculum"}" onclick="go('${s.id}',null)">
             <div class="stage-actions">
                 <button class="icon-btn" onclick="event.stopPropagation();openStageModal('${s.id}')" title="Sửa">✏️</button>
                 <button class="icon-btn danger" onclick="event.stopPropagation();deleteStage('${s.id}')" title="Xóa">🗑️</button>
@@ -245,7 +245,7 @@ function renderBooks(sid) {
     const pct = total ? Math.round((studied / total) * 100) : 0;
 
     html += `
-        <div class="book-card ${b.lessons.some(l=>l.items?.length)?'':'empty-curriculum'}" onclick="go('${sid}','${b.id}')">
+        <div class="book-card ${b.lessons.some((l) => l.items?.length) ? "" : "empty-curriculum"}" onclick="go('${sid}','${b.id}')">
             <div class="book-icon">📖</div>
             <div class="book-info">
                 <div class="book-name">${esc(b.name)}</div>
@@ -449,7 +449,7 @@ function addLessonItem(korean, vi, en, metadata = {}) {
   const container = $("lessonItems");
   const row = document.createElement("div");
   row.className = "lesson-item-row";
-  row._metadata = {...metadata, id: metadata.id || uid()};
+  row._metadata = { ...metadata, id: metadata.id || uid() };
   const fields = document.createElement("div");
   fields.className = "item-fields";
   for (const [lang, value, label] of [

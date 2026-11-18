@@ -17,6 +17,7 @@ const files = [
   "seoul",
   "reliability",
   "daily",
+  "shiba",
 ];
 let css = files
   .map((n) => fs.readFileSync(root + "/styles/" + n + ".css", "utf8"))

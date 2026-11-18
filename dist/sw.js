@@ -1,5 +1,5 @@
 // Service Worker for Korean Learning App PWA
-const CACHE_NAME = 'kla-v5-nolikorea-6';
+const CACHE_NAME = 'kla-v5-nolikorea-7';
 const AUDIO_CACHE_NAME = 'kla-v3-audio-cache-v1';
 
 const ASSETS = [
@@ -7,6 +7,7 @@ const ASSETS = [
     './index.html',
     './styles.css', './theme.js', './icons.js', './seoul.js',
     './voice.js',
+    './assets/noli-shiba.webp',
     './keyboard.js',
     './recall.js',
     './production.js',

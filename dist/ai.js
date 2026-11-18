@@ -11,6 +11,8 @@
 (function () {
     'use strict';
 
+    const SHIBA_AVATAR = '<img src="./assets/noli-shiba.webp" class="noli-shiba" alt="" width="64" height="64">';
+
     function esc(s) {
         return (s || '')
             .replace(/&/g, '&amp;')
@@ -263,7 +265,7 @@
 
                     const vocabStr = allowedItems.slice(0,60).join(', ').slice(0,7000);
 
-                    const systemPrompt = `Bạn là 민수 (Min-soo), một người bạn Hàn Quốc thân thiện, kiên nhẫn và vui vẻ.
+                    const systemPrompt = `Bạn là Noli (노리), linh vật chó Shiba và bạn học AI thân thiện của NoliKorea. Giọng điệu kiên nhẫn, tự nhiên; không tự nhận là người thật.
 Bạn đang trò chuyện với người học tiếng Hàn ở trình độ cuốn sách: "${targetBook.name}", đang tập trung vào bài "${focused?.title||''}" (${targetStage ? targetStage.name : ''}).
 QUY TẮC BẮT BUỘC:
 1. Bạn CHỈ ĐƯỢC PHÉP sử dụng từ vựng, ngữ pháp và mẫu câu nằm trong danh sách bài học của quyển này: [ ${vocabStr} ].
@@ -275,35 +277,35 @@ QUY TẮC BẮT BUỘC:
                     return {
                         type: 'book',
                         bookId: targetBook.id,
-                        name: '민수 (Min-soo)',
-                        avatar: '🇰🇷',
-                        title: `Bạn học AI · ${targetBook.name}`,
-                        scopeDesc: `Kiến thức giới hạn: ${targetBook.name}`,
+                        name: 'Noli',
+                        avatar: SHIBA_AVATAR,
+                        title: 'AI · Theo sách',
+                        scopeDesc: targetBook.name,
                         systemPrompt: systemPrompt,
-                        welcomeMsg: `안녕하세요! 저는 민수예요. ${targetBook.name} 공부를 같이 해요! 만나서 반가워요.`,
+                        welcomeMsg: '안녕하세요! 노리예요. 같이 연습해요!',
                         allowedVocab: allowedItems
                     };
                 }
             }
 
             // Global Master Bot
-            const systemPrompt = `Bạn là 지우 (Ji-woo), trợ lý gia sư AI tiếng Hàn thông minh của ứng dụng Học Tiếng Hàn (NoliKorea).
+            const systemPrompt = `Bạn là Noli (노리), linh vật chó Shiba và bạn học AI thân thiện của NoliKorea. Không tự nhận là người thật.
 Bạn có thể trò chuyện tự do bằng tiếng Hàn với người học ở mọi chủ đề (đời sống, ẩm thực K-food, du lịch Seoul, văn hóa K-pop, ngữ pháp, luyện thi TOPIK).
 QUY TẮC BẮT BUỘC:
 1. Trả lời tự nhiên, thân thiện bằng tiếng Hàn chuẩn lịch sự (đuôi ~아요/어요 hoặc ~ㅂ니다).
-2. Mỗi lượt trả lời ngắn gọn (1-3 câu) để người học dễ đọc hiểu và luyện nghe.
+2. Mỗi lượt trả lời ngắn gọn (1-2 câu) để người học dễ đọc hiểu và luyện nghe.
 3. Nếu có từ vựng mới hoặc người học chưa hiểu, hãy kèm dịch nghĩa tiếng Việt trong ngoặc đơn ( ).
 4. Luôn khích lệ, khen ngợi và sửa lỗi nhẹ nhàng nếu người học viết hay nói sai trợ từ hoặc ngữ pháp.`;
 
             return {
                 type: 'global',
                 bookId: null,
-                name: '지우 (Ji-woo)',
-                avatar: '✨',
-                title: 'Bạn học AI Companion',
-                scopeDesc: 'Trợ lý tiếng Hàn toàn diện · Mọi cấp độ',
+                name: 'Noli',
+                avatar: SHIBA_AVATAR,
+                title: 'Bạn học AI',
+                scopeDesc: 'Trò chuyện tự do',
                 systemPrompt: systemPrompt,
-                welcomeMsg: '안녕하세요! 저는 AI 서울 친구 지우예요. 오늘 어떤 이야기로 한국어 연습을 해볼까요?',
+                welcomeMsg: '안녕하세요! 노리예요. 오늘 어때요?',
                 allowedVocab: []
             };
         }
@@ -319,7 +321,7 @@ QUY TẮC BẮT BUỘC:
             const avatarEl = document.getElementById('aiModalAvatar');
             const titleEl = document.getElementById('aiModalTitle');
             const scopeEl = document.getElementById('aiModalScope');
-            if (avatarEl) avatarEl.textContent = this.currentBot.avatar;
+            if (avatarEl) avatarEl.innerHTML = this.currentBot.avatar;
             if (titleEl) titleEl.textContent = this.currentBot.name;
             if (scopeEl) scopeEl.textContent = this.currentBot.title;
 
@@ -395,7 +397,7 @@ QUY TẮC BẮT BUỘC:
                             <span>${esc(text)}</span>
                             ${isModel ? `<button type="button" class="study-action-btn ai-speak-btn" data-speak="${esc(text)}" title="Nghe phát âm">🔊</button>` : ''}
                         </div>
-                        ${anatomyHtml}
+                        ${anatomyHtml ? `<details class="ai-message-explanation"><summary>Giải thích câu</summary>${anatomyHtml}</details>` : ''}
                         <div class="ai-msg-time">${new Date().toLocaleTimeString().slice(0, 5)}</div>
                     </div>
                 </div>
@@ -539,9 +541,9 @@ QUY TẮC BẮT BUỘC:
             const subAiEl = document.getElementById('aiCallLastAiMsg');
             const subUserEl = document.getElementById('aiCallLastUserMsg');
 
-            if (avatarEl) avatarEl.textContent = this.currentBot.avatar;
+            if (avatarEl) avatarEl.innerHTML = this.currentBot.avatar;
             if (nameEl) nameEl.textContent = this.currentBot.name;
-            if (statusEl) statusEl.textContent = 'Đang kết nối cuộc gọi...';
+            if (statusEl) statusEl.textContent = 'Đang kết nối…';
             if (subAiEl) subAiEl.textContent = this.currentBot.welcomeMsg;
             if (subUserEl) subUserEl.textContent = '';
 
@@ -572,7 +574,7 @@ QUY TẮC BẮT BUỘC:
             const subAiEl = document.getElementById('aiCallLastAiMsg');
             const visualizer = document.querySelector('.ai-call-visualizer-center');
 
-            if (statusEl) statusEl.innerHTML = '<span class="pulse-dot green"></span> 🤖 Đang nói...';
+            if (statusEl) statusEl.innerHTML = '<span class="pulse-dot green"></span> Noli đang nói…';
             if (subAiEl) subAiEl.textContent = text;
             if (visualizer) visualizer.classList.add('ai-speaking');
 
@@ -612,7 +614,7 @@ QUY TẮC BẮT BUỘC:
             const subUserEl = document.getElementById('aiCallLastUserMsg');
             const visualizer = document.querySelector('.ai-call-visualizer-center');
 
-            if (statusEl) statusEl.innerHTML = '<span class="pulse-dot cyan"></span> 🎙️ Đang lắng nghe bạn nói...';
+            if (statusEl) statusEl.innerHTML = '<span class="pulse-dot cyan"></span> Đang nghe bạn…';
             if (visualizer) visualizer.classList.add('user-speaking');
 
             if (!window.KoreanVoice || !window.KoreanVoice.stt) return;
@@ -623,7 +625,7 @@ QUY TẮC BẮT BUỘC:
                     if (visualizer) visualizer.classList.remove('user-speaking');
 
                     if (subUserEl) subUserEl.textContent = `Bạn: "${spokenText}"`;
-                    if (statusEl) statusEl.innerHTML = '<span class="pulse-dot amber"></span> ⚡ Đang suy nghĩ...';
+                    if (statusEl) statusEl.innerHTML = '<span class="pulse-dot amber"></span> Noli đang nghĩ…';
 
                     // Send spoken text to AI
                     this.sendMessage(spokenText);
@@ -632,7 +634,7 @@ QUY TẮC BẮT BUỘC:
                     if (callGeneration !== this.callGeneration || !this.isCallActive) return;
                     if (visualizer) visualizer.classList.remove('user-speaking');
                     if (statusEl && this.isCallActive) {
-                        statusEl.textContent = 'Nhấn Micro hoặc gõ tin nhắn để tiếp tục...';
+                        statusEl.textContent = 'Bật mic để nói tiếp.';
                     }
                 },
                 onEnd: () => {

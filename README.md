@@ -2,6 +2,10 @@
 
 Học tiếng Hàn Seoul 1A: 8 bài, 224 mục, 89 tệp audio hiện hữu. Phiên ngắn, đọc/nghe, Recall, tự viết và lịch ôn. Dữ liệu lưu trên thiết bị; Gemini là lựa chọn riêng.
 
+## Bản 5.0.5
+
+Noli, linh vật Shiba, thay avatar Bạn học AI trong thanh đầu trang, giáo trình, chat và gọi thoại. Thu gọn nhãn, lời chào và khung giới thiệu; giải thích câu trong chat có thể mở khi cần. Giữ phạm vi luyện theo sách, mic và thời gian chờ AI.
+
 ## Bản 5.0.4
 
 Bỏ 26 chú thích chữ Hán khỏi từ vựng và làm sạch chú thích trong bản lưu cũ, bài luyện, sổ lỗi và dữ liệu nhập. Giữ ghi chú phát âm, ID mục học, tiến độ và lịch ôn.
