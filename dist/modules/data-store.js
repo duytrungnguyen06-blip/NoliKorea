@@ -57,13 +57,32 @@
       ids.add(x.id);
     }
   }
+  // Also clean cached exercise text and legacy imports, preserving IDs and schedules.
+  function removeHanjaAnnotations(value) {
+    if (typeof value === "string") {
+      if (!/chữ Hán/i.test(value)) return value;
+      return value.replace(/ *\(([^()]*)\)/g, (original, note) => {
+        const parts = note.split(/\s*[,;]\s*/);
+        const kept = parts.filter(
+          (part) => !/^chữ Hán(?:\/[^:]+)?:/i.test(part),
+        );
+        if (kept.length === parts.length) return original;
+        return kept.length ? " (" + kept.join(", ") + ")" : "";
+      });
+    }
+    if (value && typeof value === "object") {
+      for (const key of Object.keys(value))
+        value[key] = removeHanjaAnnotations(value[key]);
+    }
+    return value;
+  }
   function validate(input) {
     safe(input);
     object(input, "Dữ liệu");
     arr(input.stages, "stages");
     if (input.stages.length > 100) fail("Quá nhiều giai đoạn.");
     unique(input.stages);
-    const data = clone(input);
+    const data = removeHanjaAnnotations(clone(input));
     const lessonIndex = new Map();
     let count = 0;
     for (const s of data.stages) {

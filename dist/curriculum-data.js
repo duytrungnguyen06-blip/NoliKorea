@@ -209,7 +209,7 @@ const CURRICULUM_DATA = {
                 },
                 {
                   "korean": "책",
-                  "vi": "Sách (chữ Hán: 冊)",
+                  "vi": "Sách",
                   "en": "Book",
                   "id": "b1a_l2-item-3"
                 },
@@ -227,7 +227,7 @@ const CURRICULUM_DATA = {
                 },
                 {
                   "korean": "연필",
-                  "vi": "Bút chì (chữ Hán: 鉛筆)",
+                  "vi": "Bút chì",
                   "en": "Pencil",
                   "id": "b1a_l2-item-6"
                 },
@@ -239,7 +239,7 @@ const CURRICULUM_DATA = {
                 },
                 {
                   "korean": "필통",
-                  "vi": "Hộp bút, bóp đựng bút (chữ Hán: 筆筒)",
+                  "vi": "Hộp bút, bóp đựng bút",
                   "en": "Pencil case",
                   "id": "b1a_l2-item-8"
                 },
@@ -251,25 +251,25 @@ const CURRICULUM_DATA = {
                 },
                 {
                   "korean": "시계",
-                  "vi": "Đồng hồ (chữ Hán: 時計, phát âm [시게])",
+                  "vi": "Đồng hồ (phát âm [시게])",
                   "en": "Clock / Watch",
                   "id": "b1a_l2-item-10"
                 },
                 {
                   "korean": "모자",
-                  "vi": "Mũ, nón (chữ Hán: 帽子)",
+                  "vi": "Mũ, nón",
                   "en": "Hat / Cap",
                   "id": "b1a_l2-item-11"
                 },
                 {
                   "korean": "우산",
-                  "vi": "Cây dù, cái ô (chữ Hán: 雨傘)",
+                  "vi": "Cây dù, cái ô",
                   "en": "Umbrella",
                   "id": "b1a_l2-item-12"
                 },
                 {
                   "korean": "신문",
-                  "vi": "Tờ báo, báo chí (chữ Hán: 新聞)",
+                  "vi": "Tờ báo, báo chí",
                   "en": "Newspaper",
                   "id": "b1a_l2-item-13"
                 },
@@ -281,55 +281,55 @@ const CURRICULUM_DATA = {
                 },
                 {
                   "korean": "사전",
-                  "vi": "Từ điển (chữ Hán: 辭典)",
+                  "vi": "Từ điển",
                   "en": "Dictionary",
                   "id": "b1a_l2-item-15"
                 },
                 {
                   "korean": "전자사전",
-                  "vi": "Từ điển điện tử (chữ Hán: 電子辭典)",
+                  "vi": "Từ điển điện tử",
                   "en": "Electronic dictionary",
                   "id": "b1a_l2-item-16"
                 },
                 {
                   "korean": "안경",
-                  "vi": "Kính mắt, cặp kính (chữ Hán: 眼鏡)",
+                  "vi": "Kính mắt, cặp kính",
                   "en": "Glasses",
                   "id": "b1a_l2-item-17"
                 },
                 {
                   "korean": "휴대폰",
-                  "vi": "Điện thoại di động (chữ Hán/Anh: 携帶phone)",
+                  "vi": "Điện thoại di động",
                   "en": "Mobile phone",
                   "id": "b1a_l2-item-18"
                 },
                 {
                   "korean": "창문",
-                  "vi": "Cửa sổ (chữ Hán: 窓門)",
+                  "vi": "Cửa sổ",
                   "en": "Window",
                   "id": "b1a_l2-item-19"
                 },
                 {
                   "korean": "지도",
-                  "vi": "Bản đồ (chữ Hán: 地圖)",
+                  "vi": "Bản đồ",
                   "en": "Map",
                   "id": "b1a_l2-item-20"
                 },
                 {
                   "korean": "지갑",
-                  "vi": "Ví tiền, bóp tiền (chữ Hán: 紙匣)",
+                  "vi": "Ví tiền, bóp tiền",
                   "en": "Wallet",
                   "id": "b1a_l2-item-21"
                 },
                 {
                   "korean": "침대",
-                  "vi": "Giường ngủ (chữ Hán: 寢臺)",
+                  "vi": "Giường ngủ",
                   "en": "Bed",
                   "id": "b1a_l2-item-22"
                 },
                 {
                   "korean": "냉장고",
-                  "vi": "Tủ lạnh (chữ Hán: 冷藏庫)",
+                  "vi": "Tủ lạnh",
                   "en": "Refrigerator",
                   "id": "b1a_l2-item-23"
                 },
@@ -1349,7 +1349,7 @@ const CURRICULUM_DATA = {
                 },
                 {
                   "korean": "당구",
-                  "vi": "Môn bi-da, bida (chữ Hán: 撞球)",
+                  "vi": "Môn bi-da, bida",
                   "en": "Billiards",
                   "id": "b1a_l8-item-3"
                 },
@@ -1367,7 +1367,7 @@ const CURRICULUM_DATA = {
                 },
                 {
                   "korean": "자전거",
-                  "vi": "Xe đạp (chữ Hán: 自轉車)",
+                  "vi": "Xe đạp",
                   "en": "Bicycle",
                   "id": "b1a_l8-item-6"
                 },
@@ -1385,13 +1385,13 @@ const CURRICULUM_DATA = {
                 },
                 {
                   "korean": "농구",
-                  "vi": "Môn bóng rổ (chữ Hán: 籠球)",
+                  "vi": "Môn bóng rổ",
                   "en": "Basketball",
                   "id": "b1a_l8-item-9"
                 },
                 {
                   "korean": "축구",
-                  "vi": "Môn bóng đá (chữ Hán: 蹴球)",
+                  "vi": "Môn bóng đá",
                   "en": "Football / Soccer",
                   "id": "b1a_l8-item-10"
                 },
@@ -1409,13 +1409,13 @@ const CURRICULUM_DATA = {
                 },
                 {
                   "korean": "산책",
-                  "vi": "Đi dạo, tản bộ (chữ Hán: 散策)",
+                  "vi": "Đi dạo, tản bộ",
                   "en": "Walk / Stroll",
                   "id": "b1a_l8-item-13"
                 },
                 {
                   "korean": "등산",
-                  "vi": "Leo núi (chữ Hán: 登山)",
+                  "vi": "Leo núi",
                   "en": "Mountain hiking",
                   "id": "b1a_l8-item-14"
                 },
@@ -1463,7 +1463,7 @@ const CURRICULUM_DATA = {
                 },
                 {
                   "korean": "피곤하다",
-                  "vi": "Mệt mỏi, uể oải (chữ Hán: 疲困하다)",
+                  "vi": "Mệt mỏi, uể oải",
                   "en": "To be tired",
                   "id": "b1a_l8-item-22"
                 },
@@ -1487,19 +1487,19 @@ const CURRICULUM_DATA = {
                 },
                 {
                   "korean": "정말",
-                  "vi": "Thật sự, quả thực (chữ Hán/thuần: 正말)",
+                  "vi": "Thật sự, quả thực",
                   "en": "Really / Truly",
                   "id": "b1a_l8-item-26"
                 },
                 {
                   "korean": "한강",
-                  "vi": "Sông Hán (con sông biểu tượng tại Seoul, chữ Hán: 漢江)",
+                  "vi": "Sông Hán (con sông biểu tượng tại Seoul)",
                   "en": "Han River",
                   "id": "b1a_l8-item-27"
                 },
                 {
                   "korean": "식혜",
-                  "vi": "Nước gạo ngọt lên men truyền thống Hàn Quốc (chữ Hán: 食醯)",
+                  "vi": "Nước gạo ngọt lên men truyền thống Hàn Quốc",
                   "en": "Sikhye (Sweet rice drink)",
                   "id": "b1a_l8-item-28"
                 }
