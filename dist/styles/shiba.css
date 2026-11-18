@@ -318,3 +318,10 @@
     padding: 12px 14px 16px;
   }
 }
+
+.app-brand .app-logo {
+  background: none;
+  box-shadow: none;
+  border: 0;
+  border-radius: 0;
+}

@@ -1,5 +1,5 @@
 // Service Worker for Korean Learning App PWA
-const CACHE_NAME = 'kla-v5-nolikorea-7';
+const CACHE_NAME = 'kla-v5-nolikorea-8';
 const AUDIO_CACHE_NAME = 'kla-v3-audio-cache-v1';
 
 const ASSETS = [
@@ -41,7 +41,10 @@ const ASSETS = [
 
     './manifest.json',
     './icon-192.png',
-    './icon-512.png'
+    './icon-512.png',
+    './icon-maskable-noli.png',
+    './apple-touch-icon-noli.png',
+    './favicon-noli.png'
 ];
 
 self.addEventListener('install', event => {
