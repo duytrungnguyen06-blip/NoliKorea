@@ -48,24 +48,32 @@ window.SeoulUI = (() => {
         .filter((l) => l.inProgress)
         .sort((a, b) => (b.lastOpenedAt || 0) - (a.lastOpenedAt || 0))[0] ||
       all.find((l) => !l.studied);
-    const done = all.filter((l) => l.studied).length;
-    const pct = all.length ? Math.round((done / all.length) * 100) : 0;
     const box = $("learningDashboard");
-    box.innerHTML = `<div class="dashboard-heading"><div><p class="eyebrow">NOLIKOREA</p><h2>Mỗi ngày, một chút tiếng Hàn.</h2></div><span class="today-label">${new Date().toLocaleDateString("vi-VN", { weekday: "long", day: "numeric", month: "long" })}</span></div><div class="dashboard-grid"><article class="hero-card"><div class="hero-copy"><p class="eyebrow">${reviews.length ? "ĐẾN LÚC ÔN LẠI" : candidate?.inProgress ? "TIẾP TỤC HÀNH TRÌNH" : "BÀI HỌC TIẾP THEO"}</p><h3>${candidate ? esc(candidate.title) : all.length ? "Bạn đã học hết các bài có nội dung!" : "Bắt đầu với giáo trình của bạn"}</h3><p>${candidate ? "Đọc hiểu, luyện nhớ và tự tin nói theo cách của bạn." : "Thêm bài học hoặc quay lại luyện tập để ghi nhớ lâu hơn."}</p>${candidate ? '<button class="btn btn-secondary hero-cta" id="continueLearning">' + (reviews.length ? "Ôn tập ngay" : candidate.inProgress ? "Tiếp tục học" : "Bắt đầu học") + icon("arrow") + "</button>" : ""}</div><div class="hero-art" aria-hidden="true"><span>한</span><small>하루 한 걸음<br>Mỗi ngày một bước</small></div></article><aside class="learning-overview"><p class="eyebrow">NHỊP HỌC CỦA BẠN</p><div class="overview-number">${pct}<span>%</span></div><p>${done} / ${all.length} bài có nội dung đã học</p><progress value="${done}" max="${all.length || 1}" aria-label="Tiến độ bài học"></progress><div class="overview-footer"><span>${db.streak?.count || 0} ngày liên tiếp</span><span>${reviews.length} bài cần ôn</span></div></aside></div><div class="quick-stats"><span>${icon("book")}<b>${all.length}</b> bài sẵn sàng</span><span>${icon("note")}<b>${all.reduce((n, l) => n + l.items.length, 0)}</b> mục học</span><span>${icon("bell")}<b>${reviews.length}</b> đến hạn</span><span>${icon("check")}<b>${done}</b> đã học</span></div>`;
+    const label = reviews.length
+      ? "Ôn tập bài học"
+      : candidate?.inProgress
+        ? "Tiếp tục bài học"
+        : "Bắt đầu bài học";
+    box.className = "learning-shortcuts";
+    box.innerHTML = `<button type="button" class="btn btn-secondary learning-shortcut" id="continueLearning" ${candidate ? "" : "disabled"}>
+      <span class="shortcut-label">${candidate ? label : "Đã học hết bài"}</span>
+      ${candidate ? `<span class="shortcut-detail">${esc(candidate.title)}</span>` : ""}
+    </button><div id="dailyLauncher" class="daily-launcher"></div>`;
     window.DailySession?.renderLauncher();
-    const itemCount = window.ItemReviews?.dueItems().length || 0;
-    if (itemCount) {
-      const link = document.createElement("button");
-      link.className = "btn btn-secondary item-due-link";
-      link.textContent = `Ôn ${itemCount} mục cần nhớ`;
-      link.addEventListener("click", () => navigate("review"));
-      box.append(link);
+    const target = candidate;
+    const resume = $("continueLearning");
+    if (target) {
+      resume.title = `${label}: ${target.title}`;
+      resume.setAttribute("aria-label", resume.title);
+      resume.addEventListener("click", () => {
+        go(target.sid, target.bid);
+        openStudyModal(target.sid, target.bid, target.id);
+      });
+    } else {
+      resume.textContent = all.length ? "Đã học hết bài" : "Chưa có bài học";
     }
-    $("continueLearning")?.addEventListener("click", () => {
-      go(candidate.sid, candidate.bid);
-      openStudyModal(candidate.sid, candidate.bid, candidate.id);
-    });
   }
+
   function navigate(view, focus = true) {
     activeView = view === "mistakes" ? "progress" : view;
     document

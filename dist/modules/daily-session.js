@@ -92,29 +92,27 @@ window.DailySession = (() => {
     renderLauncher();
   }
   function renderLauncher() {
+    const dashboard = $("learningDashboard");
+    if (!dashboard) return;
     let box = $("dailyLauncher");
     if (!box) {
-      box = document.createElement("section");
+      box = document.createElement("div");
       box.id = "dailyLauncher";
       box.className = "daily-launcher";
-      $("learningDashboard").after(box);
+      dashboard.append(box);
     }
     box.replaceChildren();
-    add(box, "span", "PHIÊN HỌC HÔM NAY", "eyebrow");
-    add(box, "h3", "Một phiên ngắn, một bước tiến.");
-    add(
-      box,
-      "p",
-      "Tối đa 8 mục nhớ lại + 2 tình huống tự viết · khoảng 5–10 phút",
-    );
-    button(
+    const launch = button(
       box,
       current() && !current().finished
-        ? "Tiếp tục phiên đang học"
+        ? "Tiếp tục phiên ngắn"
         : "Bắt đầu phiên ngắn",
       start,
-      true,
     );
+    launch.classList.add("learning-shortcut");
+    launch.setAttribute("aria-label", launch.textContent);
+    launch.title =
+      "Tối đa 8 mục nhớ lại + 2 tình huống tự viết · khoảng 5–10 phút";
   }
   function render() {
     const s = current(),
